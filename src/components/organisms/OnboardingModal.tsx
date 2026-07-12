@@ -8,9 +8,10 @@ import { Button } from "@/components/atoms/Button";
 interface OnboardingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onLaunchConsole: (orgName: string) => void;
 }
 
-export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClose }) => {
+export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClose, onLaunchConsole }) => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [orgName, setOrgName] = useState("");
@@ -55,6 +56,11 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
     setOrgTouched(false);
     setSelectedStack([]);
     onClose();
+  };
+
+  const handleLaunch = () => {
+    onLaunchConsole(orgName);
+    handleReset();
   };
 
   // Stagger animation helpers
@@ -320,7 +326,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
                     </motion.div>
 
                     <motion.div variants={childVariants}>
-                      <Button onClick={handleReset} className="w-full">
+                      <Button onClick={handleLaunch} className="w-full">
                         Launch Console
                       </Button>
                     </motion.div>
