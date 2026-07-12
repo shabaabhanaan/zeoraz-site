@@ -5,7 +5,11 @@ import { Menu, X, ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const Navbar = () => {
+interface NavbarProps {
+  onGetStarted: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -66,7 +70,7 @@ export const Navbar = () => {
             <a href="#contact" className="text-sm font-semibold text-slate-300 hover:text-white transition-colors mr-2">
               Book a Demo
             </a>
-            <Button variant="primary" className="flex items-center gap-2">
+            <Button variant="primary" className="flex items-center gap-2" onClick={onGetStarted}>
               Get Started <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
@@ -115,7 +119,10 @@ export const Navbar = () => {
               </a>
               <Button
                 variant="primary"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  onGetStarted();
+                }}
                 className="w-full flex items-center justify-center gap-2"
               >
                 Get Started <ArrowRight className="h-4 w-4" />

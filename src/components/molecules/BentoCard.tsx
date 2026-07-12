@@ -11,6 +11,7 @@ interface BentoCardProps {
   icon: LucideIcon;
   className?: string;
   gradient?: string;
+  onClick?: () => void;
 }
 
 export const BentoCard: React.FC<BentoCardProps> = ({
@@ -19,6 +20,7 @@ export const BentoCard: React.FC<BentoCardProps> = ({
   icon: Icon,
   className,
   gradient = "from-violet-primary/20 to-transparent",
+  onClick,
 }) => {
   return (
     <motion.div
@@ -27,8 +29,9 @@ export const BentoCard: React.FC<BentoCardProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       whileHover={{ y: -5 }}
+      onClick={onClick}
       className={cn(
-        "group relative overflow-hidden rounded-3xl glassmorphism-card p-8 flex flex-col justify-between min-h-[260px]",
+        "group relative overflow-hidden rounded-3xl glassmorphism-card p-8 flex flex-col justify-between min-h-[260px] cursor-pointer",
         className
       )}
     >

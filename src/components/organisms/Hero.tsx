@@ -6,7 +6,11 @@ import { ArrowRight, ChevronRight, Terminal } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 import { Badge } from "@/components/atoms/Badge";
 
-export const Hero = () => {
+interface HeroProps {
+  onGetStarted: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-grid-pattern">
       {/* Decorative Radial glow background */}
@@ -58,11 +62,22 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
         >
-          <Button variant="primary" className="w-full sm:w-auto flex items-center justify-center gap-2">
-            Explore Products <ArrowRight className="h-4 w-4" />
+          <Button
+            variant="primary"
+            onClick={onGetStarted}
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
+          >
+            Get Started <ArrowRight className="h-4 w-4" />
           </Button>
           
-          <Button variant="secondary" className="w-full sm:w-auto flex items-center justify-center gap-2">
+          <Button
+            variant="secondary"
+            onClick={() => {
+              const contactSection = document.getElementById("contact");
+              if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="w-full sm:w-auto flex items-center justify-center gap-2"
+          >
             Book a Demo <ChevronRight className="h-4 w-4" />
           </Button>
         </motion.div>
