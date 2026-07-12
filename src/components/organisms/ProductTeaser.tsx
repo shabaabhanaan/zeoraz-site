@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, Users, Zap, Shield, ChevronRight, CheckCircle2 } from "lucide-react";
+import { BarChart3, Users, Zap, ChevronRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 
 export const ProductTeaser = () => {
@@ -12,7 +12,7 @@ export const ProductTeaser = () => {
     { id: "analytics", label: "Analytics Dashboard", icon: BarChart3 },
     { id: "automations", label: "Workflows", icon: Zap },
     { id: "access", label: "Access Controls", icon: Users },
-  ];
+  ] as const;
 
   return (
     <section id="products" className="py-24 relative overflow-hidden bg-grid-pattern">
@@ -52,7 +52,7 @@ export const ProductTeaser = () => {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`relative flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
                     isActive ? "text-white" : "text-slate-400 hover:text-slate-200"
                   }`}

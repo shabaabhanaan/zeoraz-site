@@ -91,8 +91,8 @@ export const Newsletter = () => {
                 className="flex flex-col items-center justify-center gap-3 text-emerald-400"
               >
                 <CheckCircle2 className="h-12 w-12" />
-                <h4 className="text-lg font-bold text-slate-100">You're on the list!</h4>
-                <p className="text-xs text-slate-400">We've saved your spot for early access releases.</p>
+                <h4 className="text-lg font-bold text-slate-100">You&apos;re on the list!</h4>
+                <p className="text-xs text-slate-400">We&apos;ve saved your spot for early access releases.</p>
               </motion.div>
             )}
           </AnimatePresence>

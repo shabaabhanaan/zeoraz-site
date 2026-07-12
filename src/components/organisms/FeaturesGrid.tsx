@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BentoCard } from "@/components/molecules/BentoCard";
-import { Zap, Cpu, Layers, Lock, Scale, RefreshCw } from "lucide-react";
+import { Cpu, Layers, Lock, Scale } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const FeaturesGrid = () => {
@@ -68,7 +68,7 @@ export const FeaturesGrid = () => {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <BentoCard
               key={feature.title}
               title={feature.title}
