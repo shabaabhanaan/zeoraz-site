@@ -1,0 +1,54 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String      @id @default(uuid())
+  email     String      @unique
+  password  String
+  createdAt DateTime    @default(now())
+  workspaces Workspace[]
+}
+
+model Workspace {
+  id        String      @id @default(uuid())
+  name      String
+  apiKey    String      @unique
+  runtimes  String      // Comma-separated stack, e.g. "node,rust"
+  ownerId   String
+  owner     User        @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  workflows Workflow[]
+  createdAt DateTime    @default(now())
+}
+
+model Workflow {
+  id          String         @id @default(uuid())
+  name        String
+  dagJson     String         // Graph definition payload
+  isActive    Boolean        @default(true)
+  workspaceId String
+  workspace   Workspace      @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  logs        ExecutionLog[]
+  createdAt   DateTime       @default(now())
+}
+
+model ExecutionLog {
+  id         String   @id @default(uuid())
+  workflowId String
+  workflow   Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  status     String   // "SUCCESS" | "FAILED"
+  payload    String   // JSON string of trigger input
+  context    String   // JSON string of execution output
+  executedAt DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

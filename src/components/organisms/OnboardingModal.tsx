@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, Shield, Cpu, Code2, Database, Terminal, Check, Copy, Mail, Building2, AlertCircle } from "lucide-react";
+import { X, ArrowRight, Shield, Cpu, Code2, Database, Terminal, Check, Copy, Mail, Building2, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 
 interface OnboardingModalProps {
@@ -17,6 +17,11 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
   const [orgName, setOrgName] = useState("");
   const [selectedStack, setSelectedStack] = useState<string[]>([]);
   const [copied, setCopied] = useState(false);
+
+  // API Call States
+  const [provisionedApiKey, setProvisionedApiKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
 
   // Validation States
   const [emailTouched, setEmailTouched] = useState(false);
@@ -43,7 +48,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
   };
 
   const handleCopyKey = () => {
-    navigator.clipboard.writeText("zr_live_5f9d1a8e2b3c4d5e6f7g8h9i0j");
+    navigator.clipboard.writeText(provisionedApiKey);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -55,7 +60,32 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
     setEmailTouched(false);
     setOrgTouched(false);
     setSelectedStack([]);
+    setProvisionedApiKey("");
+    setApiError("");
     onClose();
+  };
+
+  const handleCreateApiKey = async () => {
+    setIsLoading(true);
+    setApiError("");
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, orgName, runtimes: selectedStack }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to initialize workspace.");
+      }
+      setProvisionedApiKey(data.apiKey);
+      setStep(3);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An unexpected network error occurred.";
+      setApiError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLaunch = () => {
@@ -274,19 +304,36 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
                       })}
                     </motion.div>
 
+                    {apiError && (
+                      <motion.p variants={childVariants} className="text-[11px] text-rose-400 mb-4 flex items-center gap-1.5">
+                        <AlertCircle className="h-4.5 w-4.5 shrink-0" /> {apiError}
+                      </motion.p>
+                    )}
+
                     <motion.div variants={childVariants} className="flex items-center justify-between gap-4">
                       <button
                         onClick={() => setStep(1)}
                         className="text-xs font-semibold text-slate-500 hover:text-white transition-colors"
+                        disabled={isLoading}
                       >
                         Back
                       </button>
                       <Button
-                        onClick={() => setStep(3)}
-                        disabled={selectedStack.length === 0}
+                        onClick={handleCreateApiKey}
+                        disabled={selectedStack.length === 0 || isLoading}
                         className="flex items-center justify-center gap-2 px-8"
                       >
-                        Create API Key <ArrowRight className="h-4 w-4" />
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            <span>Creating...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Create API Key</span>
+                            <ArrowRight className="h-4 w-4" />
+                          </>
+                        )}
                       </Button>
                     </motion.div>
                   </motion.div>
@@ -314,7 +361,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onClos
                     {/* Mock API Key Box */}
                     <motion.div variants={childVariants} className="flex items-center justify-between bg-slate-950 border border-slate-900 rounded-xl p-4 mb-8 font-mono text-xs text-left">
                       <span className="text-cyan-primary overflow-hidden text-ellipsis whitespace-nowrap mr-2">
-                        zr_live_5f9d1a8e2b3c4d5e6f7g8h9i0j
+                        {provisionedApiKey}
                       </span>
                       <button
                         onClick={handleCopyKey}

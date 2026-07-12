@@ -1,12 +1,57 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BarChart3, Users, Zap, ChevronRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 
+interface WorkflowData {
+  id: string;
+  name: string;
+  dagJson: string;
+  isActive: boolean;
+  logs: {
+    id: string;
+    status: string;
+    executedAt: string;
+  }[];
+}
+
 export const ProductTeaser = () => {
   const [activeTab, setActiveTab] = useState<"analytics" | "automations" | "access">("analytics");
+  const [workflows, setWorkflows] = useState<WorkflowData[]>([]);
+  const [metrics, setMetrics] = useState({
+    totalRequests: "12,425",
+    successRate: "99.8%",
+    avgLatency: "4.82ms",
+  });
+
+  useEffect(() => {
+    const fetchSessionData = async () => {
+      try {
+        const response = await fetch("/api/workflows");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.workflows) {
+            setWorkflows(data.workflows);
+          }
+          if (data.metrics) {
+            setMetrics({
+              totalRequests: Number(data.metrics.totalRequests).toLocaleString(),
+              successRate: `${data.metrics.successRate}%`,
+              avgLatency: data.metrics.avgLatency,
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Failed fetching live workflows dashboard data:", error);
+      }
+    };
+
+    fetchSessionData();
+    const interval = setInterval(fetchSessionData, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   const tabs = [
     { id: "analytics", label: "Analytics Dashboard", icon: BarChart3 },
@@ -107,13 +152,13 @@ export const ProductTeaser = () => {
                   <div className="md:col-span-1 space-y-6">
                     <div className="glassmorphism-card p-6 rounded-2xl">
                       <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Response Time</p>
-                      <h4 className="text-3xl font-extrabold text-white">4.82ms</h4>
+                      <h4 className="text-3xl font-extrabold text-white">{metrics.avgLatency}</h4>
                       <p className="text-xs text-emerald-400 mt-2 font-medium">↓ 1.2% versus yesterday</p>
                     </div>
                     <div className="glassmorphism-card p-6 rounded-2xl">
                       <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">API Requests</p>
-                      <h4 className="text-3xl font-extrabold text-white">12.4M</h4>
-                      <p className="text-xs text-emerald-400 mt-2 font-medium">↑ 18.4% this week</p>
+                      <h4 className="text-3xl font-extrabold text-white">{metrics.totalRequests}</h4>
+                      <p className="text-xs text-emerald-400 mt-2 font-medium">↑ {metrics.successRate} Success</p>
                     </div>
                   </div>
 
@@ -158,25 +203,46 @@ export const ProductTeaser = () => {
                   className="space-y-4"
                 >
                   <h4 className="text-lg font-bold text-white mb-4">Pipeline Trigger Rules</h4>
-                  {[
-                    { label: "Compile Front-end Assets", status: "Successful", time: "2m ago", color: "bg-emerald-400" },
-                    { label: "Sync Static Cache CDN", status: "Active", time: "Running", color: "bg-cyan-400" },
-                    { label: "Post-deploy Health Audit", status: "Pending", time: "Next in queue", color: "bg-slate-500" },
-                  ].map((pipe, idx) => (
-                    <div key={idx} className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-violet-primary/20 transition-all duration-300">
-                      <div className="flex items-center gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-violet-primary" />
-                        <span className="text-sm font-semibold text-slate-200">{pipe.label}</span>
+                  {workflows.length > 0 ? (
+                    workflows.map((flow) => (
+                      <div key={flow.id} className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-violet-primary/20 transition-all duration-300">
+                        <div className="flex items-center gap-3">
+                          <CheckCircle2 className="h-5 w-5 text-violet-primary" />
+                          <span className="text-sm font-semibold text-slate-200">{flow.name}</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <span className="text-xs text-slate-500">
+                            {flow.logs.length > 0 ? new Date(flow.logs[0].executedAt).toLocaleTimeString() : "No runs"}
+                          </span>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            {flow.isActive ? "Active" : "Disabled"}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <span className="text-xs text-slate-500">{pipe.time}</span>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800">
-                          <span className={`h-1.5 w-1.5 rounded-full ${pipe.color}`} />
-                          {pipe.status}
-                        </span>
+                    ))
+                  ) : (
+                    // Default fallback workflows if no session database exists yet
+                    [
+                      { label: "Compile Front-end Assets", status: "Successful", time: "2m ago", color: "bg-emerald-400" },
+                      { label: "Sync Static Cache CDN", status: "Active", time: "Running", color: "bg-cyan-400" },
+                      { label: "Post-deploy Health Audit", status: "Pending", time: "Next in queue", color: "bg-slate-500" },
+                    ].map((pipe, idx) => (
+                      <div key={idx} className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-violet-primary/20 transition-all duration-300">
+                        <div className="flex items-center gap-3">
+                          <CheckCircle2 className="h-5 w-5 text-violet-primary" />
+                          <span className="text-sm font-semibold text-slate-200">{pipe.label}</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <span className="text-xs text-slate-500">{pipe.time}</span>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800">
+                            <span className={`h-1.5 w-1.5 rounded-full ${pipe.color}`} />
+                            {pipe.status}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </motion.div>
               )}
 

@@ -8,7 +8,6 @@ import { ProductTeaser } from "@/components/organisms/ProductTeaser";
 import { Newsletter } from "@/components/organisms/Newsletter";
 import { Footer } from "@/components/organisms/Footer";
 import { OnboardingModal } from "@/components/organisms/OnboardingModal";
-import { motion, AnimatePresence } from "framer-motion";
 import { Shield, Sparkles } from "lucide-react";
 
 export const LandingPageContent = () => {

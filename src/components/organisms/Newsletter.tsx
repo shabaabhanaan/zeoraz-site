@@ -9,15 +9,24 @@ export const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setStatus("loading");
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!response.ok) throw new Error("Failed to subscribe");
       setStatus("success");
       setEmail("");
-    }, 1500);
+    } catch (err) {
+      console.error(err);
+      setStatus("idle");
+    }
   };
 
   return (
