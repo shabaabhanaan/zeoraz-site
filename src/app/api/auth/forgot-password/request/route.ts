@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { sendMail, getOtpHtmlTemplate } from "@/lib/mail";
 import crypto from "crypto";
+import { rateLimiter } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   try {
@@ -9,6 +10,16 @@ export async function POST(req: Request) {
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    }
+
+    // Rate limit check: max 3 OTP requests per 10 minutes per IP/email
+    const clientIp = req.headers.get("x-forwarded-for") || "127.0.0.1";
+    const limiterKey = `otp_request_${email || clientIp}`;
+    if (rateLimiter.isRateLimited(limiterKey, { limit: 3, windowMs: 10 * 60 * 1000 })) {
+      return NextResponse.json(
+        { error: "Too many OTP requests. Please try again in 10 minutes." },
+        { status: 429 }
+      );
     }
 
     // 1. Verify user exists

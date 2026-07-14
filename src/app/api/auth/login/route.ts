@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifyPassword, signToken } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { rateLimiter } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   try {
@@ -8,6 +9,16 @@ export async function POST(req: Request) {
 
     if (!email || !password) {
       return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
+    }
+
+    // Rate limit check: max 5 login requests per 15 minutes per IP/email
+    const clientIp = req.headers.get("x-forwarded-for") || "127.0.0.1";
+    const limiterKey = `login_${email || clientIp}`;
+    if (rateLimiter.isRateLimited(limiterKey, { limit: 5, windowMs: 15 * 60 * 1000 })) {
+      return NextResponse.json(
+        { error: "Too many login attempts. Please try again in 15 minutes." },
+        { status: 429 }
+      );
     }
 
     // Find the user

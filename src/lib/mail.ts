@@ -1,7 +1,10 @@
+import fs from "fs";
+import path from "path";
+
 /**
  * Production-grade Email Service Utility
  * Supports real Resend API delivery when RESEND_API_KEY is configured,
- * and falls back to a clean terminal console preview in development.
+ * and falls back to a clean terminal console preview and local storage in development.
  */
 
 export interface MailOptions {
@@ -43,12 +46,52 @@ export async function sendMail({ to, subject, html, text }: MailOptions): Promis
       return { success: false, error: errMsg };
     }
   } else {
+    const mockMailId = `mock-${Date.now()}`;
+
+    // Store the mock email locally in development for visual preview
+    try {
+      const mockDir = path.join(process.cwd(), "prisma");
+      const filePath = path.join(mockDir, "mock-emails.json");
+      
+      // Ensure directory exists
+      if (!fs.existsSync(mockDir)) {
+        fs.mkdirSync(mockDir, { recursive: true });
+      }
+
+      let emails = [];
+      if (fs.existsSync(filePath)) {
+        try {
+          emails = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        } catch {
+          // If JSON is invalid, start with empty list
+        }
+      }
+
+      const newMail = {
+        id: mockMailId,
+        to,
+        subject,
+        html,
+        text: text || "",
+        createdAt: new Date().toISOString(),
+      };
+
+      emails.unshift(newMail);
+      // Limit list to last 20 emails
+      emails = emails.slice(0, 20);
+
+      fs.writeFileSync(filePath, JSON.stringify(emails, null, 2), "utf-8");
+    } catch (fsErr) {
+      console.error("Failed to store mock email locally:", fsErr);
+    }
+
     // Development Fallback: output a beautifully formatted terminal mail template
     const border = "=".repeat(60);
     console.log(`\n${border}`);
-    console.log(`✉️  [MOCK EMAIL DISPATCH] (Set RESEND_API_KEY in env to send for real)`);
+    console.log(`✉️  [MOCK EMAIL DISPATCHED] (Set RESEND_API_KEY in env to send for real)`);
     console.log(`To:      ${to}`);
     console.log(`Subject: ${subject}`);
+    console.log(`Preview: Check http://localhost:3000/api/dev/emails to view visually in browser`);
     console.log(`${border}`);
     
     // Extract OTP if present in the HTML to print clearly
@@ -58,10 +101,10 @@ export async function sendMail({ to, subject, html, text }: MailOptions): Promis
     }
     
     console.log(`HTML Body Content Summary:`);
-    console.log(html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().substring(0, 300) + "...");
+    console.log(html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().substring(0, 200) + "...");
     console.log(`${border}\n`);
     
-    return { success: true, id: `mock-${Date.now()}` };
+    return { success: true, id: mockMailId };
   }
 }
 
