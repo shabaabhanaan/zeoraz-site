@@ -1,8 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, Users, Zap, ChevronRight, CheckCircle2 } from "lucide-react";
+import { 
+  BarChart3, 
+  Users, 
+  Zap, 
+  ChevronRight, 
+  CheckCircle2, 
+  Play, 
+  Loader2, 
+  Terminal, 
+  Globe, 
+  Cpu, 
+  Mail, 
+  Check, 
+  AlertCircle 
+} from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 
 interface WorkflowData {
@@ -17,6 +31,24 @@ interface WorkflowData {
   }[];
 }
 
+const mockWorkflow: WorkflowData = {
+  id: "mock-sync",
+  name: "Global Node Cache Sync",
+  dagJson: JSON.stringify({
+    nodes: [
+      { id: "trigger", type: "webhook", label: "Webhook Trigger", description: "GET /v1/deploy-hook" },
+      { id: "sync-node", type: "http", label: "Edge Sync Node", description: "POST /cache/invalidate" },
+      { id: "notify", type: "email", label: "Email Alert", description: "devops@zeoraz.com" }
+    ],
+    connections: [
+      { source: "trigger", target: "sync-node" },
+      { source: "sync-node", target: "notify" }
+    ]
+  }),
+  isActive: true,
+  logs: []
+};
+
 export const ProductTeaser = () => {
   const [activeTab, setActiveTab] = useState<"analytics" | "automations" | "access">("analytics");
   const [workflows, setWorkflows] = useState<WorkflowData[]>([]);
@@ -26,14 +58,31 @@ export const ProductTeaser = () => {
     avgLatency: "4.82ms",
   });
 
+  // Visual Task Orchestration States
+  const [selectedWorkflow, setSelectedWorkflow] = useState<WorkflowData | null>(null);
+  const [isExecuting, setIsExecuting] = useState(false);
+  const [executingNodeId, setExecutingNodeId] = useState<string | null>(null);
+  const [nodeStatuses, setNodeStatuses] = useState<Record<string, "idle" | "running" | "success" | "failed">>({});
+  const [executionLogs, setExecutionLogs] = useState<string[]>([]);
+  
+  const terminalEndRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const fetchSessionData = async () => {
       try {
         const response = await fetch("/api/workflows");
         if (response.ok) {
           const data = await response.json();
-          if (data.workflows) {
+          if (data.workflows && data.workflows.length > 0) {
             setWorkflows(data.workflows);
+            if (!selectedWorkflow) {
+              setSelectedWorkflow(data.workflows[0]);
+            }
+          } else {
+            setWorkflows([mockWorkflow]);
+            if (!selectedWorkflow) {
+              setSelectedWorkflow(mockWorkflow);
+            }
           }
           if (data.metrics) {
             setMetrics({
@@ -51,13 +100,99 @@ export const ProductTeaser = () => {
     fetchSessionData();
     const interval = setInterval(fetchSessionData, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [selectedWorkflow]);
+
+  // Scroll terminal logs to bottom
+  useEffect(() => {
+    if (terminalEndRef.current) {
+      terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [executionLogs]);
+
+  const getWorkflowNodes = (flow: WorkflowData | null) => {
+    if (!flow) return [];
+    try {
+      const parsed = JSON.parse(flow.dagJson);
+      return parsed.nodes || [];
+    } catch {
+      return [];
+    }
+  };
+
+  const triggerWorkflowPipeline = async () => {
+    if (isExecuting || !selectedWorkflow) return;
+    setIsExecuting(true);
+    setExecutionLogs([
+      "[SYSTEM] Initializing task orchestrator pool...",
+      "[SYSTEM] Routing request to optimal V8 worker cluster (AP-SOUTH-1)...",
+      "[SYSTEM] Establishing secure context sandbox..."
+    ]);
+    
+    const nodes = getWorkflowNodes(selectedWorkflow);
+    const initialStatuses: Record<string, "idle" | "running" | "success" | "failed"> = {};
+    nodes.forEach((node: any) => {
+      initialStatuses[node.id] = "idle";
+    });
+    setNodeStatuses(initialStatuses);
+
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+      setExecutingNodeId(node.id);
+      setNodeStatuses(prev => ({ ...prev, [node.id]: "running" }));
+      setExecutionLogs(prev => [...prev, `[RUNNING] Active Node: "${node.label || node.id}"`]);
+      
+      // Simulating realistic pipeline delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setNodeStatuses(prev => ({ ...prev, [node.id]: "success" }));
+      setExecutionLogs(prev => [
+        ...prev, 
+        `[SUCCESS] Node "${node.label || node.id}" output status: 200 OK.`,
+        `[METRIC] Node latency: ${(Math.random() * 3 + 1).toFixed(2)}ms.`
+      ]);
+    }
+    
+    setExecutingNodeId(null);
+    setIsExecuting(false);
+    setExecutionLogs(prev => [...prev, "[SYSTEM] Pipeline executed completely. Worker isolates shutdown clean."]);
+  };
+
+  const getNodeIcon = (type: string) => {
+    switch (type) {
+      case "webhook":
+      case "trigger":
+        return Globe;
+      case "http":
+      case "sync-node":
+        return Cpu;
+      case "email":
+      case "notify":
+        return Mail;
+      default:
+        return Zap;
+    }
+  };
+
+  const getNodeStatusStyle = (status: "idle" | "running" | "success" | "failed") => {
+    switch (status) {
+      case "running":
+        return "border-violet-primary/80 bg-slate-950 glow-violet shadow-violet-primary/20 animate-pulse";
+      case "success":
+        return "border-emerald-500/80 bg-emerald-950/20 glow-emerald shadow-emerald-500/20";
+      case "failed":
+        return "border-rose-500/80 bg-rose-950/20 glow-rose shadow-rose-500/20";
+      default:
+        return "border-slate-800 bg-slate-900/40 hover:border-slate-700";
+    }
+  };
 
   const tabs = [
     { id: "analytics", label: "Analytics Dashboard", icon: BarChart3 },
     { id: "automations", label: "Workflows", icon: Zap },
     { id: "access", label: "Access Controls", icon: Users },
   ] as const;
+
+  const currentNodes = getWorkflowNodes(selectedWorkflow);
 
   return (
     <section id="products" className="py-24 relative overflow-hidden bg-grid-pattern">
@@ -200,49 +335,147 @@ export const ProductTeaser = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4 }}
-                  className="space-y-4"
+                  className="grid grid-cols-1 lg:grid-cols-3 gap-8"
                 >
-                  <h4 className="text-lg font-bold text-white mb-4">Pipeline Trigger Rules</h4>
-                  {workflows.length > 0 ? (
-                    workflows.map((flow) => (
-                      <div key={flow.id} className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-violet-primary/20 transition-all duration-300">
+                  {/* Left Column - Workflow selection list */}
+                  <div className="lg:col-span-1 space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Available Workflows</h4>
+                    {workflows.map((flow) => (
+                      <div
+                        key={flow.id}
+                        onClick={() => setSelectedWorkflow(flow)}
+                        className={`p-4 rounded-2xl border cursor-pointer transition-all duration-300 flex items-center justify-between ${
+                          selectedWorkflow?.id === flow.id
+                            ? "bg-violet-primary/10 border-violet-primary/50 text-white"
+                            : "bg-slate-900/30 border-slate-800 text-slate-400 hover:text-slate-200"
+                        }`}
+                      >
                         <div className="flex items-center gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-violet-primary" />
-                          <span className="text-sm font-semibold text-slate-200">{flow.name}</span>
+                          <CheckCircle2 className={`h-4 w-4 ${selectedWorkflow?.id === flow.id ? "text-cyan-primary" : "text-slate-500"}`} />
+                          <span className="text-sm font-semibold truncate max-w-[150px]">{flow.name}</span>
                         </div>
-                        <div className="flex items-center gap-4">
-                          <span className="text-xs text-slate-500">
-                            {flow.logs.length > 0 ? new Date(flow.logs[0].executedAt).toLocaleTimeString() : "No runs"}
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                            {flow.isActive ? "Active" : "Disabled"}
-                          </span>
-                        </div>
+                        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-950 border border-slate-900">
+                          {flow.isActive ? "Active" : "Idle"}
+                        </span>
                       </div>
-                    ))
-                  ) : (
-                    // Default fallback workflows if no session database exists yet
-                    [
-                      { label: "Compile Front-end Assets", status: "Successful", time: "2m ago", color: "bg-emerald-400" },
-                      { label: "Sync Static Cache CDN", status: "Active", time: "Running", color: "bg-cyan-400" },
-                      { label: "Post-deploy Health Audit", status: "Pending", time: "Next in queue", color: "bg-slate-500" },
-                    ].map((pipe, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-violet-primary/20 transition-all duration-300">
-                        <div className="flex items-center gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-violet-primary" />
-                          <span className="text-sm font-semibold text-slate-200">{pipe.label}</span>
+                    ))}
+                  </div>
+
+                  {/* Right Column - Visual DAG Executor */}
+                  <div className="lg:col-span-2 flex flex-col justify-between rounded-2xl bg-slate-900/20 border border-slate-850 p-6">
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div>
+                          <h4 className="text-sm font-bold text-white">Visual DAG Orchestrator</h4>
+                          <p className="text-[11px] text-slate-500">Sequentially trace node workloads on the grid</p>
                         </div>
-                        <div className="flex items-center gap-4">
-                          <span className="text-xs text-slate-500">{pipe.time}</span>
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800">
-                            <span className={`h-1.5 w-1.5 rounded-full ${pipe.color}`} />
-                            {pipe.status}
-                          </span>
-                        </div>
+                        <Button 
+                          onClick={triggerWorkflowPipeline} 
+                          disabled={isExecuting}
+                          className="flex items-center gap-1.5 px-4 py-2 text-xs"
+                        >
+                          {isExecuting ? (
+                            <>
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                              <span>Running...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Play className="h-3 w-3 fill-current" />
+                              <span>Trigger Pipeline</span>
+                            </>
+                          )}
+                        </Button>
                       </div>
-                    ))
-                  )}
+
+                      {/* Visual Task Cards Flow */}
+                      <div className="relative flex flex-col md:flex-row items-center justify-around gap-6 md:gap-2 bg-slate-950/60 p-6 rounded-2xl border border-slate-900 mb-6 overflow-x-auto min-h-[160px]">
+                        {currentNodes.map((node: any, idx: number) => {
+                          const NodeIcon = getNodeIcon(node.type || "");
+                          const status = nodeStatuses[node.id] || "idle";
+                          return (
+                            <React.Fragment key={node.id}>
+                              {/* Modern Task Card */}
+                              <div
+                                className={`relative flex flex-col items-center justify-between p-4 rounded-xl border text-center transition-all duration-500 w-[150px] min-h-[100px] ${getNodeStatusStyle(status)}`}
+                              >
+                                {/* Glowing status dot */}
+                                <div className="absolute top-2 right-2 flex items-center justify-center">
+                                  {status === "running" && (
+                                    <span className="h-2 w-2 rounded-full bg-violet-primary animate-ping" />
+                                  )}
+                                  {status === "success" && (
+                                    <Check className="h-3 w-3 text-emerald-400" />
+                                  )}
+                                  {status === "failed" && (
+                                    <AlertCircle className="h-3 w-3 text-rose-400" />
+                                  )}
+                                  {status === "idle" && (
+                                    <span className="h-1.5 w-1.5 rounded-full bg-slate-600" />
+                                  )}
+                                </div>
+
+                                <div className={`p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-300 mb-2 ${
+                                  status === "running" ? "text-violet-primary border-violet-primary/20" : ""
+                                }`}>
+                                  <NodeIcon className="h-4 w-4" />
+                                </div>
+                                <div className="w-full">
+                                  <div className="text-xs font-bold text-white truncate">{node.label || node.id}</div>
+                                  <div className="text-[9px] text-slate-500 truncate mt-0.5">{node.description || node.type}</div>
+                                </div>
+                              </div>
+
+                              {/* Arrow connector between cards */}
+                              {idx < currentNodes.length - 1 && (
+                                <div className="flex items-center justify-center transform rotate-90 md:rotate-0 my-1 md:my-0">
+                                  <svg
+                                    className={`h-6 w-6 transition-all duration-500 ${
+                                      status === "success" 
+                                        ? "text-emerald-500" 
+                                        : status === "running"
+                                          ? "text-violet-primary animate-pulse"
+                                          : "text-slate-700"
+                                    }`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              )}
+                            </React.Fragment>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Simulation logs drawer */}
+                    <div className="rounded-xl border border-slate-850 bg-slate-950 p-4 font-mono text-[10px]">
+                      <div className="flex items-center gap-2 text-slate-400 border-b border-slate-900 pb-2 mb-2 font-bold uppercase tracking-wider">
+                        <Terminal className="h-3 w-3" />
+                        <span>Execution Pipeline Terminal Logs</span>
+                      </div>
+                      <div className="space-y-1 h-[70px] overflow-y-auto custom-scrollbar select-text">
+                        {executionLogs.length > 0 ? (
+                          executionLogs.map((log, idx) => (
+                            <div key={idx} className={
+                              log.startsWith("[SYSTEM]") ? "text-slate-500" :
+                              log.startsWith("[SUCCESS]") ? "text-emerald-400" :
+                              log.startsWith("[METRIC]") ? "text-cyan-400" : "text-violet-400"
+                            }>
+                              {log}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="text-slate-650">Ready to trace. Click "Trigger Pipeline" to launch.</div>
+                        )}
+                        <div ref={terminalEndRef} />
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
               )}
 
