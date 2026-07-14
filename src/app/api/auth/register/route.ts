@@ -61,12 +61,14 @@ export async function POST(req: Request) {
           status: "SUCCESS",
           payload: JSON.stringify({ origin: "webhook" }),
           context: JSON.stringify({ latency: "4.82ms" }),
+          durationMs: 5,
         },
         {
           workflowId: defaultWorkflow.id,
           status: "SUCCESS",
           payload: JSON.stringify({ origin: "cron" }),
           context: JSON.stringify({ latency: "5.12ms" }),
+          durationMs: 6,
         }
       ]
     });

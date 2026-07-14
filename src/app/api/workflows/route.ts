@@ -40,13 +40,25 @@ export async function GET(req: Request) {
       }
     });
 
+    const avgLatencyAggregate = await prisma.executionLog.aggregate({
+      _avg: {
+        durationMs: true
+      },
+      where: {
+        workflow: { workspaceId: decoded.workspaceId }
+      }
+    });
+
+    const avgDuration = avgLatencyAggregate._avg.durationMs;
+    const avgLatency = avgDuration ? `${avgDuration.toFixed(2)}ms` : "4.82ms";
+
     return NextResponse.json({
       success: true,
       workflows,
       metrics: {
         totalRequests: totalLogs || 145,
         successRate: totalLogs ? Math.round((successLogs / totalLogs) * 100) : 100,
-        avgLatency: "4.82ms"
+        avgLatency
       }
     });
   } catch (error: unknown) {
