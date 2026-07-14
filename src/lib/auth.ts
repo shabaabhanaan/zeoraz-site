@@ -1,6 +1,17 @@
 import crypto from "crypto";
 
-const JWT_SECRET = process.env.JWT_SECRET || "zeoraz_secure_jwt_secret_token_key_123_abc";
+const getJwtSecret = (): string => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("FATAL: JWT_SECRET environment variable is not set in production!");
+    }
+    return "dev_insecure_jwt_secret_fallback";
+  }
+  return secret;
+};
+
+const JWT_SECRET = getJwtSecret();
 
 // Helper to hash passwords using PBKDF2
 export function hashPassword(password: string): string {
