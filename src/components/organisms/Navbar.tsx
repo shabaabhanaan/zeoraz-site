@@ -6,7 +6,7 @@ import { Button } from "@/components/atoms/Button";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
-  onGetStarted: () => void;
+  onGetStarted: (mode?: "register" | "login") => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
@@ -67,10 +67,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#contact" className="text-sm font-semibold text-slate-300 hover:text-white transition-colors mr-2">
-              Book a Demo
-            </a>
-            <Button variant="primary" className="flex items-center gap-2" onClick={onGetStarted}>
+            <button
+              onClick={() => onGetStarted("login")}
+              className="text-sm font-semibold text-slate-300 hover:text-white transition-colors mr-2 cursor-pointer"
+            >
+              Sign In
+            </button>
+            <Button variant="primary" className="flex items-center gap-2" onClick={() => onGetStarted("register")}>
               Get Started <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
@@ -110,18 +113,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
             </nav>
 
             <div className="flex flex-col gap-4">
-              <a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className="text-center text-sm font-semibold text-slate-300 hover:text-white transition-colors py-2"
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  onGetStarted("login");
+                }}
+                className="text-center text-sm font-semibold text-slate-300 hover:text-white transition-colors py-2 cursor-pointer"
               >
-                Book a Demo
-              </a>
+                Sign In
+              </button>
               <Button
                 variant="primary"
                 onClick={() => {
                   setIsOpen(false);
-                  onGetStarted();
+                  onGetStarted("register");
                 }}
                 className="w-full flex items-center justify-center gap-2"
               >

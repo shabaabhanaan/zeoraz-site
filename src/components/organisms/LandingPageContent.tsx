@@ -12,7 +12,13 @@ import { Shield, Sparkles } from "lucide-react";
 
 export const LandingPageContent = () => {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
+  const [onboardingMode, setOnboardingMode] = useState<"register" | "login">("register");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const handleOpenOnboarding = (mode: "register" | "login" = "register") => {
+    setOnboardingMode(mode);
+    setIsOnboardingOpen(true);
+  };
 
   const handleLaunchConsole = (orgName: string) => {
     setIsOnboardingOpen(false);
@@ -33,12 +39,12 @@ export const LandingPageContent = () => {
   return (
     <div className="relative min-h-screen bg-[#030014] text-slate-100 flex flex-col font-sans select-none antialiased">
       {/* Sticky Navigation Bar */}
-      <Navbar onGetStarted={() => setIsOnboardingOpen(true)} />
+      <Navbar onGetStarted={handleOpenOnboarding} />
 
       {/* Main Landing content */}
       <main className="flex-1">
         {/* Hero Section */}
-        <Hero onGetStarted={() => setIsOnboardingOpen(true)} />
+        <Hero onGetStarted={() => handleOpenOnboarding("register")} />
 
         {/* Bento Grid Value Proposition */}
         <FeaturesGrid />
@@ -58,6 +64,7 @@ export const LandingPageContent = () => {
         isOpen={isOnboardingOpen}
         onClose={() => setIsOnboardingOpen(false)}
         onLaunchConsole={handleLaunchConsole}
+        initialMode={onboardingMode}
       />
 
       {/* Success Toast Notification */}
