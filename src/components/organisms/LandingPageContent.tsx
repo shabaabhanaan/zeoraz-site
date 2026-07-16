@@ -9,6 +9,8 @@ import { Newsletter } from "@/components/organisms/Newsletter";
 import { Footer } from "@/components/organisms/Footer";
 import { OnboardingModal } from "@/components/organisms/OnboardingModal";
 import { Shield, Sparkles } from "lucide-react";
+import { WhatsAppWidget } from "@/components/atoms/WhatsAppWidget";
+import { ChatbotWidget } from "@/components/atoms/ChatbotWidget";
 
 export const LandingPageContent = () => {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
@@ -81,6 +83,12 @@ export const LandingPageContent = () => {
           </div>
         </div>
       )}
+
+      {/* Floating Chatbot Widget */}
+      <ChatbotWidget />
+
+      {/* Floating WhatsApp Widget */}
+      <WhatsAppWidget />
     </div>
   );
 };
