@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -8,7 +8,7 @@ generator client {
 }
 
 model User {
-  id           String      @id @default(uuid())
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
   email        String      @unique
   password     String?
   authProvider String      @default("email")
@@ -17,11 +17,11 @@ model User {
 }
 
 model Workspace {
-  id        String      @id @default(uuid())
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   apiKey    String      @unique
   runtimes  String      // Comma-separated stack, e.g. "node,rust"
-  ownerId   String
+  ownerId   String      @db.ObjectId
   owner     User        @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   workflows Workflow[]
   createdAt DateTime    @default(now())
@@ -30,11 +30,11 @@ model Workspace {
 }
 
 model Workflow {
-  id              String         @id @default(uuid())
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
   name            String
   dagJson         String         // Graph definition payload
   isActive        Boolean        @default(true)
-  workspaceId     String
+  workspaceId     String         @db.ObjectId
   workspace       Workspace      @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   logs            ExecutionLog[]
   lastTriggeredAt DateTime?
@@ -44,8 +44,8 @@ model Workflow {
 }
 
 model ExecutionLog {
-  id           String   @id @default(uuid())
-  workflowId   String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  workflowId   String   @db.ObjectId
   workflow     Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
   status       String   // "SUCCESS" | "FAILED"
   payload      String   // JSON string of trigger input
@@ -58,13 +58,13 @@ model ExecutionLog {
 }
 
 model NewsletterSubscriber {
-  id        String   @id @default(uuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
   createdAt DateTime @default(now())
 }
 
 model OtpVerification {
-  id        String   @id @default(uuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String
   code      String   // Hashed OTP for security
   expiresAt DateTime

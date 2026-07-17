@@ -31,6 +31,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
+    // If user has no password (e.g. they signed up with Google), block email login
+    if (!user.password) {
+      return NextResponse.json({ error: "Please sign in with Google" }, { status: 401 });
+    }
+
     // Verify password
     const isPasswordValid = verifyPassword(password, user.password);
     if (!isPasswordValid) {
