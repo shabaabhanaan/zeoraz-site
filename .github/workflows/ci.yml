@@ -1,0 +1,42 @@
+name: Zeoraz CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Generate Prisma Client
+      run: npx prisma generate
+      env:
+        # A dummy database URL is fine for generating the client, 
+        # as it just builds the types based on schema.prisma
+        DATABASE_URL: "mongodb+srv://dummy:dummy@cluster0.dummy.mongodb.net/test?retryWrites=true&w=majority"
+
+    - name: Build Next.js application
+      run: npm run build
+      env:
+        # Provide dummy env variables so the build doesn't fail on missing env checks
+        GOOGLE_CLIENT_ID: "dummy-client-id"
+        GOOGLE_CLIENT_SECRET: "dummy-client-secret"
+        NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+        JWT_SECRET: "dummy-jwt-secret-for-ci-build"
+        RESEND_API_KEY: "re_dummy123456789"
+        DATABASE_URL: "mongodb+srv://dummy:dummy@cluster0.dummy.mongodb.net/test?retryWrites=true&w=majority"

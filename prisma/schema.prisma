@@ -1,0 +1,75 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  email        String      @unique
+  password     String?
+  authProvider String      @default("email")
+  createdAt    DateTime    @default(now())
+  workspaces   Workspace[]
+}
+
+model Workspace {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  apiKey    String      @unique
+  runtimes  String      // Comma-separated stack, e.g. "node,rust"
+  ownerId   String      @db.ObjectId
+  owner     User        @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  workflows Workflow[]
+  createdAt DateTime    @default(now())
+
+  @@index([ownerId])
+}
+
+model Workflow {
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  dagJson         String         // Graph definition payload
+  isActive        Boolean        @default(true)
+  workspaceId     String         @db.ObjectId
+  workspace       Workspace      @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  logs            ExecutionLog[]
+  lastTriggeredAt DateTime?
+  createdAt       DateTime       @default(now())
+
+  @@index([workspaceId])
+}
+
+model ExecutionLog {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  workflowId   String   @db.ObjectId
+  workflow     Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  status       String   // "SUCCESS" | "FAILED"
+  payload      String   // JSON string of trigger input
+  context      String   // JSON string of execution output
+  durationMs   Int?
+  errorMessage String?
+  executedAt   DateTime @default(now())
+
+  @@index([workflowId])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model OtpVerification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  code      String   // Hashed OTP for security
+  expiresAt DateTime
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
