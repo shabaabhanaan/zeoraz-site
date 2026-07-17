@@ -17,6 +17,22 @@ export const LandingPageContent = () => {
   const [onboardingMode, setOnboardingMode] = useState<"register" | "login">("register");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    // Check for Google OAuth success redirect
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("login") === "success") {
+      const workspace = params.get("workspace") || "Default Workspace";
+      // Clean up URL without reloading
+      window.history.replaceState({}, document.title, window.location.pathname);
+      handleLaunchConsole(workspace);
+    } else if (params.get("error")) {
+      const errorMsg = params.get("error");
+      setToastMessage(`Login Failed: ${errorMsg}`);
+      setTimeout(() => setToastMessage(null), 4500);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   const handleOpenOnboarding = (mode: "register" | "login" = "register") => {
     setOnboardingMode(mode);
     setIsOnboardingOpen(true);

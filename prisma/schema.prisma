@@ -8,11 +8,12 @@ generator client {
 }
 
 model User {
-  id        String      @id @default(uuid())
-  email     String      @unique
-  password  String
-  createdAt DateTime    @default(now())
-  workspaces Workspace[]
+  id           String      @id @default(uuid())
+  email        String      @unique
+  password     String?
+  authProvider String      @default("email")
+  createdAt    DateTime    @default(now())
+  workspaces   Workspace[]
 }
 
 model Workspace {
