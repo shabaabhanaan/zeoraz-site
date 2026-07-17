@@ -6,7 +6,7 @@ import { MessageCircle } from "lucide-react"; // Using MessageCircle as a fallba
 export const WhatsAppWidget = () => {
   return (
     <a
-      href="https://wa.me/1234567890" // User can change this to their actual number
+      href="https://wa.me/94753559404" // Using international format (94 for Sri Lanka)
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all duration-300 group"
