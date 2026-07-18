@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { verifyPassword, signToken } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { rateLimiter } from "@/lib/rate-limit";
+import crypto from "crypto";
 
 export async function POST(req: Request) {
   try {
@@ -45,7 +46,7 @@ export async function POST(req: Request) {
     // Get the first workspace or create a default one if somehow missing
     let workspace = user.workspaces[0];
     if (!workspace) {
-      const apiKey = `zr_live_${require("crypto").randomBytes(16).toString("hex")}`;
+      const apiKey = `zr_live_${crypto.randomBytes(16).toString("hex")}`;
       workspace = await prisma.workspace.create({
         data: {
           name: "Default Workspace",
