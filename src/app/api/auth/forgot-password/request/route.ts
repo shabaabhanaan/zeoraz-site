@@ -4,6 +4,8 @@ import { sendMail, getOtpHtmlTemplate } from "@/lib/mail";
 import crypto from "crypto";
 import { rateLimiter } from "@/lib/rate-limit";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: Request) {
   try {
     const { email } = await req.json();
