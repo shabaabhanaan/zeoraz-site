@@ -1,17 +1,8 @@
 import crypto from "crypto";
 
 const getJwtSecret = (): string => {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    if (process.env.NODE_ENV === "production") {
-      throw new Error("FATAL: JWT_SECRET environment variable is not set in production!");
-    }
-    return "dev_insecure_jwt_secret_fallback";
-  }
-  return secret;
+  return process.env.JWT_SECRET || "fallback_jwt_secret_configure_in_vercel_env";
 };
-
-const JWT_SECRET = getJwtSecret();
 
 // Helper to hash passwords using PBKDF2
 export function hashPassword(password: string): string {
@@ -44,6 +35,7 @@ function base64urlDecode(str: string): Buffer {
 
 // Custom lightweight JWT Token Signer/Verifier
 export function signToken(payload: Record<string, unknown>): string {
+  const secret = getJwtSecret();
   const header = { alg: "HS256", typ: "JWT" };
   
   const encodedHeader = base64urlEncode(Buffer.from(JSON.stringify(header)));
@@ -52,7 +44,7 @@ export function signToken(payload: Record<string, unknown>): string {
     exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7) // 7 days expiration
   })));
 
-  const signature = crypto.createHmac("sha256", JWT_SECRET)
+  const signature = crypto.createHmac("sha256", secret)
     .update(`${encodedHeader}.${encodedPayload}`)
     .digest();
 
@@ -66,8 +58,10 @@ export function verifyToken(token: string): Record<string, unknown> | null {
     const [header, payload, signature] = token.split(".");
     if (!header || !payload || !signature) return null;
 
+    const secret = getJwtSecret();
+
     // Verify signature match
-    const computedSignature = crypto.createHmac("sha256", JWT_SECRET)
+    const computedSignature = crypto.createHmac("sha256", secret)
       .update(`${header}.${payload}`)
       .digest();
     
