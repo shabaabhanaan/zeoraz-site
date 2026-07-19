@@ -9,11 +9,15 @@ import { WhatsAppWidget } from "@/components/atoms/WhatsAppWidget";
 import { ChatbotWidget } from "@/components/atoms/ChatbotWidget";
 import { MarketplaceHero } from "@/components/organisms/MarketplaceHero";
 import { TemplateGrid } from "@/components/organisms/TemplateGrid";
+import { TemplatePurchaseModal } from "@/components/organisms/TemplatePurchaseModal";
+import { Template } from "@/components/molecules/TemplateCard";
 
 export const MarketplaceContent = () => {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [onboardingMode, setOnboardingMode] = useState<"register" | "login">("register");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const [selectedTemplateForPurchase, setSelectedTemplateForPurchase] = useState<Template | null>(null);
 
   const handleOpenOnboarding = (mode: "register" | "login" = "register") => {
     setOnboardingMode(mode);
@@ -30,13 +34,17 @@ export const MarketplaceContent = () => {
     }, 4500);
   };
 
+  const handleSelectTemplate = (template: Template) => {
+    setSelectedTemplateForPurchase(template);
+  };
+
   return (
     <div className="relative min-h-screen bg-[#030014] text-slate-100 flex flex-col font-sans select-none antialiased">
       <Navbar onGetStarted={handleOpenOnboarding} />
 
       <main className="flex-1 flex flex-col pt-24">
         <MarketplaceHero />
-        <TemplateGrid onUseTemplate={() => handleOpenOnboarding("register")} />
+        <TemplateGrid onUseTemplate={handleSelectTemplate} />
       </main>
 
       <Footer />
@@ -46,6 +54,12 @@ export const MarketplaceContent = () => {
         onClose={() => setIsOnboardingOpen(false)}
         onLaunchConsole={handleLaunchConsole}
         initialMode={onboardingMode}
+      />
+
+      <TemplatePurchaseModal
+        isOpen={!!selectedTemplateForPurchase}
+        onClose={() => setSelectedTemplateForPurchase(null)}
+        template={selectedTemplateForPurchase}
       />
 
       {toastMessage && (

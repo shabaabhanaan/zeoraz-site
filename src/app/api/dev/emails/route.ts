@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 export async function GET() {
-  // Prevent access in production
+
   if (process.env.NODE_ENV === "production") {
     return new NextResponse("Not Found", { status: 404 });
   }
@@ -167,12 +167,11 @@ export async function GET() {
               <p class="sidebar-subtitle">Local Dev Sandbox Delivery Inbox</p>
             </div>
             <div class="email-list">
-              ${
-                emails.length === 0
-                  ? '<div style="text-align:center; padding:40px; color:#64748b; font-size:12px;">No emails received yet.</div>'
-                  : emails
-                      .map(
-                        (mail: any, index: number) => `
+              ${emails.length === 0
+        ? '<div style="text-align:center; padding:40px; color:#64748b; font-size:12px;">No emails received yet.</div>'
+        : emails
+          .map(
+            (mail: any, index: number) => `
                     <div 
                       class="email-item ${index === 0 ? "active" : ""}" 
                       onclick="selectEmail(this, ${index})"
@@ -182,22 +181,21 @@ export async function GET() {
                       <div class="email-item-date">${new Date(mail.createdAt).toLocaleTimeString()}</div>
                     </div>
                   `
-                      )
-                      .join("")
-              }
+          )
+          .join("")
+      }
             </div>
           </div>
           <div class="main-content">
-            ${
-              emails.length === 0
-                ? `
+            ${emails.length === 0
+        ? `
               <div class="empty-state">
                 <div class="empty-icon">✉️</div>
                 <h3>Your Dev Inbox is Empty</h3>
                 <p>Trigger an OTP forgot password workflow to see emails generated in real-time here.</p>
               </div>
             `
-                : `
+        : `
               <div class="email-view-header" id="email-header">
                 <h2 class="email-view-subject" id="subject-el">${emails[0].subject}</h2>
                 <div class="email-view-meta">
@@ -213,7 +211,7 @@ export async function GET() {
                 ></iframe>
               </div>
             `
-            }
+      }
           </div>
 
           <script>

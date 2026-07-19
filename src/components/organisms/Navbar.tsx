@@ -1,15 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowRight, Shield } from "lucide-react";
-import { Button } from "@/components/atoms/Button";
+import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
-  onGetStarted: (mode?: "register" | "login") => void;
+  onTalkToUs?: () => void;
+  onGetStarted?: (mode?: "register" | "login") => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
+  const handleCTA = () => {
+    if (onTalkToUs) onTalkToUs();
+    else if (onGetStarted) onGetStarted("register");
+  };
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -26,42 +30,47 @@ export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
   }, []);
 
   const navLinks = [
-    { name: "Products", href: "/#products" },
-    { name: "Solutions", href: "/#solutions" },
+    { name: "Services", href: "#services", hasDropdown: true },
+    { name: "About Us", href: "#about", hasDropdown: true },
+    { name: "Customer Stories", href: "#stories" },
+    { name: "Careers", href: "#careers" },
+    { name: "Resources", href: "#resources" },
     { name: "Marketplace", href: "/marketplace" },
-    { name: "About", href: "/#about" },
-    { name: "Contact", href: "/#contact" },
   ];
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glassmorphism py-4 shadow-lg shadow-black/10" : "bg-transparent py-6"
+          scrolled ? "bg-white/95 backdrop-blur-md py-4 shadow-md shadow-slate-200/60 border-b border-slate-100" : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-primary to-cyan-primary p-[1px] group-hover:glow-violet transition-all duration-300">
-              <div className="w-full h-full rounded-[11px] bg-slate-950 flex items-center justify-center">
-                <Shield className="h-5 w-5 text-cyan-primary group-hover:text-violet-primary transition-colors" />
-              </div>
+          <a href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-2xl bg-[#e11d48] flex items-center justify-center text-white shadow-md shadow-rose-500/30 group-hover:scale-105 transition-transform">
+              <span className="font-black text-xl tracking-tighter">Z</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent tracking-tight">
-              Zeoraz
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xl font-black text-slate-900 tracking-tight leading-none">
+                Zeoraz<span className="text-[#e11d48]">.</span>
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-0.5">
+                Software
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200"
+                className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors duration-200 flex items-center gap-1"
               >
                 {link.name}
+                {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5 text-slate-400" />}
               </a>
             ))}
           </nav>
@@ -69,20 +78,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             <button
-              onClick={() => onGetStarted("login")}
-              className="text-sm font-semibold text-slate-300 hover:text-white transition-colors mr-2 cursor-pointer"
+              onClick={handleCTA}
+              className="px-6 py-2.5 rounded-full bg-[#e11d48] hover:bg-[#be123c] text-white text-sm font-bold shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-105 transition-all duration-200 cursor-pointer flex items-center gap-2"
             >
-              Sign In
+              Talk to Us
             </button>
-            <Button variant="primary" className="flex items-center gap-2" onClick={() => onGetStarted("register")}>
-              Get Started <ArrowRight className="h-4 w-4" />
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none cursor-pointer"
+            className="lg:hidden p-2 text-slate-700 hover:text-[#e11d48] focus:outline-none cursor-pointer"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -98,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[72px] z-40 md:hidden glassmorphism border-t-0 p-6 flex flex-col gap-6"
+            className="fixed inset-x-0 top-[72px] z-40 lg:hidden bg-white border-b border-slate-200 p-6 flex flex-col gap-6 shadow-xl"
           >
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -106,34 +112,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onGetStarted }) => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-base font-medium text-slate-300 hover:text-white transition-colors py-2 border-b border-slate-800/50"
+                  className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100 flex items-center justify-between"
                 >
                   {link.name}
+                  {link.hasDropdown && <ChevronDown className="w-4 h-4 text-slate-400" />}
                 </a>
               ))}
             </nav>
 
-            <div className="flex flex-col gap-4">
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  onGetStarted("login");
-                }}
-                className="text-center text-sm font-semibold text-slate-300 hover:text-white transition-colors py-2 cursor-pointer"
-              >
-                Sign In
-              </button>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  setIsOpen(false);
-                  onGetStarted("register");
-                }}
-                className="w-full flex items-center justify-center gap-2"
-              >
-                Get Started <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                handleCTA();
+              }}
+              className="w-full py-3.5 rounded-full bg-[#e11d48] hover:bg-[#be123c] text-white text-sm font-bold text-center shadow-lg shadow-rose-500/25 transition-all cursor-pointer"
+            >
+              Talk to Us
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
