@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Award, Globe, Users, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, Award, Globe, Users, CheckCircle2, Building2 } from "lucide-react";
 
 interface HeroProps {
   onTalkToUs: () => void;
@@ -54,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
         >
           <button
             onClick={onTalkToUs}
@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto pt-8 border-t border-slate-200/80"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto pt-8 border-t border-slate-200/80 mb-14"
         >
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
             <h4 className="text-2xl sm:text-3xl font-black text-slate-900">500+</h4>
@@ -96,6 +96,35 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
             <h4 className="text-2xl sm:text-3xl font-black text-slate-900">24/7</h4>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Global Delivery</p>
+          </div>
+        </motion.div>
+
+        {/* Enterprise Office Showcase Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5 }}
+          className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl shadow-slate-400/20 group"
+        >
+          <div 
+            className="w-full h-[360px] sm:h-[480px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style={{ backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80)` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-left">
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                <Building2 className="w-3.5 h-3.5 text-[#e11d48]" /> Global Delivery Headquarters
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[#e11d48] text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                <span className="h-2 w-2 rounded-full bg-white animate-ping" /> Live Engineering Hub
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-3xl font-black text-white tracking-tight">
+              State-of-the-Art Enterprise Engineering Labs
+            </h3>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mt-1 leading-relaxed">
+              Dedicated engineering pods, secure dev environments, and agile collaboration spaces serving global market leaders.
+            </p>
           </div>
         </motion.div>
       </div>

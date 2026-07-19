@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Layers, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Layers, ShieldCheck, Zap, Building2 } from "lucide-react";
 
 interface MarketplaceHeroProps {
   onTalkToUs?: () => void;
@@ -54,7 +54,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
         >
           <a
             href="#template-grid"
@@ -74,11 +74,37 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
         </motion.div>
 
         {/* Stats Pill */}
-        <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-slate-500 uppercase tracking-wider">
+        <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-slate-500 uppercase tracking-wider mb-12">
           <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#e11d48]" /> Production-Verified Code</span>
           <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-amber-500" /> Sub-100ms LCP Optimized</span>
           <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-rose-500" /> Lifetime Updates</span>
         </div>
+
+        {/* Enterprise Office Showcase Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.4 }}
+          className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl shadow-slate-400/20 group"
+        >
+          <div 
+            className="w-full h-[320px] sm:h-[440px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style={{ backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80)` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-left">
+            <div className="flex flex-wrap items-center gap-3 mb-2">
+              <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                <Building2 className="w-3.5 h-3.5 text-[#e11d48]" /> Zeoraz Engineering Labs
+              </span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Designed & Tested in Real Enterprise Environments
+            </h3>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-xl mt-1 leading-relaxed">
+              Every template architecture is battle-tested by our engineering pods before public release.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
