@@ -89,8 +89,8 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           </div>
 
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">ISO 27001</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Security Certified</p>
+            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">99.99%</h4>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">SLA Reliability</p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">

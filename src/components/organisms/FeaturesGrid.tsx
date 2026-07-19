@@ -111,7 +111,7 @@ export default function AnalyticsCard() {
         "End-to-End Encryption (AES-256-GCM)",
         "Secrets Encryption via HSM Key Rings",
         "Tenant Data Isolation & IAM Rules",
-        "ISO27001 & SOC2 Compliant Logs"
+        "SOC2 Compliant & Encrypted Logs"
       ],
       codeTitle: "security-policy.json",
       codeSnippet: `{

@@ -15,7 +15,7 @@ const stories = [
   },
   {
     client: "HealthTech SaaS Platform",
-    title: "HIPAA & ISO-Compliant AI Patient Analytics",
+    title: "HIPAA & Secure AI Patient Analytics",
     description: "Built automated ML diagnosis pipelines and secure cloud infrastructure serving 500+ hospital networks.",
     metric: "99.99%",
     metricLabel: "Uptime SLA Achieved",

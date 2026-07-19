@@ -44,8 +44,8 @@ const aboutDropdown = [
     icon: Globe,
   },
   {
-    title: "ISO 27001 Security & Compliance",
-    desc: "Rigorous European regulatory standards and automated security audits.",
+    title: "Enterprise Security & Data Privacy",
+    desc: "Rigorous global security standards, encryption and automated security audits.",
     href: "#about",
     icon: ShieldCheck,
   },

@@ -28,7 +28,7 @@ export const Footer = () => {
       items: [
         { name: "Enterprise AI", href: "#" },
         { name: "Cloud Modernization", href: "#" },
-        { name: "ISO Security & Compliance", href: "#" },
+        { name: "Bank-Grade Security", href: "#" },
         { name: "Marketplace Templates", href: "/marketplace" },
       ],
     },
@@ -54,7 +54,7 @@ export const Footer = () => {
             </p>
             {/* Certifications badges */}
             <div className="pt-2 flex items-center gap-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
-              <span className="px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700">ISO 27001</span>
+              <span className="px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700">SOC2 Ready</span>
               <span className="px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700">GDPR Compliant</span>
             </div>
           </div>
@@ -85,7 +85,7 @@ export const Footer = () => {
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">ISO Security</a>
+            <a href="#" className="hover:text-slate-900 transition-colors">Security Audit</a>
           </div>
         </div>
       </div>

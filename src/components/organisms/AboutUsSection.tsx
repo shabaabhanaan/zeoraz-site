@@ -13,7 +13,7 @@ const principles = [
   {
     icon: ShieldCheck,
     title: "Uncompromising Security",
-    description: "Security and compliance are baked into our development lifecycle from day one, adhering to ISO 27001 and European regulatory standards.",
+    description: "Security and compliance are baked into our development lifecycle from day one, adhering to strict global enterprise security and data privacy standards.",
   },
   {
     icon: Zap,

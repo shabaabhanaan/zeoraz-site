@@ -22,8 +22,8 @@ const resources = [
   {
     icon: ShieldCheck,
     category: "Compliance Standard",
-    title: "ISO 27001 Security Audit Checklist for SaaS",
-    description: "Complete checklist for achieving ISO certification and European data privacy compliance.",
+    title: "Enterprise Security Audit Checklist for SaaS",
+    description: "Complete checklist for achieving SOC2 compliance and European data privacy standards.",
     link: "#",
   },
 ];

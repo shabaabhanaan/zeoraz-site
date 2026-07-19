@@ -22,14 +22,14 @@ export const EnterpriseTrustGrid: React.FC = () => {
                 <ShieldCheck className="w-7 h-7" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
-                ISO-Certified Security & Compliance
+                Bank-Grade Security & Compliance
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Your data and systems are protected by rigorous, internationally recognised ISO-certified practices. We adhere to European regulatory standards and conduct regular security audits to safeguard every project.
+                Your data and systems are protected by rigorous, enterprise-grade security practices. We adhere to global data privacy standards and conduct regular security audits to safeguard every project.
               </p>
             </div>
             <div className="flex items-center gap-2 pt-4 border-t border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider">
-              <Award className="w-4 h-4 text-[#e11d48]" /> ISO 27001 & GDPR Compliant
+              <Award className="w-4 h-4 text-[#e11d48]" /> End-to-End Encrypted & Audited
             </div>
           </motion.div>
 
