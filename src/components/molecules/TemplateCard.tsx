@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ExternalLink, ShoppingCart, Star } from "lucide-react";
-import { Button } from "@/components/atoms/Button";
 
 export interface Template {
   id: string;
@@ -21,54 +20,55 @@ interface TemplateCardProps {
 
 export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onUseTemplate }) => {
   return (
-    <div className="group relative rounded-2xl glassmorphism p-1 transition-all duration-300 hover:glow-cyan flex flex-col h-full bg-slate-900/50">
-      <div className="relative aspect-video rounded-xl overflow-hidden mb-4 bg-slate-950">
-        <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-          style={{ backgroundImage: `url(${template.imageUrl})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
-        <div className="absolute top-3 right-3">
-          <span className="px-2 py-1 text-xs font-semibold rounded-md bg-slate-900/80 backdrop-blur-md text-white border border-slate-700/50">
-            {template.category}
-          </span>
+    <div className="group relative rounded-3xl bg-white border border-slate-200/80 p-5 shadow-lg shadow-slate-200/40 hover:shadow-2xl hover:shadow-rose-500/10 hover:border-[#e11d48]/40 transition-all duration-300 flex flex-col h-full justify-between">
+      <div>
+        <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 bg-slate-100 border border-slate-100">
+          <div 
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+            style={{ backgroundImage: `url(${template.imageUrl})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+          <div className="absolute top-3 right-3">
+            <span className="px-3 py-1 text-xs font-bold rounded-full bg-white/95 backdrop-blur-md text-slate-900 shadow-md">
+              {template.category}
+            </span>
+          </div>
         </div>
-      </div>
-      
-      <div className="px-4 pb-4 flex flex-col flex-grow">
+
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-bold text-slate-100 group-hover:text-cyan-primary transition-colors">
+          <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#e11d48] transition-colors leading-snug">
             {template.title}
           </h3>
-          <span className="text-sm font-semibold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded">
+          <span className="text-xs font-black text-[#e11d48] bg-rose-50 border border-rose-100 px-3 py-1 rounded-full whitespace-nowrap ml-2">
             {template.price === "0" || template.price.toLowerCase() === "free" ? "Free" : `$${template.price}`}
           </span>
         </div>
-        
-        <p className="text-sm text-slate-400 mb-4 line-clamp-2 flex-grow">
+
+        <p className="text-xs sm:text-sm text-slate-600 mb-4 line-clamp-2 leading-relaxed">
           {template.description}
         </p>
+      </div>
 
-        <div className="flex items-center gap-1 mb-4">
+      <div>
+        <div className="flex items-center gap-1 mb-5">
           <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-          <span className="text-sm font-medium text-slate-300">{template.rating}</span>
+          <span className="text-xs font-bold text-slate-700">{template.rating}</span>
+          <span className="text-xs text-slate-400 font-medium ml-1">(4.9/5 verified)</span>
         </div>
 
-        <div className="flex gap-3 mt-auto">
-          <Button 
-            variant="secondary" 
-            className="flex-1 py-2 px-3 flex items-center justify-center gap-2 text-xs"
+        <div className="flex gap-3">
+          <button 
+            className="flex-1 py-2.5 px-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             onClick={() => window.open('#', '_blank')}
           >
-            Preview <ExternalLink className="w-3 h-3" />
-          </Button>
-          <Button 
-            variant="primary" 
-            className="flex-1 py-2 px-3 flex items-center justify-center gap-2 text-xs"
+            Preview <ExternalLink className="w-3.5 h-3.5" />
+          </button>
+          <button 
+            className="flex-1 py-2.5 px-3 rounded-full bg-[#e11d48] hover:bg-[#be123c] text-white text-xs font-bold shadow-md shadow-rose-500/20 hover:shadow-rose-500/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
             onClick={onUseTemplate}
           >
-            Use <ShoppingCart className="w-3 h-3" />
-          </Button>
+            Use Architecture <ShoppingCart className="w-3.5 h-3.5" />
+          </button>
         </div>
       </div>
     </div>
