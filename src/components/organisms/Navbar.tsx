@@ -95,15 +95,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-2xl bg-[#2563eb] flex items-center justify-center text-white shadow-md shadow-blue-500/30 group-hover:scale-105 transition-transform">
-              <span className="font-black text-xl tracking-tighter">Z</span>
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="Zeoraz Logo"
+              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+            />
             <div className="flex flex-col">
               <span className="text-xl font-black text-slate-900 tracking-tight leading-none">
                 Zeoraz<span className="text-[#2563eb]">.</span>
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-0.5">
-                Software
+              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-0.5">
+                Diversified Services · Global Consultancy
               </span>
             </div>
           </a>

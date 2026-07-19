@@ -46,8 +46,17 @@ export const Newsletter = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
             Join the Next Era of Web Dev
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base max-w-lg mx-auto mb-10 leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base max-w-lg mx-auto mb-6 leading-relaxed">
             Get exclusive early access to the Zeoraz ecosystem, release updates, and developer discounts. No spam, ever.
+          </p>
+          <p className="text-slate-500 text-xs mb-8">
+            Or reach us directly at{" "}
+            <a
+              href="mailto:info.zeoraz@gmail.com"
+              className="text-[#2563eb] font-semibold hover:underline"
+            >
+              info.zeoraz@gmail.com
+            </a>
           </p>
 
           {/* Form / Success Switch */}

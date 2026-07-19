@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Shield } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export const Footer = () => {
   const links = [
@@ -42,21 +42,31 @@ export const Footer = () => {
           {/* Logo & Brand statement */}
           <div className="col-span-2 space-y-4">
             <a href="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-xl bg-[#2563eb] flex items-center justify-center text-white font-black text-lg shadow-sm">
-                Z
+              <img
+                src="/images/logo.png"
+                alt="Zeoraz Logo"
+                className="h-9 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+              />
+              <div className="flex flex-col">
+                <span className="text-xl font-black text-slate-900 tracking-tight leading-none">
+                  Zeoraz<span className="text-[#2563eb]">.</span>
+                </span>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-0.5">
+                  Diversified Services · Global Consultancy
+                </span>
               </div>
-              <span className="text-xl font-black text-slate-900 tracking-tight">
-                Zeoraz<span className="text-[#2563eb]">.</span>
-              </span>
             </a>
             <p className="text-slate-600 text-sm max-w-sm leading-relaxed">
-              Global enterprise software engineering & tech consulting partner. Delivering mission-critical custom applications, AI solutions, and cloud infrastructure.
+              A lean, founder-focused engineering studio helping startups go from idea to shipped product — fast.
             </p>
-            {/* Certifications badges */}
-            <div className="pt-2 flex items-center gap-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
-              <span className="px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700">SOC2 Ready</span>
-              <span className="px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-slate-700">GDPR Compliant</span>
-            </div>
+            {/* Contact Email */}
+            <a
+              href="mailto:info.zeoraz@gmail.com"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#2563eb] hover:text-[#1d4ed8] transition-colors duration-200 group/email"
+            >
+              <Mail className="w-4 h-4 shrink-0" />
+              info.zeoraz@gmail.com
+            </a>
           </div>
 
           {/* Links Columns */}
