@@ -416,7 +416,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                               emailTouched
                                 ? isEmailValid
                                   ? "border-emerald-500/50 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30"
-                                  : "border-rose-500/50 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30"
+                                  : "border-blue-500/50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30"
                                 : "border-slate-800 focus:border-violet-primary focus:ring-1 focus:ring-violet-primary/30"
                             }`}
                           />
@@ -425,13 +425,13 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                               isEmailValid ? (
                                 <Check className="h-4 w-4 text-emerald-400" />
                               ) : (
-                                emailTouched && <AlertCircle className="h-4 w-4 text-rose-400" />
+                                emailTouched && <AlertCircle className="h-4 w-4 text-blue-400" />
                               )
                             )}
                           </div>
                         </div>
                         {emailTouched && !isEmailValid && (
-                          <p className="text-[11px] text-rose-400 mt-1.5 flex items-center gap-1">
+                          <p className="text-[11px] text-blue-400 mt-1.5 flex items-center gap-1">
                             <AlertCircle className="h-3 w-3" /> Please enter a valid email address.
                           </p>
                         )}
@@ -456,7 +456,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                               orgTouched
                                 ? isOrgValid
                                   ? "border-emerald-500/50 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30"
-                                  : "border-rose-500/50 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30"
+                                  : "border-blue-500/50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30"
                                 : "border-slate-800 focus:border-violet-primary focus:ring-1 focus:ring-violet-primary/30"
                             }`}
                           />
@@ -465,13 +465,13 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                               isOrgValid ? (
                                 <Check className="h-4 w-4 text-emerald-400" />
                               ) : (
-                                orgTouched && <AlertCircle className="h-4 w-4 text-rose-400" />
+                                orgTouched && <AlertCircle className="h-4 w-4 text-blue-400" />
                               )
                             )}
                           </div>
                         </div>
                         {orgTouched && !isOrgValid && (
-                          <p className="text-[11px] text-rose-400 mt-1.5 flex items-center gap-1">
+                          <p className="text-[11px] text-blue-400 mt-1.5 flex items-center gap-1">
                             <AlertCircle className="h-3 w-3" /> Organization name must be at least 3 characters.
                           </p>
                         )}
@@ -561,7 +561,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                     </motion.div>
 
                     {apiError && (
-                      <motion.p variants={childVariants} className="text-[11px] text-rose-400 mb-4 flex items-center gap-1.5">
+                      <motion.p variants={childVariants} className="text-[11px] text-blue-400 mb-4 flex items-center gap-1.5">
                         <AlertCircle className="h-4 w-4 shrink-0" /> {apiError}
                       </motion.p>
                     )}
@@ -710,7 +710,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                     </div>
 
                     {apiError && (
-                      <motion.p variants={childVariants} className="text-[11px] text-rose-400 mb-4 flex items-center gap-1.5">
+                      <motion.p variants={childVariants} className="text-[11px] text-blue-400 mb-4 flex items-center gap-1.5">
                         <AlertCircle className="h-4 w-4 shrink-0" /> {apiError}
                       </motion.p>
                     )}
@@ -811,7 +811,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                     </div>
 
                     {apiError && (
-                      <motion.p variants={childVariants} className="text-[11px] text-rose-400 mb-4 flex items-center gap-1.5">
+                      <motion.p variants={childVariants} className="text-[11px] text-blue-400 mb-4 flex items-center gap-1.5">
                         <AlertCircle className="h-4 w-4 shrink-0" /> {apiError}
                       </motion.p>
                     )}
@@ -889,7 +889,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                     </motion.div>
 
                     {apiError && (
-                      <motion.p variants={childVariants} className="text-[11px] text-rose-400 mb-4 flex items-center gap-1.5">
+                      <motion.p variants={childVariants} className="text-[11px] text-blue-400 mb-4 flex items-center gap-1.5">
                         <AlertCircle className="h-4 w-4 shrink-0" /> {apiError}
                       </motion.p>
                     )}
@@ -964,13 +964,13 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                               newPasswordTouched
                                 ? isNewPasswordValid
                                   ? "border-emerald-500/50 focus:border-emerald-500 focus:ring-1"
-                                  : "border-rose-500/50 focus:border-rose-500 focus:ring-1"
+                                  : "border-blue-500/50 focus:border-blue-500 focus:ring-1"
                                 : "border-slate-800 focus:border-violet-primary focus:ring-1"
                             }`}
                           />
                         </div>
                         {newPasswordTouched && !isNewPasswordValid && (
-                          <p className="text-[11px] text-rose-400 mt-1.5 flex items-center gap-1">
+                          <p className="text-[11px] text-blue-400 mt-1.5 flex items-center gap-1">
                             <AlertCircle className="h-3 w-3" /> Password must be at least 8 characters.
                           </p>
                         )}
@@ -995,13 +995,13 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                               confirmPasswordTouched
                                 ? isConfirmPasswordValid
                                   ? "border-emerald-500/50 focus:border-emerald-500 focus:ring-1"
-                                  : "border-rose-500/50 focus:border-rose-500 focus:ring-1"
+                                  : "border-blue-500/50 focus:border-blue-500 focus:ring-1"
                                 : "border-slate-800 focus:border-violet-primary focus:ring-1"
                             }`}
                           />
                         </div>
                         {confirmPasswordTouched && !isConfirmPasswordValid && (
-                          <p className="text-[11px] text-rose-400 mt-1.5 flex items-center gap-1">
+                          <p className="text-[11px] text-blue-400 mt-1.5 flex items-center gap-1">
                             <AlertCircle className="h-3 w-3" /> Passwords do not match.
                           </p>
                         )}
@@ -1009,7 +1009,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                     </div>
 
                     {apiError && (
-                      <motion.p variants={childVariants} className="text-[11px] text-rose-400 mb-4 flex items-center gap-1.5">
+                      <motion.p variants={childVariants} className="text-[11px] text-blue-400 mb-4 flex items-center gap-1.5">
                         <AlertCircle className="h-4 w-4 shrink-0" /> {apiError}
                       </motion.p>
                     )}

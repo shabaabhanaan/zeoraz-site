@@ -180,7 +180,7 @@ export const ProductTeaser = () => {
       case "success":
         return "border-emerald-500/80 bg-emerald-950/20 glow-emerald shadow-emerald-500/20";
       case "failed":
-        return "border-rose-500/80 bg-rose-950/20 glow-rose shadow-rose-500/20";
+        return "border-blue-500/80 bg-blue-950/20 glow-rose shadow-blue-500/20";
       default:
         return "border-slate-800 bg-slate-900/40 hover:border-slate-700";
     }
@@ -408,7 +408,7 @@ export const ProductTeaser = () => {
                                     <Check className="h-3 w-3 text-emerald-400" />
                                   )}
                                   {status === "failed" && (
-                                    <AlertCircle className="h-3 w-3 text-rose-400" />
+                                    <AlertCircle className="h-3 w-3 text-blue-400" />
                                   )}
                                   {status === "idle" && (
                                     <span className="h-1.5 w-1.5 rounded-full bg-slate-600" />

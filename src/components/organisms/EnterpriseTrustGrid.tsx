@@ -18,7 +18,7 @@ export const EnterpriseTrustGrid: React.FC = () => {
             className="card-enterprise p-8 flex flex-col justify-between bg-white border border-slate-200/80 shadow-lg shadow-slate-200/40 rounded-3xl"
           >
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-100 text-[#e11d48] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 text-[#2563eb] flex items-center justify-center mb-6">
                 <ShieldCheck className="w-7 h-7" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
@@ -29,7 +29,7 @@ export const EnterpriseTrustGrid: React.FC = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 pt-4 border-t border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider">
-              <Award className="w-4 h-4 text-[#e11d48]" /> End-to-End Encrypted & Audited
+              <Award className="w-4 h-4 text-[#2563eb]" /> End-to-End Encrypted & Audited
             </div>
           </motion.div>
 
@@ -42,7 +42,7 @@ export const EnterpriseTrustGrid: React.FC = () => {
             className="card-enterprise p-8 flex flex-col justify-between bg-white border border-slate-200/80 shadow-lg shadow-slate-200/40 rounded-3xl"
           >
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-100 text-[#e11d48] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 text-[#2563eb] flex items-center justify-center mb-6">
                 <TrendingUp className="w-7 h-7" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
@@ -66,7 +66,7 @@ export const EnterpriseTrustGrid: React.FC = () => {
             className="card-enterprise p-8 flex flex-col justify-between bg-white border border-slate-200/80 shadow-lg shadow-slate-200/40 rounded-3xl"
           >
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-100 text-[#e11d48] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 text-[#2563eb] flex items-center justify-center mb-6">
                 <Clock className="w-7 h-7" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">

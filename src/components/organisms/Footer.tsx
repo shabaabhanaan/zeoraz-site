@@ -42,11 +42,11 @@ export const Footer = () => {
           {/* Logo & Brand statement */}
           <div className="col-span-2 space-y-4">
             <a href="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-xl bg-[#e11d48] flex items-center justify-center text-white font-black text-lg shadow-sm">
+              <div className="w-8 h-8 rounded-xl bg-[#2563eb] flex items-center justify-center text-white font-black text-lg shadow-sm">
                 Z
               </div>
               <span className="text-xl font-black text-slate-900 tracking-tight">
-                Zeoraz<span className="text-[#e11d48]">.</span>
+                Zeoraz<span className="text-[#2563eb]">.</span>
               </span>
             </a>
             <p className="text-slate-600 text-sm max-w-sm leading-relaxed">
@@ -68,7 +68,7 @@ export const Footer = () => {
                   <li key={idx}>
                     <a
                       href={item.href}
-                      className="text-sm text-slate-600 hover:text-[#e11d48] transition-colors duration-200"
+                      className="text-sm text-slate-600 hover:text-[#2563eb] transition-colors duration-200"
                     >
                       {item.name}
                     </a>

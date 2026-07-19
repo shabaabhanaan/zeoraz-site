@@ -33,7 +33,7 @@ export const AboutUsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] uppercase tracking-wider mb-4">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] uppercase tracking-wider mb-4">
             <Globe className="w-3.5 h-3.5" /> About Zeoraz Software
           </span>
           <motion.h2
@@ -44,7 +44,7 @@ export const AboutUsSection: React.FC = () => {
             className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]"
           >
             Empowering Global Enterprises With <br className="hidden sm:inline" />
-            <span className="text-[#e11d48]">World-Class Engineering</span>
+            <span className="text-[#2563eb]">World-Class Engineering</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export const AboutUsSection: React.FC = () => {
                 className="card-enterprise p-6 bg-white border border-slate-200/80 shadow-md shadow-slate-200/30 rounded-3xl flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-100 text-[#e11d48] flex items-center justify-center mb-5">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-[#2563eb] flex items-center justify-center mb-5">
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>

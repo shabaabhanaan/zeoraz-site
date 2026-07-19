@@ -67,7 +67,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
           className="relative w-full max-w-2xl rounded-3xl bg-white p-6 sm:p-10 shadow-2xl border border-slate-200 text-slate-900 z-10 overflow-hidden"
         >
           {/* Top Brand Accent */}
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#e11d48] via-[#f43f5e] to-rose-400" />
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2563eb] via-[#3b82f6] to-blue-400" />
 
           <button
             onClick={handleReset}
@@ -79,7 +79,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
           {!isSubmitted ? (
             <div>
               <div className="mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-xs font-bold text-[#e11d48] mb-3 border border-rose-100">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-xs font-bold text-[#2563eb] mb-3 border border-blue-100">
                   <Shield className="w-3.5 h-3.5" /> Enterprise Software Consulting
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -94,7 +94,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
-                      <User className="w-3.5 h-3.5 text-[#e11d48]" /> Full Name
+                      <User className="w-3.5 h-3.5 text-[#2563eb]" /> Full Name
                     </label>
                     <input
                       type="text"
@@ -102,13 +102,13 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Sarah Jenkins"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#e11d48] focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
-                      <Mail className="w-3.5 h-3.5 text-[#e11d48]" /> Work Email
+                      <Mail className="w-3.5 h-3.5 text-[#2563eb]" /> Work Email
                     </label>
                     <input
                       type="email"
@@ -116,7 +116,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="sarah@enterprise.com"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#e11d48] focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
                     />
                   </div>
                 </div>
@@ -124,27 +124,27 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
-                      <Building2 className="w-3.5 h-3.5 text-[#e11d48]" /> Company / Organization
+                      <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Company / Organization
                     </label>
                     <input
                       type="text"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder="e.g. AcroTech Global"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#e11d48] focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-[#e11d48]" /> Phone Number (Optional)
+                      <Phone className="w-3.5 h-3.5 text-[#2563eb]" /> Phone Number (Optional)
                     </label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+1 (555) 000-0000"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#e11d48] focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
                     />
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                   <select
                     value={formData.serviceNeeded}
                     onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#e11d48] focus:bg-white transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
                   >
                     <option value="Software Engineering">Product & Custom Software Engineering</option>
                     <option value="AI / ML Solutions">Enterprise AI & Machine Learning</option>
@@ -167,14 +167,14 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
-                    <MessageSquare className="w-3.5 h-3.5 text-[#e11d48]" /> Project Overview / Message
+                    <MessageSquare className="w-3.5 h-3.5 text-[#2563eb]" /> Project Overview / Message
                   </label>
                   <textarea
                     rows={3}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Briefly describe your requirements or goal..."
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#e11d48] focus:bg-white transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors resize-none"
                   />
                 </div>
 
@@ -182,7 +182,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-3.5 rounded-xl bg-[#e11d48] hover:bg-[#be123c] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-lg glow-crimson transition-all"
+                    className="w-full py-3.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-lg glow-blue transition-all"
                   >
                     {isLoading ? (
                       <>

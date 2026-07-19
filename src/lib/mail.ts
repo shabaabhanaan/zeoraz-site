@@ -181,7 +181,7 @@ export function getOtpHtmlTemplate(email: string, otpCode: string): string {
           }
           .expiry {
             font-size: 12px;
-            color: #fb7185;
+            color: #60a5fa;
             font-weight: 600;
           }
         </style>

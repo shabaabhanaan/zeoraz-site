@@ -159,7 +159,7 @@ export const TemplatePurchaseModal: React.FC<TemplatePurchaseModalProps> = ({
 
               {/* Error Alert */}
               {error && (
-                <div className="mb-4 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-medium">
+                <div className="mb-4 p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-medium">
                   {error}
                 </div>
               )}

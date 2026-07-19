@@ -49,7 +49,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
             className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]"
           >
             End-to-End Engineering Expertise <br className="hidden sm:inline" />
-            <span className="text-[#e11d48]">Built Around Your Needs</span>
+            <span className="text-[#2563eb]">Built Around Your Needs</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -73,14 +73,14 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-[#e11d48]/40 hover:shadow-xl hover:shadow-rose-500/10 transition-all duration-300 flex flex-col justify-between"
+                className="group p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-[#2563eb]/40 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 group-hover:bg-[#e11d48] group-hover:text-white group-hover:border-[#e11d48] flex items-center justify-center mb-6 shadow-sm transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 group-hover:bg-[#2563eb] group-hover:text-white group-hover:border-[#2563eb] flex items-center justify-center mb-6 shadow-sm transition-all duration-300">
                     <Icon className="w-7 h-7" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#e11d48] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#2563eb] transition-colors">
                     {service.title}
                   </h3>
 
@@ -103,7 +103,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
 
                   <button
                     onClick={onTalkToUs}
-                    className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#e11d48] hover:text-[#be123c] transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#2563eb] hover:text-[#1d4ed8] transition-colors"
                   >
                     Discuss Solution <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </button>

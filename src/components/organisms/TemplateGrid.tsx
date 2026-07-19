@@ -89,7 +89,7 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) 
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
                 selectedCategory === category
-                  ? "bg-[#e11d48] text-white shadow-md shadow-rose-500/30"
+                  ? "bg-[#2563eb] text-white shadow-md shadow-blue-500/30"
                   : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
               }`}
             >
@@ -105,7 +105,7 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) 
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-full bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#e11d48] text-xs font-medium shadow-sm transition-all duration-200"
+            className="block w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-full bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563eb] text-xs font-medium shadow-sm transition-all duration-200"
             placeholder="Search architectures..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -142,7 +142,7 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) 
                   setSearchQuery("");
                   setSelectedCategory("All");
                 }}
-                className="mt-4 text-[#e11d48] font-bold hover:underline text-xs"
+                className="mt-4 text-[#2563eb] font-bold hover:underline text-xs"
               >
                 Clear filters
               </button>

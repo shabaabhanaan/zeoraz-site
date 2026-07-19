@@ -40,7 +40,7 @@ export const CareersSection: React.FC<CareersSectionProps> = ({ onTalkToUs }) =>
     <section id="careers" className="py-24 bg-slate-50 border-t border-slate-200/80 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] uppercase tracking-wider mb-4">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] uppercase tracking-wider mb-4">
             <HeartHandshake className="w-3.5 h-3.5" /> Join Our Global Team
           </span>
           <motion.h2
@@ -51,7 +51,7 @@ export const CareersSection: React.FC<CareersSectionProps> = ({ onTalkToUs }) =>
             className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]"
           >
             Build the Future of Enterprise Tech <br className="hidden sm:inline" />
-            <span className="text-[#e11d48]">With Zeoraz Software</span>
+            <span className="text-[#2563eb]">With Zeoraz Software</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -73,17 +73,17 @@ export const CareersSection: React.FC<CareersSectionProps> = ({ onTalkToUs }) =>
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="card-enterprise p-6 bg-white border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-[#e11d48]/40 transition-all duration-300 group"
+              className="card-enterprise p-6 bg-white border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-[#2563eb]/40 transition-all duration-300 group"
             >
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#e11d48]">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#2563eb]">
                     {job.department}
                   </span>
                   <span className="text-slate-300">•</span>
                   <span className="text-xs text-slate-500 font-semibold">{job.type}</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#e11d48] transition-colors">
+                <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#2563eb] transition-colors">
                   {job.title}
                 </h4>
                 <p className="text-xs text-slate-500 flex items-center gap-1 mt-1">
@@ -93,7 +93,7 @@ export const CareersSection: React.FC<CareersSectionProps> = ({ onTalkToUs }) =>
 
               <button
                 onClick={onTalkToUs}
-                className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-[#e11d48] text-white text-xs font-bold transition-colors duration-200 flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-[#2563eb] text-white text-xs font-bold transition-colors duration-200 flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
               >
                 Apply Now <ArrowRight className="w-3.5 h-3.5" />
               </button>

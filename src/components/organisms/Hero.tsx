@@ -17,11 +17,11 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] shadow-sm"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] shadow-sm"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e11d48]"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
           </span>
           Global Enterprise Software & Engineering Partner
         </motion.div>
@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8"
         >
           Transforming Ideas Into <br className="hidden sm:inline" />
-          <span className="text-[#e11d48] underline decoration-rose-200 decoration-wavy underline-offset-8">
+          <span className="text-[#2563eb] underline decoration-blue-200 decoration-wavy underline-offset-8">
             Enterprise-Grade Software
           </span>
         </motion.h1>
@@ -58,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
         >
           <button
             onClick={onTalkToUs}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#e11d48] hover:bg-[#be123c] text-white text-base font-bold shadow-xl shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-base font-bold shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
           >
             Talk to Us <ArrowRight className="w-5 h-5" />
           </button>
@@ -84,7 +84,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           </div>
 
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-[#e11d48]">99.8%</h4>
+            <h4 className="text-2xl sm:text-3xl font-black text-[#2563eb]">99.8%</h4>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Client Retention</p>
           </div>
 
@@ -113,9 +113,9 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-left">
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <Building2 className="w-3.5 h-3.5 text-[#e11d48]" /> Global Delivery Headquarters
+                <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Global Delivery Headquarters
               </span>
-              <span className="px-3 py-1 rounded-full bg-[#e11d48] text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+              <span className="px-3 py-1 rounded-full bg-[#2563eb] text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                 <span className="h-2 w-2 rounded-full bg-white animate-ping" /> Live Engineering Hub
               </span>
             </div>

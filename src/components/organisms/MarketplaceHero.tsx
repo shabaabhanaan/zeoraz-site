@@ -17,11 +17,11 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] shadow-sm"
+          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] shadow-sm"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e11d48]"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
           </span>
           ⚡ Production-Ready Open Architecture Blueprints
         </motion.div>
@@ -34,7 +34,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
           className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6"
         >
           Discover Premium <br className="hidden sm:inline" />
-          <span className="text-[#e11d48] underline decoration-rose-200 decoration-wavy underline-offset-8">
+          <span className="text-[#2563eb] underline decoration-blue-200 decoration-wavy underline-offset-8">
             Website Architectures
           </span>
         </motion.h1>
@@ -58,7 +58,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
         >
           <a
             href="#template-grid"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#e11d48] hover:bg-[#be123c] text-white text-sm font-bold shadow-xl shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-bold shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
           >
             Explore Architectures <Layers className="w-4 h-4" />
           </a>
@@ -68,16 +68,16 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
               onClick={onTalkToUs}
               className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-sm font-bold shadow-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
-              Request Custom Build <ArrowRight className="w-4 h-4 text-[#e11d48]" />
+              Request Custom Build <ArrowRight className="w-4 h-4 text-[#2563eb]" />
             </button>
           )}
         </motion.div>
 
         {/* Stats Pill */}
         <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-slate-500 uppercase tracking-wider mb-12">
-          <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#e11d48]" /> Production-Verified Code</span>
+          <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#2563eb]" /> Production-Verified Code</span>
           <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-amber-500" /> Sub-100ms LCP Optimized</span>
-          <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-rose-500" /> Open Source Blueprints</span>
+          <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-blue-500" /> Open Source Blueprints</span>
         </div>
 
         {/* Enterprise Office Showcase Banner */}
@@ -94,7 +94,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-left">
             <div className="flex flex-wrap items-center gap-3 mb-2">
               <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <Building2 className="w-3.5 h-3.5 text-[#e11d48]" /> Zeoraz Engineering Labs
+                <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Zeoraz Engineering Labs
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">

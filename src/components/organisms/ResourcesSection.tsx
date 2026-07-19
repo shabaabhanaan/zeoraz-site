@@ -34,12 +34,12 @@ export const ResourcesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] uppercase tracking-wider mb-4">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] uppercase tracking-wider mb-4">
               <BookOpen className="w-3.5 h-3.5" /> Technical Insights
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
               Engineering Resources & <br className="hidden sm:inline" />
-              <span className="text-[#e11d48]">Knowledge Hub</span>
+              <span className="text-[#2563eb]">Knowledge Hub</span>
             </h2>
           </div>
           <p className="text-slate-600 text-sm sm:text-base max-w-md">
@@ -65,10 +65,10 @@ export const ResourcesSection: React.FC = () => {
                     <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold">
                       {item.category}
                     </span>
-                    <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-[#e11d48] transition-colors" />
+                    <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-[#2563eb] transition-colors" />
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#e11d48] transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#2563eb] transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
@@ -76,7 +76,7 @@ export const ResourcesSection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-200/80 flex items-center text-xs font-extrabold uppercase tracking-wider text-[#e11d48]">
+                <div className="pt-6 mt-6 border-t border-slate-200/80 flex items-center text-xs font-extrabold uppercase tracking-wider text-[#2563eb]">
                   Read Guide &rarr;
                 </div>
               </motion.div>

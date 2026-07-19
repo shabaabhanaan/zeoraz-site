@@ -38,12 +38,12 @@ export const CustomerStoriesSection: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] uppercase tracking-wider mb-4">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] uppercase tracking-wider mb-4">
               <Quote className="w-3.5 h-3.5" /> Proven Results
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
               Customer Success Stories <br className="hidden sm:inline" />
-              <span className="text-[#e11d48]">Real Impact Delivered</span>
+              <span className="text-[#2563eb]">Real Impact Delivered</span>
             </h2>
           </div>
           <p className="text-slate-600 text-sm sm:text-base max-w-md">
@@ -67,13 +67,13 @@ export const CustomerStoriesSection: React.FC = () => {
                   <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700 text-xs font-bold">
                     {story.industry}
                   </span>
-                  <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-[#e11d48] transition-colors" />
+                  <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-[#2563eb] transition-colors" />
                 </div>
 
-                <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#e11d48] mb-1">
+                <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#2563eb] mb-1">
                   {story.client}
                 </h4>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#e11d48] transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#2563eb] transition-colors">
                   {story.title}
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
