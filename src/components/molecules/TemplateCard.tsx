@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { ExternalLink, ShoppingCart, Star } from "lucide-react";
+import React, { useState } from "react";
+import { ExternalLink, ShoppingCart, Star, Layers } from "lucide-react";
 
 export interface Template {
   id: string;
@@ -19,16 +19,28 @@ interface TemplateCardProps {
 }
 
 export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onUseTemplate }) => {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div className="group relative rounded-3xl bg-white border border-slate-200/80 p-5 shadow-lg shadow-slate-200/40 hover:shadow-2xl hover:shadow-rose-500/10 hover:border-[#e11d48]/40 transition-all duration-300 flex flex-col h-full justify-between">
       <div>
-        <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 bg-slate-100 border border-slate-100">
-          <div 
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-            style={{ backgroundImage: `url(${template.imageUrl})` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-          <div className="absolute top-3 right-3">
+        <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-950 border border-slate-100">
+          {!imgError ? (
+            <img
+              src={template.imageUrl}
+              alt={template.title}
+              onError={() => setImgError(true)}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-slate-900 to-[#1e1b4b]">
+              <Layers className="w-8 h-8 text-[#e11d48] mb-2" />
+              <span className="text-xs font-bold text-white tracking-tight">{template.title}</span>
+              <span className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest">{template.category}</span>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-3 right-3 z-10">
             <span className="px-3 py-1 text-xs font-bold rounded-full bg-white/95 backdrop-blur-md text-slate-900 shadow-md">
               {template.category}
             </span>
