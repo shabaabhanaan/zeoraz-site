@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Code2, Cpu, Cloud, Users, Globe, ShieldCheck, Target, Award, Sparkles, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
@@ -9,13 +9,69 @@ interface NavbarProps {
   onGetStarted?: (mode?: "register" | "login") => void;
 }
 
+const servicesDropdown = [
+  {
+    title: "Product & Software Engineering",
+    desc: "Custom web, mobile & SaaS applications built for high performance.",
+    href: "#services",
+    icon: Code2,
+  },
+  {
+    title: "Enterprise AI & Machine Learning",
+    desc: "Custom LLMs, automated workflow intelligence & predictive analytics.",
+    href: "#services",
+    icon: Cpu,
+  },
+  {
+    title: "Cloud & DevOps Infrastructure",
+    desc: "AWS, Azure & GCP microservices, CI/CD & 24/7 monitoring.",
+    href: "#services",
+    icon: Cloud,
+  },
+  {
+    title: "Dedicated Engineering Pods",
+    desc: "On-demand high-performing engineering teams tailored to your stack.",
+    href: "#services",
+    icon: Users,
+  },
+];
+
+const aboutDropdown = [
+  {
+    title: "Our Mission & Engineering Principles",
+    desc: "Uncompromising security, engineering precision & client partnership.",
+    href: "#about",
+    icon: Globe,
+  },
+  {
+    title: "ISO 27001 Security & Compliance",
+    desc: "Rigorous European regulatory standards and automated security audits.",
+    href: "#about",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Customer Success Stories",
+    desc: "Real-world case studies with proven ROI for global market leaders.",
+    href: "#stories",
+    icon: Target,
+  },
+  {
+    title: "Global Delivery Operations",
+    desc: "24/7 engineering hubs operating across Asia, Europe & Americas.",
+    href: "#about",
+    icon: Award,
+  },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
   const handleCTA = () => {
     if (onTalkToUs) onTalkToUs();
     else if (onGetStarted) onGetStarted("register");
   };
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<"services" | "about" | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,15 +84,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Services", href: "#services", hasDropdown: true },
-    { name: "About Us", href: "#about", hasDropdown: true },
-    { name: "Customer Stories", href: "#stories" },
-    { name: "Careers", href: "#careers" },
-    { name: "Resources", href: "#resources" },
-    { name: "Marketplace", href: "/marketplace" },
-  ];
 
   return (
     <>
@@ -61,18 +108,127 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+          {/* Desktop Navigation Links with Interactive Dropdowns */}
+          <nav className="hidden lg:flex items-center gap-8 relative">
+            {/* Services Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown("services")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
               <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors duration-200 flex items-center gap-1"
+                href="#services"
+                className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors py-2 flex items-center gap-1 cursor-pointer"
               >
-                {link.name}
-                {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5 text-slate-400" />}
+                Services <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180 text-[#e11d48]" : ""}`} />
               </a>
-            ))}
+
+              <AnimatePresence>
+                {activeDropdown === "services" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full -left-4 w-[540px] pt-3 z-50"
+                  >
+                    <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-2xl shadow-slate-300/60 grid grid-cols-2 gap-4 relative overflow-hidden">
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#e11d48] to-rose-400" />
+                      {servicesDropdown.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <a
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="group/item p-3.5 rounded-2xl hover:bg-slate-50 transition-colors flex items-start gap-3 border border-transparent hover:border-slate-100"
+                          >
+                            <div className="p-2 rounded-xl bg-rose-50 border border-rose-100 text-[#e11d48] group-hover/item:bg-[#e11d48] group-hover/item:text-white transition-colors flex-shrink-0">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <h5 className="text-xs font-bold text-slate-900 group-hover/item:text-[#e11d48] transition-colors leading-tight">
+                                {item.title}
+                              </h5>
+                              <p className="text-[11px] text-slate-500 mt-1 leading-normal line-clamp-2">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* About Us Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown("about")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <a
+                href="#about"
+                className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors py-2 flex items-center gap-1 cursor-pointer"
+              >
+                About Us <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "about" ? "rotate-180 text-[#e11d48]" : ""}`} />
+              </a>
+
+              <AnimatePresence>
+                {activeDropdown === "about" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full -left-4 w-[540px] pt-3 z-50"
+                  >
+                    <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-2xl shadow-slate-300/60 grid grid-cols-2 gap-4 relative overflow-hidden">
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#e11d48] to-rose-400" />
+                      {aboutDropdown.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <a
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setActiveDropdown(null)}
+                            className="group/item p-3.5 rounded-2xl hover:bg-slate-50 transition-colors flex items-start gap-3 border border-transparent hover:border-slate-100"
+                          >
+                            <div className="p-2 rounded-xl bg-rose-50 border border-rose-100 text-[#e11d48] group-hover/item:bg-[#e11d48] group-hover/item:text-white transition-colors flex-shrink-0">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <h5 className="text-xs font-bold text-slate-900 group-hover/item:text-[#e11d48] transition-colors leading-tight">
+                                {item.title}
+                              </h5>
+                              <p className="text-[11px] text-slate-500 mt-1 leading-normal line-clamp-2">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Direct Links */}
+            <a href="#stories" className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors">
+              Customer Stories
+            </a>
+            <a href="#careers" className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors">
+              Careers
+            </a>
+            <a href="#resources" className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors">
+              Resources
+            </a>
+            <a href="/marketplace" className="text-sm font-semibold text-slate-700 hover:text-[#e11d48] transition-colors">
+              Marketplace
+            </a>
           </nav>
 
           {/* Desktop CTA */}
@@ -104,20 +260,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[72px] z-40 lg:hidden bg-white border-b border-slate-200 p-6 flex flex-col gap-6 shadow-xl"
+            className="fixed inset-x-0 top-[72px] z-40 lg:hidden bg-white border-b border-slate-200 p-6 flex flex-col gap-6 shadow-xl max-h-[85vh] overflow-y-auto"
           >
             <nav className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100 flex items-center justify-between"
-                >
-                  {link.name}
-                  {link.hasDropdown && <ChevronDown className="w-4 h-4 text-slate-400" />}
-                </a>
-              ))}
+              <a href="#services" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100">
+                Services
+              </a>
+              <a href="#about" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100">
+                About Us
+              </a>
+              <a href="#stories" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100">
+                Customer Stories
+              </a>
+              <a href="#careers" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100">
+                Careers
+              </a>
+              <a href="#resources" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100">
+                Resources
+              </a>
+              <a href="/marketplace" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#e11d48] transition-colors py-2 border-b border-slate-100">
+                Marketplace
+              </a>
             </nav>
 
             <button
