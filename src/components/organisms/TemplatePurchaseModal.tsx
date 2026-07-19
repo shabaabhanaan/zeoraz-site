@@ -28,12 +28,13 @@ export const TemplatePurchaseModal: React.FC<TemplatePurchaseModalProps> = ({
 
   if (!isOpen || !template) return null;
 
+  const priceVal = template.price || "Free";
   const formattedPrice =
-    template.price === "0" || template.price.toLowerCase() === "free"
+    priceVal === "0" || priceVal.toLowerCase() === "free"
       ? "Free"
-      : template.price.startsWith("$")
-      ? template.price
-      : `$${template.price}`;
+      : priceVal.startsWith("$")
+      ? priceVal
+      : `$${priceVal}`;
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();

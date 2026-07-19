@@ -20,10 +20,10 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
           className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-200/60 text-xs font-bold text-[#e11d48] shadow-sm"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e11d48]"></span>
           </span>
-          ⚡ Instant 1-Click Payment Checkout Enabled
+          ⚡ Production-Ready Open Architecture Blueprints
         </motion.div>
 
         {/* Hero Headline */}
@@ -46,7 +46,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-2xl mx-auto text-base sm:text-xl text-slate-600 leading-relaxed mb-8"
         >
-          Jumpstart your next enterprise application with production-ready, highly optimized components and architecture templates built on Zeoraz infrastructure.
+          Explore production-ready software blueprints and component libraries engineered by Zeoraz Software. Partner with our team to customize and launch your project.
         </motion.p>
 
         {/* Action Buttons */}
@@ -77,7 +77,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
         <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-slate-500 uppercase tracking-wider mb-12">
           <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#e11d48]" /> Production-Verified Code</span>
           <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-amber-500" /> Sub-100ms LCP Optimized</span>
-          <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-rose-500" /> Lifetime Updates</span>
+          <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-rose-500" /> Open Source Blueprints</span>
         </div>
 
         {/* Enterprise Office Showcase Banner */}
@@ -101,7 +101,7 @@ export const MarketplaceHero: React.FC<MarketplaceHeroProps> = ({ onTalkToUs }) 
               Designed & Tested in Real Enterprise Environments
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm max-w-xl mt-1 leading-relaxed">
-              Every template architecture is battle-tested by our engineering pods before public release.
+              Every architecture blueprint is battle-tested by our engineering pods before release.
             </p>
           </div>
         </motion.div>

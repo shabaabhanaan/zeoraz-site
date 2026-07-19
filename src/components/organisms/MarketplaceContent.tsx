@@ -9,20 +9,13 @@ import { WhatsAppWidget } from "@/components/atoms/WhatsAppWidget";
 import { ChatbotWidget } from "@/components/atoms/ChatbotWidget";
 import { MarketplaceHero } from "@/components/organisms/MarketplaceHero";
 import { TemplateGrid } from "@/components/organisms/TemplateGrid";
-import { TemplatePurchaseModal } from "@/components/organisms/TemplatePurchaseModal";
-import { Template } from "@/components/molecules/TemplateCard";
 
 export const MarketplaceContent = () => {
   const [isTalkToUsOpen, setIsTalkToUsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [selectedTemplateForPurchase, setSelectedTemplateForPurchase] = useState<Template | null>(null);
 
   const handleOpenTalkToUs = () => {
     setIsTalkToUsOpen(true);
-  };
-
-  const handleSelectTemplate = (template: Template) => {
-    setSelectedTemplateForPurchase(template);
   };
 
   return (
@@ -33,23 +26,16 @@ export const MarketplaceContent = () => {
       {/* Main Content */}
       <main className="flex-1 flex flex-col">
         <MarketplaceHero onTalkToUs={handleOpenTalkToUs} />
-        <TemplateGrid onUseTemplate={handleSelectTemplate} />
+        <TemplateGrid onSelectTemplate={handleOpenTalkToUs} />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Consultation Modal */}
+      {/* Interactive Technical Consultation Modal */}
       <TalkToUsModal
         isOpen={isTalkToUsOpen}
         onClose={() => setIsTalkToUsOpen(false)}
-      />
-
-      {/* Template Purchase Modal */}
-      <TemplatePurchaseModal
-        isOpen={!!selectedTemplateForPurchase}
-        onClose={() => setSelectedTemplateForPurchase(null)}
-        template={selectedTemplateForPurchase}
       />
 
       {/* Toast Notification */}

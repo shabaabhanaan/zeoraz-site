@@ -12,16 +12,14 @@ const mockTemplates: Template[] = [
     description: "High-throughput e-commerce platform with sub-10ms cart sync and multi-currency checkout.",
     category: "E-Commerce",
     imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
-    price: "49",
     rating: 4.9,
   },
   {
     id: "2",
     title: "SaaS Enterprise Starter Kit",
-    description: "Production-ready Next.js SaaS architecture with auth, Stripe billing, and admin dashboard.",
+    description: "Production-ready Next.js SaaS architecture with auth, database models, and admin dashboard.",
     category: "SaaS",
     imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    price: "99",
     rating: 5.0,
   },
   {
@@ -30,7 +28,6 @@ const mockTemplates: Template[] = [
     description: "Sleek enterprise agency architecture tailored for software engineering teams & tech leaders.",
     category: "Portfolio",
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    price: "Free",
     rating: 4.8,
   },
   {
@@ -39,7 +36,6 @@ const mockTemplates: Template[] = [
     description: "High-performance dashboard for AI agents and decentralized analytics with web3 auth.",
     category: "Web3",
     imageUrl: "/images/web3-ai-dapp.png",
-    price: "79",
     rating: 4.7,
   },
   {
@@ -48,7 +44,6 @@ const mockTemplates: Template[] = [
     description: "Content-focused engineering blog template optimized for Core Web Vitals and SEO rank.",
     category: "Blog",
     imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80",
-    price: "29",
     rating: 4.6,
   },
   {
@@ -57,7 +52,6 @@ const mockTemplates: Template[] = [
     description: "Complex financial data visualization and real-time streaming dashboard layout.",
     category: "Dashboard",
     imageUrl: "/images/fintech-analytics.png",
-    price: "149",
     rating: 4.9,
   },
 ];
@@ -65,10 +59,10 @@ const mockTemplates: Template[] = [
 const categories = ["All", "E-Commerce", "SaaS", "Portfolio", "Web3", "Blog", "Dashboard"];
 
 interface TemplateGridProps {
-  onUseTemplate: (template: Template) => void;
+  onSelectTemplate: (template: Template) => void;
 }
 
-export const TemplateGrid: React.FC<TemplateGridProps> = ({ onUseTemplate }) => {
+export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -132,7 +126,7 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onUseTemplate }) => 
                 transition={{ duration: 0.2 }}
                 key={template.id}
               >
-                <TemplateCard template={template} onUseTemplate={() => onUseTemplate(template)} />
+                <TemplateCard template={template} onSelectTemplate={() => onSelectTemplate(template)} />
               </motion.div>
             ))
           ) : (
