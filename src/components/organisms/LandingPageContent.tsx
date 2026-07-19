@@ -3,8 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "@/components/organisms/Navbar";
 import { Hero } from "@/components/organisms/Hero";
+import { AboutUsSection } from "@/components/organisms/AboutUsSection";
 import { EnterpriseTrustGrid } from "@/components/organisms/EnterpriseTrustGrid";
 import { ServicesGrid } from "@/components/organisms/ServicesGrid";
+import { CustomerStoriesSection } from "@/components/organisms/CustomerStoriesSection";
+import { CareersSection } from "@/components/organisms/CareersSection";
+import { ResourcesSection } from "@/components/organisms/ResourcesSection";
 import { Newsletter } from "@/components/organisms/Newsletter";
 import { Footer } from "@/components/organisms/Footer";
 import { TalkToUsModal } from "@/components/organisms/TalkToUsModal";
@@ -46,11 +50,23 @@ export const LandingPageContent = () => {
         {/* Enterprise Software Hero Section */}
         <Hero onTalkToUs={handleOpenTalkToUs} />
 
+        {/* About Us Section */}
+        <AboutUsSection />
+
         {/* Enterprise Security & Scalability Trust Cards Grid */}
         <EnterpriseTrustGrid />
 
         {/* End-to-End Engineering Expertise Services Grid */}
         <ServicesGrid onTalkToUs={handleOpenTalkToUs} />
+
+        {/* Customer Success Stories Section */}
+        <CustomerStoriesSection />
+
+        {/* Careers Section */}
+        <CareersSection onTalkToUs={handleOpenTalkToUs} />
+
+        {/* Resources & Insights Section */}
+        <ResourcesSection />
 
         {/* Lead Capture Newsletter */}
         <Newsletter />
