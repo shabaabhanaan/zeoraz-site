@@ -23,7 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
           </span>
-          Global Enterprise Software & Engineering Partner
+          Early-Stage Startup & Product Engineering Studio
         </motion.div>
 
         {/* Hero Headline */}
@@ -33,9 +33,9 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8"
         >
-          Transforming Ideas Into <br className="hidden sm:inline" />
+          Turning Bold Ideas Into <br className="hidden sm:inline" />
           <span className="text-[#2563eb] underline decoration-blue-200 decoration-wavy underline-offset-8">
-            Enterprise-Grade Software
+            Products That Ship
           </span>
         </motion.h1>
 
@@ -46,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-3xl mx-auto text-base sm:text-xl text-slate-600 leading-relaxed mb-10"
         >
-          Partner with dedicated, high-performing software engineering teams. We design, scale, and secure custom applications, AI pipelines, and cloud solutions for enterprise market leaders.
+          We're a lean, founder-focused engineering studio. We move fast, cut through complexity, and help startups go from zero to a product their users love — without the enterprise overhead.
         </motion.p>
 
         {/* Hero Action Buttons */}
@@ -79,23 +79,23 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto pt-8 border-t border-slate-200/80 mb-14"
         >
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">500+</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Software Engineers</p>
+            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">20+</h4>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Projects Shipped</p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-[#2563eb]">99.8%</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Client Retention</p>
+            <h4 className="text-2xl sm:text-3xl font-black text-[#2563eb]">100%</h4>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Client Satisfaction</p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">99.99%</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">SLA Reliability</p>
+            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">2-Wk</h4>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">MVP Sprints</p>
           </div>
 
           <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">24/7</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Global Delivery</p>
+            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">$0</h4>
+            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Bloat. Just Code.</p>
           </div>
         </motion.div>
 
@@ -113,17 +113,17 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-left">
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Global Delivery Headquarters
+                <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Remote-First Studio
               </span>
               <span className="px-3 py-1 rounded-full bg-[#2563eb] text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <span className="h-2 w-2 rounded-full bg-white animate-ping" /> Live Engineering Hub
+                <span className="h-2 w-2 rounded-full bg-white animate-ping" /> Actively Shipping
               </span>
             </div>
             <h3 className="text-xl sm:text-3xl font-black text-white tracking-tight">
-              State-of-the-Art Enterprise Engineering Labs
+              Built for Founders, by Builders
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mt-1 leading-relaxed">
-              Dedicated engineering pods, secure dev environments, and agile collaboration spaces serving global market leaders.
+              A tight-knit team of engineers and designers who care about your product as much as you do — fast feedback loops, direct access, zero fluff.
             </p>
           </div>
         </motion.div>
