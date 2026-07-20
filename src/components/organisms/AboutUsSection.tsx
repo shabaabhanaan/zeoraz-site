@@ -2,28 +2,28 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Target, Users, ShieldCheck, Zap, Globe, Sparkles } from "lucide-react";
+import { Target, Users, Zap, Globe, Cpu, ShoppingBag, Box } from "lucide-react";
 
-const principles = [
+const divisions = [
+  {
+    icon: Cpu,
+    title: "IT & Software Engineering",
+    description: "Custom app development, automation, and tech integration services serving startups and fast-growing organizations.",
+  },
+  {
+    icon: ShoppingBag,
+    title: "E-Commerce Brands",
+    description: "Creating, scaling, and operating optimized digital brands using headless platforms and automated logistics workflows.",
+  },
+  {
+    icon: Box,
+    title: "3D Printing & Fabrication",
+    description: "Providing on-demand prototyping and small-batch production components using advanced additive fabrication equipment.",
+  },
   {
     icon: Target,
-    title: "Engineering Precision",
-    description: "We adhere to rigorous software architecture standards, clean code principles, and automated CI/CD practices across every engagement.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Uncompromising Security",
-    description: "Security and compliance are baked into our development lifecycle from day one, adhering to strict global enterprise security and data privacy standards.",
-  },
-  {
-    icon: Zap,
-    title: "Scalable Innovation",
-    description: "Our dedicated engineering pods build resilient solutions engineered to scale seamlessly as user demand grows globally.",
-  },
-  {
-    icon: Users,
-    title: "Client Partnership",
-    description: "We operate as an extension of your internal product team, aligning with your roadmap, timezone, and engineering culture.",
+    title: "Diversified Excellence",
+    description: "Combining technological engineering depth with operations, commerce, and hardware manufacturing experience.",
   },
 ];
 
@@ -34,7 +34,7 @@ export const AboutUsSection: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-xs font-bold text-[#2563eb] uppercase tracking-wider mb-4">
-            <Globe className="w-3.5 h-3.5" /> About Zeoraz Software
+            <Globe className="w-3.5 h-3.5" /> About Zeoraz
           </span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -43,8 +43,8 @@ export const AboutUsSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]"
           >
-            Empowering Global Enterprises With <br className="hidden sm:inline" />
-            <span className="text-[#2563eb]">World-Class Engineering</span>
+            A Multi-Vertical Solutions & <br className="hidden sm:inline" />
+            <span className="text-[#2563eb]">Global Consultancy Firm</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -53,13 +53,13 @@ export const AboutUsSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-slate-600 text-base sm:text-lg mt-4 leading-relaxed"
           >
-            Zeoraz Software is a global technology consulting and custom software engineering firm. We specialize in building mission-critical applications, AI systems, and cloud infrastructure for hyper-growth enterprises.
+            Zeoraz operates as a modern diversified corporation. We engineer bespoke technology infrastructure, deploy and run direct-to-consumer e-commerce portals, and provide additive 3D fabrication services to bridge physical design with digital systems.
           </motion.p>
         </div>
 
-        {/* Principles Grid */}
+        {/* Divisions Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {principles.map((item, index) => {
+          {divisions.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.div

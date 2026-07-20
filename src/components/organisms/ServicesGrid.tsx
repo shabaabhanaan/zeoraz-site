@@ -2,32 +2,26 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Cpu, Cloud, Smartphone, Sparkles, ArrowRight } from "lucide-react";
+import { Code2, ShoppingBag, Box, ArrowRight } from "lucide-react";
 
 const services = [
   {
     icon: Code2,
-    title: "Product & Custom Software Engineering",
-    description: "Full-lifecycle engineering of web applications, SaaS platforms, and enterprise software designed for high scalability and resilience.",
-    tags: ["React / Next.js", "Node.js", "Python", "Microservices"],
+    title: "IT Services & Software Engineering",
+    description: "Custom software architecture, AI solutions, and cloud infrastructure engineered to scale. We build next-gen web systems and mobile platforms.",
+    tags: ["Custom Software", "Cloud / DevOps", "AI Integration", "API Solutions"],
   },
   {
-    icon: Cpu,
-    title: "Enterprise AI & Machine Learning",
-    description: "Custom AI agents, LLM integrations, automated workflow intelligence, and predictive analytics tailored to business operations.",
-    tags: ["Generative AI", "PyTorch / TensorFlow", "NLP", "MLOps"],
+    icon: ShoppingBag,
+    title: "E-Commerce Brands & Infrastructure",
+    description: "Managing a high-volume portfolio of e-commerce brands with optimized checkout pipelines, headless frontends, and automated supply chains.",
+    tags: ["Direct to Consumer", "Headless Commerce", "Shopify / custom", "Logistics Automation"],
   },
   {
-    icon: Cloud,
-    title: "Cloud & DevOps Infrastructure",
-    description: "Architecting cloud-native infrastructure, CI/CD pipelines, container orchestration, and serverless edge deployments.",
-    tags: ["AWS / Azure / GCP", "Kubernetes", "Docker", "Terraform"],
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile & Cross-Platform Applications",
-    description: "High-performance native and cross-platform mobile experiences with fluid UI/UX, offline syncing, and enterprise security.",
-    tags: ["React Native", "iOS & Android", "GraphQL", "REST APIs"],
+    icon: Box,
+    title: "3D Printing & Prototyping",
+    description: "On-demand additive manufacturing services. From functional high-resolution parts to scale models, delivered with industrial-grade precision.",
+    tags: ["FDM / SLA printing", "Rapid Prototyping", "CAD Modelling", "Custom Enclosures"],
   },
 ];
 
@@ -39,7 +33,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
   return (
     <section id="services" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Section Header matching screenshot */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -48,8 +42,8 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]"
           >
-            End-to-End Engineering Expertise <br className="hidden sm:inline" />
-            <span className="text-[#2563eb]">Built Around Your Needs</span>
+            Our Core Divisions & <br className="hidden sm:inline" />
+            <span className="text-[#2563eb]">Diversified Capabilities</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -58,12 +52,12 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-slate-600 text-base sm:text-lg mt-4 leading-relaxed"
           >
-            From initial concept to global enterprise deployment, we provide dedicated engineering teams and modern technology capabilities.
+            Zeoraz operates across multiple verticals, combining software engineering with digital commerce and physical production capabilities.
           </motion.p>
         </div>
 
         {/* Services Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -105,7 +99,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onTalkToUs }) => {
                     onClick={onTalkToUs}
                     className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#2563eb] hover:text-[#1d4ed8] transition-colors"
                   >
-                    Discuss Solution <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    Inquire Now <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </motion.div>

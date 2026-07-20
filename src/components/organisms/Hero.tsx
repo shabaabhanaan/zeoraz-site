@@ -23,7 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
           </span>
-          Early-Stage Startup & Product Engineering Studio
+          Diversified Services & Global Consultancy Studio
         </motion.div>
 
         {/* Hero Headline */}
@@ -33,9 +33,9 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8"
         >
-          Turning Bold Ideas Into <br className="hidden sm:inline" />
+          Engineering Technology, <br className="hidden sm:inline" />
           <span className="text-[#2563eb] underline decoration-blue-200 decoration-wavy underline-offset-8">
-            Products That Ship
+            Commerce & Physical Products
           </span>
         </motion.h1>
 
@@ -46,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-3xl mx-auto text-base sm:text-xl text-slate-600 leading-relaxed mb-10"
         >
-          We're a lean, founder-focused engineering studio. We move fast, cut through complexity, and help startups go from zero to a product their users love — without the enterprise overhead.
+          Zeoraz is a multi-vertical product studio. We build custom software & AI, manage and scale high-volume e-commerce brands, and deliver precision 3D printing services. All in one unified consultancy.
         </motion.p>
 
         {/* Hero Action Buttons */}
