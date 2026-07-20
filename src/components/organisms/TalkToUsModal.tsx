@@ -22,18 +22,33 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSubmitError(null);
 
-    // Simulate submission to consultation queue
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Submission failed");
+      }
+
       setIsSubmitted(true);
-    }, 1000);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleReset = () => {
@@ -179,6 +194,11 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                 </div>
 
                 <div className="pt-2">
+                  {submitError && (
+                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3 mb-3">
+                      ⚠️ {submitError}
+                    </p>
+                  )}
                   <button
                     type="submit"
                     disabled={isLoading}
