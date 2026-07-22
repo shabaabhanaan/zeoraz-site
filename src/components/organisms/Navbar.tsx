@@ -219,17 +219,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             </div>
 
             {/* Direct Links */}
-            <a href="#stories" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
-              Customer Stories
-            </a>
-            <a href="#careers" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
-              Careers
-            </a>
-            <a href="#resources" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
-              Resources
-            </a>
             <a href="/marketplace" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
               Marketplace
+            </a>
+            <a href="/shop" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
+              Store
             </a>
           </nav>
 
@@ -282,6 +276,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
               </a>
               <a href="/marketplace" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
                 Marketplace
+              </a>
+              <a href="/shop" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
+                Store
               </a>
             </nav>
 

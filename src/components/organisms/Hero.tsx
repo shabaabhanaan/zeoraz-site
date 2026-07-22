@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8"
         >
           Engineering Technology, <br className="hidden sm:inline" />
-          <span className="text-[#2563eb] underline decoration-blue-200 decoration-wavy underline-offset-8">
+          <span className="text-[#2563eb]">
             Commerce & Physical Products
           </span>
         </motion.h1>
@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.9, delay: 0.5 }}
           className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl shadow-slate-400/20 group"
         >
-          <div 
+          <div
             className="w-full h-[360px] sm:h-[480px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
             style={{ backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80)` }}
           />
