@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageSquare, X, Send, Bot, User } from "lucide-react";
+import { X, Send, Headphones, User } from "lucide-react";
 
 export const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "bot", text: "Hello! I'm Zeo, your AI assistant. How can I help you today?" }
+    { role: "bot", text: "Hello! I'm Zeo, your dedicated support consultant. How can I assist you today?" }
   ]);
   const [inputValue, setInputValue] = useState("");
 
@@ -18,11 +18,11 @@ export const ChatbotWidget = () => {
     setMessages((prev) => [...prev, { role: "user", text: inputValue }]);
     setInputValue("");
     
-    // Simulate bot response after a short delay
+    // Simulate support response
     setTimeout(() => {
       setMessages((prev) => [
         ...prev, 
-        { role: "bot", text: "Thank you for your message! Our team will get back to you shortly, or you can explore our platform documentation." }
+        { role: "bot", text: "Thank you for reaching out! A representative will connect with you shortly, or you can request a callback via our 'Talk to Us' form." }
       ]);
     }, 1000);
   };
@@ -31,36 +31,38 @@ export const ChatbotWidget = () => {
     <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end">
       {/* Chat Window */}
       <div 
-        className={`mb-4 w-[350px] overflow-hidden rounded-2xl border border-slate-700/50 bg-[#0a0a0f]/95 backdrop-blur-xl shadow-2xl transition-all duration-300 origin-bottom-right ${
+        className={`mb-4 w-[350px] overflow-hidden rounded-2xl border border-slate-700/50 bg-[#0a0a0f]/95 dark:bg-[#0a0a0f]/95 light:bg-white backdrop-blur-xl shadow-2xl transition-all duration-300 origin-bottom-right ${
           isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between bg-gradient-to-r from-cyan-900/40 to-blue-900/40 px-4 py-3 border-b border-slate-700/50">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-500/20 text-cyan-400">
-              <Bot className="h-5 w-5" />
+        <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-cyan-600 px-4 py-3 text-white">
+          <div className="flex items-center gap-3">
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-inner">
+              <Headphones className="h-5 w-5" />
+              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 border-2 border-blue-600" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-white">Zeo Support</h3>
-              <p className="text-xs text-cyan-400 flex items-center gap-1">
+              <h3 className="text-sm font-bold text-white leading-tight">Zeo Support Agent</h3>
+              <p className="text-[11px] text-blue-100 flex items-center gap-1">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                 </span>
-                Online
+                Active Support
               </p>
             </div>
           </div>
           <button 
             onClick={() => setIsOpen(false)}
-            className="text-slate-400 hover:text-white transition-colors p-1 rounded-md hover:bg-slate-800"
+            className="text-white/80 hover:text-white transition-colors p-1 rounded-md hover:bg-white/10 cursor-pointer"
+            aria-label="Close chat"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        {/* Messages */}
+        {/* Messages Container */}
         <div className="flex flex-col h-[320px] overflow-y-auto p-4 gap-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
           {messages.map((msg, idx) => (
             <div 
@@ -70,14 +72,14 @@ export const ChatbotWidget = () => {
               }`}
             >
               <div className={`flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-full mt-1 ${
-                msg.role === "user" ? "bg-blue-600/20 text-blue-400" : "bg-cyan-500/20 text-cyan-400"
+                msg.role === "user" ? "bg-blue-600/20 text-blue-500" : "bg-blue-600 text-white shadow-sm"
               }`}>
-                {msg.role === "user" ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
+                {msg.role === "user" ? <User className="h-4 w-4" /> : <Headphones className="h-4 w-4" />}
               </div>
-              <div className={`rounded-2xl px-4 py-2 text-sm leading-relaxed ${
+              <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                 msg.role === "user" 
-                  ? "bg-blue-600/20 text-blue-100 border border-blue-500/20 rounded-tr-sm" 
-                  : "bg-slate-800/50 text-slate-200 border border-slate-700/50 rounded-tl-sm"
+                  ? "bg-blue-600 text-white rounded-tr-sm shadow-sm" 
+                  : "bg-slate-800/80 dark:bg-slate-800/80 light:bg-slate-100 text-slate-100 dark:text-slate-100 light:text-slate-800 border border-slate-700/50 light:border-slate-200 rounded-tl-sm"
               }`}>
                 {msg.text}
               </div>
@@ -86,19 +88,19 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Input Area */}
-        <div className="p-3 border-t border-slate-700/50 bg-[#030014]/50">
+        <div className="p-3 border-t border-slate-800 dark:border-slate-800 light:border-slate-200 bg-[#030014]/50 dark:bg-[#030014]/50 light:bg-slate-50">
           <form onSubmit={handleSend} className="relative flex items-center">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Type your message..."
-              className="w-full bg-slate-900/50 border border-slate-700/50 rounded-full pl-4 pr-12 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+              placeholder="Ask a support question..."
+              className="w-full bg-slate-900/60 dark:bg-slate-900/60 light:bg-white border border-slate-700/50 light:border-slate-300 rounded-full pl-4 pr-12 py-2.5 text-sm text-slate-100 dark:text-slate-100 light:text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
             />
             <button 
               type="submit"
               disabled={!inputValue.trim()}
-              className="absolute right-1.5 h-8 w-8 flex items-center justify-center rounded-full bg-cyan-600 text-white hover:bg-cyan-500 disabled:opacity-50 disabled:hover:bg-cyan-600 transition-colors"
+              className="absolute right-1.5 h-8 w-8 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 transition-colors cursor-pointer"
             >
               <Send className="h-4 w-4" />
             </button>
@@ -106,16 +108,22 @@ export const ChatbotWidget = () => {
         </div>
       </div>
 
-      {/* Toggle Button */}
+      {/* Toggle Floating Button (Man with Headset Icon) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-110 transition-all duration-300 group"
+        className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-110 transition-all duration-300 group cursor-pointer"
         aria-label="Toggle Chatbot"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-6 h-6 text-white transition-transform duration-200" />
         ) : (
-          <MessageSquare className="w-6 h-6 text-white" />
+          <div className="relative flex items-center justify-center">
+            <Headphones className="w-7 h-7 text-white transition-transform duration-300 group-hover:scale-110" />
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400 border-2 border-blue-600"></span>
+            </span>
+          </div>
         )}
       </button>
     </div>
