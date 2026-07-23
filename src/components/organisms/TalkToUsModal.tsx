@@ -51,64 +51,57 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
     }
   };
 
-  const handleReset = () => {
+  const handleClose = () => {
     setIsSubmitted(false);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      serviceNeeded: "Software Engineering",
-      message: "",
-    });
     onClose();
   };
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={handleReset}
-          className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm"
+          onClick={handleClose}
+          className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
         />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl rounded-3xl bg-white p-6 sm:p-10 shadow-2xl border border-slate-200 text-slate-900 z-10 overflow-hidden"
+          className="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-slate-900 p-5 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white z-10 my-auto max-h-[92vh] overflow-y-auto scrollbar-thin"
         >
           {/* Top Brand Accent */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2563eb] via-[#3b82f6] to-blue-400" />
 
           <button
-            onClick={handleReset}
-            className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            onClick={handleClose}
+            className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
 
           {!isSubmitted ? (
             <div>
-              <div className="mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-xs font-bold text-[#2563eb] mb-3 border border-blue-100">
+              <div className="mb-5 pr-8">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 text-xs font-bold text-[#2563eb] dark:text-blue-400 mb-2 border border-blue-100 dark:border-blue-800">
                   <Shield className="w-3.5 h-3.5" /> Enterprise Software Consulting
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                <h3 className="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
                   Talk to Our Engineering Experts
                 </h3>
-                <p className="text-sm text-slate-600 mt-1">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
                   Tell us about your project or team requirements. We&apos;ll schedule a technical strategy call within 24 hours.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
                       <User className="w-3.5 h-3.5 text-[#2563eb]" /> Full Name
                     </label>
                     <input
@@ -117,12 +110,12 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Sarah Jenkins"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
                       <Mail className="w-3.5 h-3.5 text-[#2563eb]" /> Work Email
                     </label>
                     <input
@@ -131,14 +124,14 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="sarah@enterprise.com"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
                       <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Company / Organization
                     </label>
                     <input
@@ -146,12 +139,12 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder="e.g. AcroTech Global"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
                       <Phone className="w-3.5 h-3.5 text-[#2563eb]" /> Phone Number (Optional)
                     </label>
                     <input
@@ -159,19 +152,19 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+1 (555) 000-0000"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                     Primary Solution Needed
                   </label>
                   <select
                     value={formData.serviceNeeded}
                     onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                   >
                     <option value="Software Engineering">Product & Custom Software Engineering</option>
                     <option value="AI / ML Solutions">Enterprise AI & Machine Learning</option>
@@ -181,7 +174,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
                     <MessageSquare className="w-3.5 h-3.5 text-[#2563eb]" /> Project Overview / Message
                   </label>
                   <textarea
@@ -189,20 +182,20 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Briefly describe your requirements or goal..."
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#2563eb] focus:bg-white transition-colors resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors resize-none"
                   />
                 </div>
 
                 <div className="pt-2">
                   {submitError && (
-                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3 mb-3">
+                    <p className="text-sm text-red-600 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl px-4 py-2.5 mb-3">
                       ⚠️ {submitError}
                     </p>
                   )}
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-3.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-lg glow-blue transition-all"
+                    className="w-full py-3.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-lg glow-blue transition-all cursor-pointer"
                   >
                     {isLoading ? (
                       <>
@@ -219,16 +212,16 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
             </div>
           ) : (
             <div className="text-center py-6">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl font-extrabold text-slate-900 mb-2">
+              <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2">
                 Thank You, {formData.name || "Partner"}!
               </h3>
-              <p className="text-slate-600 text-sm max-w-md mx-auto mb-6">
-                Your inquiry has been received. Our Enterprise Solutions Director will reach out to <strong className="text-slate-900">{formData.email}</strong> within 24 hours.
+              <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md mx-auto mb-6">
+                Your inquiry has been received. Our Enterprise Solutions Director will reach out to <strong className="text-slate-900 dark:text-white">{formData.email}</strong> within 24 hours.
               </p>
-              <Button onClick={handleReset} variant="secondary" className="px-6 py-2.5 text-xs font-bold">
+              <Button onClick={handleClose} variant="secondary" className="px-6 py-2.5 text-xs font-bold">
                 Close
               </Button>
             </div>
