@@ -35,10 +35,10 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-slate-200 bg-white text-slate-900 relative z-10">
+    <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-900 dark:text-white relative z-10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
         {/* Footer Top Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 mb-16">
           {/* Logo & Brand statement */}
           <div className="col-span-2 space-y-4">
             <a href="/" className="flex items-center gap-3 group">
