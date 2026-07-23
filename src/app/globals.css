@@ -1,13 +1,42 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #fafaf9;
   --foreground: #0f172a;
+  --text-muted: #475569;
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.8);
+  --grid-line: rgba(15, 23, 42, 0.04);
+  --radial-glow: rgba(37, 99, 235, 0.08);
 
   --color-brand-blue: #2563eb;
   --color-brand-blue-hover: #1d4ed8;
   --color-violet-500: #8b5cf6;
   --color-cyan-500: #06b6d4;
+}
+
+html.dark {
+  --background: #030014;
+  --foreground: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-bg: rgba(15, 23, 42, 0.75);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --radial-glow: rgba(139, 92, 246, 0.15);
+  color-scheme: dark;
+}
+
+html.light {
+  --background: #fafaf9;
+  --foreground: #0f172a;
+  --text-muted: #475569;
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.8);
+  --grid-line: rgba(15, 23, 42, 0.04);
+  --radial-glow: rgba(37, 99, 235, 0.08);
+  color-scheme: light;
 }
 
 @theme {
@@ -21,10 +50,11 @@
 }
 
 body {
-  background-color: #fafaf9;
-  color: #0f172a;
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -32,7 +62,7 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #fafaf9;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(37, 99, 235, 0.25);
@@ -47,17 +77,17 @@ body {
   background-size: 32px 32px;
   background-image: 
     radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.04) 0%, transparent 70%),
-    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
 
 .bg-hero-radial {
-  background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 30%, var(--radial-glow) 0%, transparent 60%);
 }
 
 .card-enterprise {
-  background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 1.5rem;
   box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,4 +102,163 @@ body {
 /* Blue Glow Utility */
 .glow-blue {
   box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.35);
+}
+
+/* Dynamic Grid & Glow Effects */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 50%, var(--radial-glow) 0%, transparent 60%);
+}
+
+.glassmorphism {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html.light .glassmorphism {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+.glassmorphism-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+html.light .glassmorphism-card {
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+}
+
+.glassmorphism-card:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.2);
+}
+
+html.light .glassmorphism-card:hover {
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.15);
+}
+
+/* Glow effects */
+.glow-violet {
+  box-shadow: 0 0 40px -5px rgba(139, 92, 246, 0.3);
+}
+
+html.light .glow-violet {
+  box-shadow: 0 0 30px -5px rgba(139, 92, 246, 0.2);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 40px -5px rgba(34, 211, 238, 0.3);
+}
+
+html.light .glow-cyan {
+  box-shadow: 0 0 30px -5px rgba(34, 211, 238, 0.2);
+}
+
+/* ==========================================
+   COMPREHENSIVE DARK MODE OVERRIDES
+   ========================================== */
+html.dark, html.dark body {
+  background-color: #030014 !important;
+  color: #f8fafc !important;
+}
+
+html.dark section,
+html.dark header,
+html.dark footer,
+html.dark main {
+  background-color: transparent;
+}
+
+html.dark .bg-\[\#fafaf9\],
+html.dark .bg-white {
+  background-color: #0b0f19 !important;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+
+html.dark .bg-slate-900\/50,
+html.dark .bg-slate-900\/80,
+html.dark .bg-slate-900 {
+  background-color: #030014 !important;
+}
+
+html.dark .bg-blue-50 {
+  background-color: rgba(37, 99, 235, 0.15) !important;
+}
+
+html.dark .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-200\/60,
+html.dark .border-slate-200\/50,
+html.dark .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .border-blue-200,
+html.dark .border-blue-200\/60 {
+  border-color: rgba(37, 99, 235, 0.3) !important;
+}
+
+/* ==========================================
+   COMPREHENSIVE LIGHT MODE OVERRIDES
+   ========================================== */
+html.light, html.light body {
+  background-color: #fafaf9 !important;
+  color: #0f172a !important;
+}
+
+html.light .bg-\[\#030014\],
+html.light .bg-slate-950,
+html.light .bg-slate-900 {
+  background-color: #fafaf9 !important;
+}
+
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-950\/90 {
+  background-color: #ffffff !important;
+}
+
+html.light .border-slate-800,
+html.light .border-slate-900 {
+  border-color: rgba(226, 232, 240, 0.8) !important;
 }

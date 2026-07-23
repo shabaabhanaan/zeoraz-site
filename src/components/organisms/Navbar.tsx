@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Code2, Cpu, Cloud, Users, Globe, ShieldCheck, Target, Award, Sparkles, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Code2, Cpu, Cloud, Users, Globe, ShieldCheck, Target, Award } from "lucide-react";
+import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
@@ -89,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-white/95 backdrop-blur-md py-4 shadow-md shadow-slate-200/60 border-b border-slate-100" : "bg-transparent py-6"
+          scrolled ? "bg-white/95 dark:bg-slate-950/90 backdrop-blur-md py-4 shadow-md dark:shadow-black/20 border-b border-slate-100 dark:border-slate-800" : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -101,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
               className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-black text-slate-900 tracking-tight leading-none">
+              <span className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
                 Zeoraz<span className="text-[#2563eb]">.</span>
               </span>
               <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-0.5">
@@ -120,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             >
               <a
                 href="#services"
-                className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors py-2 flex items-center gap-1 cursor-pointer"
+                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-[#2563eb] dark:hover:text-white transition-colors py-2 flex items-center gap-1 cursor-pointer"
               >
                 Services <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180 text-[#2563eb]" : ""}`} />
               </a>
@@ -134,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="absolute top-full -left-4 w-[540px] pt-3 z-50"
                   >
-                    <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-2xl shadow-slate-300/60 grid grid-cols-2 gap-4 relative overflow-hidden">
+                    <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl shadow-slate-300/60 dark:shadow-black/50 grid grid-cols-2 gap-4 relative overflow-hidden">
                       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2563eb] to-blue-400" />
                       {servicesDropdown.map((item) => {
                         const Icon = item.icon;
@@ -143,16 +144,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
                             key={item.title}
                             href={item.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="group/item p-3.5 rounded-2xl hover:bg-slate-50 transition-colors flex items-start gap-3 border border-transparent hover:border-slate-100"
+                            className="group/item p-3.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-start gap-3 border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
                           >
-                            <div className="p-2 rounded-xl bg-blue-50 border border-blue-100 text-[#2563eb] group-hover/item:bg-[#2563eb] group-hover/item:text-white transition-colors flex-shrink-0">
+                            <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-800 text-[#2563eb] dark:text-blue-400 group-hover/item:bg-[#2563eb] group-hover/item:text-white transition-colors flex-shrink-0">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
-                              <h5 className="text-xs font-bold text-slate-900 group-hover/item:text-[#2563eb] transition-colors leading-tight">
+                              <h5 className="text-xs font-bold text-slate-900 dark:text-white group-hover/item:text-[#2563eb] transition-colors leading-tight">
                                 {item.title}
                               </h5>
-                              <p className="text-[11px] text-slate-500 mt-1 leading-normal line-clamp-2">
+                              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-normal line-clamp-2">
                                 {item.desc}
                               </p>
                             </div>
@@ -173,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             >
               <a
                 href="#about"
-                className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors py-2 flex items-center gap-1 cursor-pointer"
+                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-[#2563eb] dark:hover:text-white transition-colors py-2 flex items-center gap-1 cursor-pointer"
               >
                 About Us <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "about" ? "rotate-180 text-[#2563eb]" : ""}`} />
               </a>
@@ -187,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="absolute top-full -left-4 w-[540px] pt-3 z-50"
                   >
-                    <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-2xl shadow-slate-300/60 grid grid-cols-2 gap-4 relative overflow-hidden">
+                    <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl shadow-slate-300/60 dark:shadow-black/50 grid grid-cols-2 gap-4 relative overflow-hidden">
                       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2563eb] to-blue-400" />
                       {aboutDropdown.map((item) => {
                         const Icon = item.icon;
@@ -196,16 +197,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
                             key={item.title}
                             href={item.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="group/item p-3.5 rounded-2xl hover:bg-slate-50 transition-colors flex items-start gap-3 border border-transparent hover:border-slate-100"
+                            className="group/item p-3.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-start gap-3 border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
                           >
-                            <div className="p-2 rounded-xl bg-blue-50 border border-blue-100 text-[#2563eb] group-hover/item:bg-[#2563eb] group-hover/item:text-white transition-colors flex-shrink-0">
+                            <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-800 text-[#2563eb] dark:text-blue-400 group-hover/item:bg-[#2563eb] group-hover/item:text-white transition-colors flex-shrink-0">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
-                              <h5 className="text-xs font-bold text-slate-900 group-hover/item:text-[#2563eb] transition-colors leading-tight">
+                              <h5 className="text-xs font-bold text-slate-900 dark:text-white group-hover/item:text-[#2563eb] transition-colors leading-tight">
                                 {item.title}
                               </h5>
-                              <p className="text-[11px] text-slate-500 mt-1 leading-normal line-clamp-2">
+                              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-normal line-clamp-2">
                                 {item.desc}
                               </p>
                             </div>
@@ -219,16 +220,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             </div>
 
             {/* Direct Links */}
-            <a href="/marketplace" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
+            <a href="/marketplace" className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-[#2563eb] dark:hover:text-white transition-colors">
               Marketplace
-            </a>
-            <a href="/shop" className="text-sm font-semibold text-slate-700 hover:text-[#2563eb] transition-colors">
-              Store
             </a>
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Desktop CTA & Theme Toggle */}
+          <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
+
             <button
               onClick={handleCTA}
               className="px-6 py-2.5 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-bold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all duration-200 cursor-pointer flex items-center gap-2"
@@ -237,14 +237,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-slate-700 hover:text-[#2563eb] focus:outline-none cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Mobile Right Bar (Theme Toggle + Menu Toggle) */}
+          <div className="flex lg:hidden items-center gap-3">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-slate-700 dark:text-slate-300 hover:text-[#2563eb] focus:outline-none cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -256,29 +259,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[72px] z-40 lg:hidden bg-white border-b border-slate-200 p-6 flex flex-col gap-6 shadow-xl max-h-[85vh] overflow-y-auto"
+            className="fixed inset-x-0 top-[72px] z-40 lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-6 shadow-xl max-h-[85vh] overflow-y-auto"
           >
             <nav className="flex flex-col gap-4">
-              <a href="#services" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
+              <a href="#services" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100 dark:border-slate-800">
                 Services
               </a>
-              <a href="#about" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
+              <a href="#about" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100 dark:border-slate-800">
                 About Us
               </a>
-              <a href="#stories" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
+              <a href="#stories" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100 dark:border-slate-800">
                 Customer Stories
               </a>
-              <a href="#careers" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
-                Careers
-              </a>
-              <a href="#resources" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
-                Resources
-              </a>
-              <a href="/marketplace" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
+              <a href="/marketplace" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100 dark:border-slate-800">
                 Marketplace
-              </a>
-              <a href="/shop" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100">
-                Store
               </a>
             </nav>
 

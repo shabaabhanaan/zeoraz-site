@@ -41,7 +41,7 @@ export const LandingPageContent = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#fafaf9] text-slate-900 flex flex-col font-sans select-none antialiased">
+    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col font-sans select-none antialiased transition-colors duration-300">
       {/* Sticky Navigation Bar */}
       <Navbar onTalkToUs={handleOpenTalkToUs} />
 

@@ -19,8 +19,7 @@ export const MarketplaceContent = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#fafaf9] text-slate-900 flex flex-col font-sans select-none antialiased">
-      {/* Sticky Navigation Bar */}
+    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col font-sans select-none antialiased transition-colors duration-300">
       <Navbar onTalkToUs={handleOpenTalkToUs} />
 
       {/* Main Content */}
