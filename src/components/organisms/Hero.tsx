@@ -23,20 +23,6 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-[#030014]/95 backdrop-blur-[2px]" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 text-center relative z-10 w-full">
-        {/* Studio Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-xs font-bold text-blue-300 backdrop-blur-md shadow-lg"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
-          </span>
-          <Building2 className="w-3.5 h-3.5 text-blue-400" />
-          Software Engineering Studio · Actively Shipping
-        </motion.div>
 
         {/* Hero Main Headline */}
         <motion.h1
