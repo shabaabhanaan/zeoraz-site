@@ -12,10 +12,10 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
   return (
     <section className="relative pt-36 pb-24 overflow-hidden min-h-[85vh] flex flex-col justify-center border-b border-slate-800">
       {/* Full Background Office Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
-        style={{ 
-          backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80)` 
+        style={{
+          backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80)`
         }}
       />
 
