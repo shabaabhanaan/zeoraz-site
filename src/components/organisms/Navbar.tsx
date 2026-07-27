@@ -99,13 +99,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             <img
               src="/images/logo.png"
               alt="Zeoraz Logo"
-              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-200 drop-shadow-sm"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
-                Zeoraz<span className="text-[#2563eb]">.</span>
+              <span className={`text-xl font-black tracking-tight leading-none transition-colors ${
+                scrolled ? "text-slate-900 dark:text-white" : "text-white dark:text-white drop-shadow-md"
+              }`}>
+                Zeoraz<span className="text-[#2563eb] dark:text-blue-400">.</span>
               </span>
-              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-0.5">
+              <span className={`text-[9px] font-bold uppercase tracking-widest mt-0.5 transition-colors ${
+                scrolled ? "text-slate-500 dark:text-slate-400" : "text-slate-200 dark:text-slate-300 drop-shadow"
+              }`}>
                 Diversified Services · Global Consultancy
               </span>
             </div>
@@ -121,9 +125,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             >
               <a
                 href="#services"
-                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-[#2563eb] dark:hover:text-white transition-colors py-2 flex items-center gap-1 cursor-pointer"
+                className={`text-sm font-semibold transition-colors py-2 flex items-center gap-1 cursor-pointer ${
+                  scrolled ? "text-slate-700 dark:text-slate-300 hover:text-[#2563eb]" : "text-white/90 dark:text-slate-200 hover:text-white drop-shadow-sm"
+                }`}
               >
-                Services <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180 text-[#2563eb]" : ""}`} />
+                Services <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${scrolled ? "text-slate-400" : "text-white/80"} ${activeDropdown === "services" ? "rotate-180 text-[#2563eb]" : ""}`} />
               </a>
 
               <AnimatePresence>
@@ -174,9 +180,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             >
               <a
                 href="#about"
-                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-[#2563eb] dark:hover:text-white transition-colors py-2 flex items-center gap-1 cursor-pointer"
+                className={`text-sm font-semibold transition-colors py-2 flex items-center gap-1 cursor-pointer ${
+                  scrolled ? "text-slate-700 dark:text-slate-300 hover:text-[#2563eb]" : "text-white/90 dark:text-slate-200 hover:text-white drop-shadow-sm"
+                }`}
               >
-                About Us <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${activeDropdown === "about" ? "rotate-180 text-[#2563eb]" : ""}`} />
+                About Us <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${scrolled ? "text-slate-400" : "text-white/80"} ${activeDropdown === "about" ? "rotate-180 text-[#2563eb]" : ""}`} />
               </a>
 
               <AnimatePresence>
@@ -220,7 +228,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             </div>
 
             {/* Direct Links */}
-            <a href="/marketplace" className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-[#2563eb] dark:hover:text-white transition-colors">
+            <a 
+              href="/marketplace" 
+              className={`text-sm font-semibold transition-colors ${
+                scrolled ? "text-slate-700 dark:text-slate-300 hover:text-[#2563eb]" : "text-white/90 dark:text-slate-200 hover:text-white drop-shadow-sm"
+              }`}
+            >
               Marketplace
             </a>
           </nav>
