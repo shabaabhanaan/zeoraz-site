@@ -39,7 +39,8 @@ export const Newsletter = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="p-10 sm:p-16 rounded-3xl relative overflow-hidden bg-slate-900 text-white shadow-2xl border border-slate-800"
+          className="p-10 sm:p-16 rounded-3xl relative overflow-hidden text-white shadow-2xl border border-slate-700/60"
+          style={{ backgroundColor: "#0f172a", color: "#ffffff" }}
         >
           {/* Section Headers */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 text-white">

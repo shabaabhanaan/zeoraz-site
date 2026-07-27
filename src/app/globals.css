@@ -246,19 +246,7 @@ html.light, html.light body {
   color: #0f172a !important;
 }
 
-html.light .bg-\[\#030014\],
-html.light .bg-slate-950,
-html.light .bg-slate-900 {
-  background-color: #fafaf9 !important;
+html.light .bg-\[\#030014\] {
+  background-color: #fafaf9;
 }
 
-html.light .bg-slate-900\/90,
-html.light .bg-slate-900\/80,
-html.light .bg-slate-950\/90 {
-  background-color: #ffffff !important;
-}
-
-html.light .border-slate-800,
-html.light .border-slate-900 {
-  border-color: rgba(226, 232, 240, 0.8) !important;
-}
