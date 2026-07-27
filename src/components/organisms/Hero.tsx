@@ -19,8 +19,8 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
         }}
       />
 
-      {/* Atmospheric Dark Gradient Overlay for Crisp Text Contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-[#030014]/95 backdrop-blur-[2px]" />
+      {/* Lighter Atmospheric Overlay to showcase office environment image clearly */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-slate-950/45 to-[#030014]/75" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 text-center relative z-10 w-full">
 
