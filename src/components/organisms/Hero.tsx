@@ -15,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
         style={{
-          backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80)`
+          backgroundImage: `url(/images/hero-studio.png), url(/images/office-workspace.png)`
         }}
       />
 
