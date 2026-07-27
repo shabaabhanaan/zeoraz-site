@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Award, Globe, Users, CheckCircle2, Building2 } from "lucide-react";
+import { ArrowRight, Building2, ShieldCheck, Award, Sparkles } from "lucide-react";
 
 interface HeroProps {
   onTalkToUs: () => void;
@@ -10,18 +10,43 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
   return (
-    <section className="relative pt-36 pb-20 overflow-hidden bg-hero-radial bg-enterprise-pattern border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center relative z-10">
+    <section className="relative pt-36 pb-24 overflow-hidden min-h-[85vh] flex flex-col justify-center border-b border-slate-800">
+      {/* Full Background Office Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105"
+        style={{ 
+          backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80)` 
+        }}
+      />
 
-        {/* Hero Headline */}
+      {/* Atmospheric Dark Gradient Overlay for Crisp Text Contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-[#030014]/95 backdrop-blur-[2px]" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center relative z-10 w-full">
+        {/* Studio Status Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-xs font-bold text-blue-300 backdrop-blur-md shadow-lg"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
+          </span>
+          <Building2 className="w-3.5 h-3.5 text-blue-400" />
+          Software Engineering Studio · Actively Shipping
+        </motion.div>
+
+        {/* Hero Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8"
+          className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1] mb-6 drop-shadow-md"
         >
           Engineering Technology, <br className="hidden sm:inline" />
-          <span className="text-[#2563eb]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400">
             Commerce & Physical Products
           </span>
         </motion.h1>
@@ -31,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="max-w-3xl mx-auto text-base sm:text-xl text-slate-600 leading-relaxed mb-10"
+          className="max-w-3xl mx-auto text-base sm:text-xl text-slate-200 leading-relaxed mb-10 font-normal drop-shadow"
         >
           Zeoraz is a multi-vertical product studio. We build custom software & AI, manage and scale high-volume e-commerce brands, and deliver precision 3D printing services. All in one unified consultancy.
         </motion.p>
@@ -41,77 +66,48 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <button
             onClick={onTalkToUs}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-base font-bold shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-base font-bold shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
           >
             Talk to Us <ArrowRight className="w-5 h-5" />
           </button>
 
           <a
             href="#services"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-base font-bold shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md text-base font-bold shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
           >
             Explore Services
           </a>
         </motion.div>
 
-        {/* Key Metrics / Trust Bar */}
+        {/* Key Metrics Grid Cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto pt-8 border-t border-slate-200/80 mb-14"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto pt-8 border-t border-white/15"
         >
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">20+</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Projects Shipped</p>
+          <div className="p-5 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-700/60 shadow-xl text-center">
+            <h4 className="text-2xl sm:text-3xl font-black text-white">20+</h4>
+            <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider mt-1">Projects Shipped</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-[#2563eb]">100%</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Client Satisfaction</p>
+          <div className="p-5 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-700/60 shadow-xl text-center">
+            <h4 className="text-2xl sm:text-3xl font-black text-blue-400">100%</h4>
+            <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider mt-1">Client Satisfaction</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">2-Wk</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">MVP Sprints</p>
+          <div className="p-5 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-700/60 shadow-xl text-center">
+            <h4 className="text-2xl sm:text-3xl font-black text-white">2-Wk</h4>
+            <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider mt-1">MVP Sprints</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/60 shadow-sm text-center">
-            <h4 className="text-2xl sm:text-3xl font-black text-slate-900">$0</h4>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Bloat. Just Code.</p>
-          </div>
-        </motion.div>
-
-        {/* Enterprise Office Showcase Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5 }}
-          className="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl shadow-slate-400/20 group"
-        >
-          <div
-            className="w-full h-[360px] sm:h-[480px] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-            style={{ backgroundImage: `url(/images/office-workspace.png), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80)` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-left">
-            <div className="flex flex-wrap items-center gap-3 mb-3">
-              <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Remote-First Studio
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[#2563eb] text-white text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md">
-                <span className="h-2 w-2 rounded-full bg-white animate-ping" /> Actively Shipping
-              </span>
-            </div>
-            <h3 className="text-xl sm:text-3xl font-black text-white tracking-tight">
-              Built for Founders, by Builders
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mt-1 leading-relaxed">
-              A tight-knit team of engineers and designers who care about your product as much as you do — fast feedback loops, direct access, zero fluff.
-            </p>
+          <div className="p-5 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-slate-700/60 shadow-xl text-center">
+            <h4 className="text-2xl sm:text-3xl font-black text-white">$0</h4>
+            <p className="text-xs font-semibold text-slate-300 uppercase tracking-wider mt-1">Bloat. Just Code.</p>
           </div>
         </motion.div>
       </div>
