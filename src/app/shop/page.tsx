@@ -79,6 +79,39 @@ const MOCK_PRODUCTS = [
     description: "Heavy-duty outdoor boot featuring Vibram grip soles and full ankle locks.",
     inStock: true,
   },
+  {
+    id: "prod-7",
+    name: "Oud Imperial Elixir Eau de Parfum",
+    category: "perfumes",
+    price: 210,
+    rating: 5.0,
+    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80",
+    seller: "Royal Oud Perfumes",
+    description: "Handcrafted luxury fragrance infused with rare Cambodian oud, amber, and Damask rose extract.",
+    inStock: true,
+  },
+  {
+    id: "prod-8",
+    name: "Velvet Rose & Smoked Vanilla",
+    category: "perfumes",
+    price: 175,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80",
+    seller: "Royal Oud Perfumes",
+    description: "Opulent floral gourmand perfume with top notes of French rose, bergamot spice, and smoked vanilla.",
+    inStock: true,
+  },
+  {
+    id: "prod-9",
+    name: "Aura Noir Intense Nectar",
+    category: "perfumes",
+    price: 195,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80",
+    seller: "Royal Oud Perfumes",
+    description: "Mystic evening fragrance featuring smoked cedarwood, bergamot spice, and velvety black musk.",
+    inStock: true,
+  },
 ];
 
 interface CartItem {
@@ -202,7 +235,7 @@ export default function ShopPage() {
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-4">
             {/* Category tabs */}
             <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-              {["all", "clothing", "watches", "shoes"].map(cat => (
+              {["all", "perfumes", "clothing", "watches", "shoes"].map(cat => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}

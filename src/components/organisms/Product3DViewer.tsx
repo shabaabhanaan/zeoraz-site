@@ -27,12 +27,19 @@ const COLOR_OPTIONS: Record<string, { label: string; hex: string }[]> = {
     { label: "Olive", hex: "#556B2F" },
     { label: "Stone", hex: "#C2B280" },
   ],
+  perfumes: [
+    { label: "Amber Gold", hex: "#D4AF37" },
+    { label: "Smoked Rose", hex: "#880E4F" },
+    { label: "Midnight Noir", hex: "#1A1A2E" },
+    { label: "Crystal Silver", hex: "#E0F7FA" },
+  ],
 };
 
 const SIZE_OPTIONS: Record<string, string[]> = {
   watches: ["38mm", "40mm", "42mm", "44mm"],
   shoes: ["UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
   clothing: ["XS", "S", "M", "L", "XL", "XXL"],
+  perfumes: ["30ml / 1.0 fl oz", "50ml / 1.7 fl oz", "100ml / 3.4 fl oz"],
 };
 
 // 3D rotation animation using CSS transforms (pure CSS 3D - no Three.js dependency issues)
