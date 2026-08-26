@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface NavbarProps {
   onTalkToUs?: () => void;
   onGetStarted?: (mode?: "register" | "login") => void;
+  onPublishBusiness?: () => void;
 }
 
 const servicesDropdown = [
@@ -64,10 +65,18 @@ const aboutDropdown = [
   },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted, onPublishBusiness }) => {
   const handleCTA = () => {
     if (onTalkToUs) onTalkToUs();
     else if (onGetStarted) onGetStarted("register");
+  };
+
+  const handlePublish = () => {
+    if (onPublishBusiness) {
+      onPublishBusiness();
+    } else {
+      window.location.href = "/publish";
+    }
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -116,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
           </a>
 
           {/* Desktop Navigation Links with Interactive Dropdowns */}
-          <nav className="hidden lg:flex items-center gap-8 relative">
+          <nav className="hidden lg:flex items-center gap-7 relative">
             {/* Services Dropdown */}
             <div
               className="relative"
@@ -236,10 +245,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
             >
               Marketplace
             </a>
+
+            {/* Publish Business Link */}
+            <button
+              onClick={handlePublish}
+              className={`text-sm font-semibold transition-colors cursor-pointer flex items-center gap-1.5 px-3 py-1 rounded-full border ${
+                scrolled
+                  ? "border-cyan-500/30 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/30"
+                  : "border-cyan-400/40 text-cyan-300 hover:bg-cyan-500/20 drop-shadow-sm"
+              }`}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              Publish Store
+            </button>
           </nav>
 
           {/* Desktop CTA & Theme Toggle */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
 
             <button
@@ -287,6 +309,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
               <a href="/marketplace" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-800 dark:text-slate-200 hover:text-[#2563eb] transition-colors py-2 border-b border-slate-100 dark:border-slate-800">
                 Marketplace
               </a>
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  handlePublish();
+                }}
+                className="text-left text-base font-semibold text-cyan-500 hover:text-cyan-400 transition-colors py-2 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between"
+              >
+                <span>Publish Store / Business</span>
+                <span className="text-xs px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">New</span>
+              </button>
             </nav>
 
             <button
@@ -304,3 +336,4 @@ export const Navbar: React.FC<NavbarProps> = ({ onTalkToUs, onGetStarted }) => {
     </>
   );
 };
+

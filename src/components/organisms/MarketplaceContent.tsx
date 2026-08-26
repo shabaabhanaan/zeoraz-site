@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Navbar } from "@/components/organisms/Navbar";
 import { Footer } from "@/components/organisms/Footer";
 import { TalkToUsModal } from "@/components/organisms/TalkToUsModal";
+import { PublishBusinessModal } from "@/components/organisms/PublishBusinessModal";
 import { Shield, Sparkles } from "lucide-react";
 import { WhatsAppWidget } from "@/components/atoms/WhatsAppWidget";
 import { ChatbotWidget } from "@/components/atoms/ChatbotWidget";
@@ -12,15 +13,20 @@ import { TemplateGrid } from "@/components/organisms/TemplateGrid";
 
 export const MarketplaceContent = () => {
   const [isTalkToUsOpen, setIsTalkToUsOpen] = useState(false);
+  const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleOpenTalkToUs = () => {
     setIsTalkToUsOpen(true);
   };
 
+  const handleOpenPublish = () => {
+    setIsPublishModalOpen(true);
+  };
+
   return (
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col font-sans select-none antialiased transition-colors duration-300">
-      <Navbar onTalkToUs={handleOpenTalkToUs} />
+      <Navbar onTalkToUs={handleOpenTalkToUs} onPublishBusiness={handleOpenPublish} />
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col">
@@ -35,6 +41,12 @@ export const MarketplaceContent = () => {
       <TalkToUsModal
         isOpen={isTalkToUsOpen}
         onClose={() => setIsTalkToUsOpen(false)}
+      />
+
+      {/* Interactive "Publish Business" Storefront Wizard */}
+      <PublishBusinessModal
+        isOpen={isPublishModalOpen}
+        onClose={() => setIsPublishModalOpen(false)}
       />
 
       {/* Toast Notification */}

@@ -12,12 +12,14 @@ import { ResourcesSection } from "@/components/organisms/ResourcesSection";
 import { Newsletter } from "@/components/organisms/Newsletter";
 import { Footer } from "@/components/organisms/Footer";
 import { TalkToUsModal } from "@/components/organisms/TalkToUsModal";
+import { PublishBusinessModal } from "@/components/organisms/PublishBusinessModal";
 import { Shield, Sparkles } from "lucide-react";
 import { WhatsAppWidget } from "@/components/atoms/WhatsAppWidget";
 import { ChatbotWidget } from "@/components/atoms/ChatbotWidget";
 
 export const LandingPageContent = () => {
   const [isTalkToUsOpen, setIsTalkToUsOpen] = useState(false);
+  const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -40,10 +42,15 @@ export const LandingPageContent = () => {
     setIsTalkToUsOpen(true);
   };
 
+  const handleOpenPublish = () => {
+    setIsPublishModalOpen(true);
+  };
+
   return (
     <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col font-sans select-none antialiased transition-colors duration-300">
       {/* Sticky Navigation Bar */}
-      <Navbar onTalkToUs={handleOpenTalkToUs} />
+      <Navbar onTalkToUs={handleOpenTalkToUs} onPublishBusiness={handleOpenPublish} />
+
 
       {/* Main Landing content */}
       <main className="flex-1">
@@ -79,6 +86,12 @@ export const LandingPageContent = () => {
       <TalkToUsModal
         isOpen={isTalkToUsOpen}
         onClose={() => setIsTalkToUsOpen(false)}
+      />
+
+      {/* Interactive "Publish Business" Storefront Wizard */}
+      <PublishBusinessModal
+        isOpen={isPublishModalOpen}
+        onClose={() => setIsPublishModalOpen(false)}
       />
 
       {/* Toast Notification */}

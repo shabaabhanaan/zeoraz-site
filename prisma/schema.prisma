@@ -14,7 +14,35 @@ model User {
   authProvider String      @default("email")
   createdAt    DateTime    @default(now())
   workspaces   Workspace[]
+  businesses   BusinessListing[]
 }
+
+model BusinessListing {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug           String   @unique
+  businessName   String
+  tagline        String?
+  description    String
+  category       String   // e.g. "E-Commerce", "Agency", "SaaS", "Fashion", "Services"
+  subdomain      String   // Full generated subdomain e.g. "mybrand.zeoraz.com"
+  themeColor     String?  @default("#06b6d4")
+  logoUrl        String?
+  bannerUrl      String?
+  contactEmail   String
+  whatsappNumber String?
+  websiteUrl     String?
+  currency       String   @default("USD")
+  productsJson   String   @default("[]") // Array of { id, name, price, description, image, inStock }
+  status         String   @default("ACTIVE") // ACTIVE, DRAFT, SUSPENDED
+  ownerId        String?  @db.ObjectId
+  owner          User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([ownerId])
+  @@index([category])
+}
+
 
 model Workspace {
   id        String      @id @default(auto()) @map("_id") @db.ObjectId

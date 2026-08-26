@@ -1,0 +1,22 @@
+[
+  {
+    "id": "mock-1787754686412",
+    "slug": "aero-dynamics",
+    "businessName": "Aero Dynamics",
+    "tagline": "Next-Gen Aerospace Hardware & Systems",
+    "description": "Precision engineered avionics, micro-turbines and autonomous flight controllers.",
+    "category": "Software & SaaS",
+    "subdomain": "aero-dynamics.zeoraz.com",
+    "themeColor": "#06b6d4",
+    "logoUrl": null,
+    "bannerUrl": null,
+    "contactEmail": "sales@aerodynamics.dev",
+    "whatsappNumber": "+1234567890",
+    "websiteUrl": null,
+    "currency": "USD",
+    "productsJson": "[{\"id\":\"p1\",\"name\":\"Micro-Turbine Core\",\"price\":\"4,500.00\",\"description\":\"Ultra-lightweight titanium micro-gas turbine unit.\"}]",
+    "status": "ACTIVE",
+    "createdAt": "2026-08-26T14:31:26.412Z",
+    "updatedAt": "2026-08-26T14:31:26.412Z"
+  }
+]
