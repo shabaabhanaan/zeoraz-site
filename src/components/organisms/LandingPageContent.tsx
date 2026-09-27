@@ -46,17 +46,19 @@ export const LandingPageContent = () => {
       {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[600px] w-full p-4 md:p-6 lg:p-8">
         <div className="relative w-full h-full rounded-2xl overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <Image 
-              src={HERO_IMG} 
-              alt="Hero interior" 
-              fill 
-              className="object-cover"
-              priority
-            />
+          {/* Background Video */}
+          <div className="absolute inset-0 bg-black">
+            <video 
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              playsInline={true}
+              className="w-full h-full object-cover opacity-60"
+            >
+              <source src="https://videos.pexels.com/video-files/5680034/5680034-hd_1920_1080_24fps.mp4" type="video/mp4" />
+            </video>
             {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/50" />
           </div>
 
           {/* Transparent Header overlaying Hero */}
@@ -93,22 +95,22 @@ export const LandingPageContent = () => {
 
           {/* Hero Content */}
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 lg:p-24 z-10">
-            <div className="max-w-2xl text-white">
-              <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight drop-shadow-md">
-                The Essence of<br />Sri Lanka
+            <div className="max-w-2xl text-white animate-in slide-in-from-bottom-12 fade-in duration-1000 fill-mode-both">
+              <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight drop-shadow-lg">
+                Discover The<br />Extraordinary
               </h1>
-              <p className="text-lg md:text-xl mb-8 max-w-md opacity-100 leading-relaxed font-medium drop-shadow-sm">
-                Authentic Ceylon tea, rare spices, and traditional crafts directly from the Pearl of the Indian Ocean to your home.
+              <p className="text-lg md:text-xl mb-8 max-w-md opacity-100 leading-relaxed font-medium drop-shadow-md">
+                Shop the world's most unique products, handpicked for you. From everyday essentials to rare finds, delivered directly to your door.
               </p>
-              <Link href="/shop" className="inline-flex bg-[#fcfbf9] text-[#2c322b] px-8 py-3 rounded-full font-medium items-center gap-2 hover:bg-white transition-colors w-fit">
-                Shop now <ArrowRight className="w-4 h-4" />
+              <Link href="/shop" className="inline-flex bg-[#fcfbf9] text-[#2c322b] px-8 py-3 rounded-full font-medium items-center gap-2 hover:bg-white hover:scale-105 transition-all w-fit shadow-xl">
+                Explore now <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             
-            <div className="absolute right-8 bottom-8 md:right-16 md:bottom-16 bg-black/30 backdrop-blur-md border border-white/20 p-6 rounded-xl text-white max-w-[200px]">
-              <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Ayubowan</p>
+            <div className="absolute right-8 bottom-8 md:right-16 md:bottom-16 bg-black/30 backdrop-blur-md border border-white/20 p-6 rounded-xl text-white max-w-[200px] animate-in slide-in-from-right-8 fade-in duration-1000 delay-500 fill-mode-both shadow-2xl hover:-translate-y-2 transition-transform">
+              <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Quality First</p>
               <p className="text-3xl font-serif mb-1">100%</p>
-              <p className="text-xs opacity-90">Locally sourced and authentically Sri Lankan.</p>
+              <p className="text-xs opacity-90">Curated collections from top global brands.</p>
             </div>
           </div>
         </div>
