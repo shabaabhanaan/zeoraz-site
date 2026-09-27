@@ -1,18 +1,18 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, ShoppingBag, User, Search, Plus, Leaf, ShieldCheck, Recycle } from "lucide-react";
+import { ArrowRight, ShoppingBag, User, Search, Plus, Leaf, ShieldCheck, Recycle, MapPin, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=2000";
-const BANNER_IMG = "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=2000";
+const HERO_IMG = "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=2000"; // Sri Lanka landscape/elephants
+const BANNER_IMG = "https://images.unsplash.com/photo-1588614959060-4d144f28b207?auto=format&fit=crop&q=80&w=2000"; // Tea plantation
 
 const PRODUCTS = [
-  { id: 1, name: "Minimalist Water Bottle", desc: "Reusable drinkware for a greener lifestyle.", price: "$42.00", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&q=80&w=600", badge: "Promotion" },
-  { id: 2, name: "Ceramic Cookware Set", desc: "Non-toxic cookware for everyday cooking.", price: "$120.00", img: "https://images.unsplash.com/photo-1584990347449-a6e0f62e6973?auto=format&fit=crop&q=80&w=600", badge: "New" },
-  { id: 3, name: "Smart Kettle & Toaster", desc: "Eco-friendly meals with smart tech.", price: "$140.00", img: "https://images.unsplash.com/photo-1594213114663-d94ebddfb3f6?auto=format&fit=crop&q=80&w=600", badge: "Customer favorite" },
-  { id: 4, name: "Bamboo Utensil Holder", desc: "Natural bamboo utensils for your home.", price: "$28.00", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=600", badge: "New" },
+  { id: 1, name: "Premium Ceylon Tea", desc: "Hand-plucked leaves from the misty hills of Nuwara Eliya.", price: "$24.00", img: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?auto=format&fit=crop&q=80&w=600", badge: "Export Quality" },
+  { id: 2, name: "Organic Cinnamon Quills", desc: "Authentic true cinnamon native to Sri Lanka.", price: "$18.00", img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=600", badge: "Pure Spice" },
+  { id: 3, name: "Traditional Raksha Mask", desc: "Hand-carved wooden mask for protection and prosperity.", price: "$45.00", img: "https://images.unsplash.com/photo-1517424263654-e6530a6c62e6?auto=format&fit=crop&q=80&w=600", badge: "Cultural Heritage" },
+  { id: 4, name: "Batik Wrap Sarong", desc: "Vibrant, handcrafted fabric perfect for tropical weather.", price: "$32.00", img: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=600", badge: "Handmade" },
 ];
 
 const FLASH_DEALS = [
@@ -34,10 +34,10 @@ const MORE_TO_LOVE = [
 ];
 
 const CATEGORIES = [
-  { name: "Living Spaces", img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=600" },
-  { name: "Kitchenware", img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=600" },
-  { name: "Workspace", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=600" },
-  { name: "Accessories", img: "https://images.unsplash.com/photo-1611080760456-c73d9374092b?auto=format&fit=crop&q=80&w=600" },
+  { name: "Ceylon Tea", img: "https://images.unsplash.com/photo-1595166012759-408c4a165b40?auto=format&fit=crop&q=80&w=600" },
+  { name: "Exotic Spices", img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=600" },
+  { name: "Handlooms", img: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&q=80&w=600" },
+  { name: "Crafts & Gems", img: "https://images.unsplash.com/photo-1611080760456-c73d9374092b?auto=format&fit=crop&q=80&w=600" },
 ];
 
 export const LandingPageContent = () => {
@@ -94,22 +94,21 @@ export const LandingPageContent = () => {
           {/* Hero Content */}
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 lg:p-24 z-10">
             <div className="max-w-2xl text-white">
-              <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight">
-                Premium Essentials<br />for a modern life
+              <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight drop-shadow-md">
+                The Essence of<br />Sri Lanka
               </h1>
-              <p className="text-lg md:text-xl mb-8 max-w-md opacity-90 leading-relaxed font-light">
-                Thoughtfully curated products designed with a sense of elegance and sustainability for your everyday routines.
+              <p className="text-lg md:text-xl mb-8 max-w-md opacity-100 leading-relaxed font-medium drop-shadow-sm">
+                Authentic Ceylon tea, rare spices, and traditional crafts directly from the Pearl of the Indian Ocean to your home.
               </p>
-              <button className="bg-[#fcfbf9] text-[#2c322b] px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-white transition-colors">
+              <Link href="/shop" className="inline-flex bg-[#fcfbf9] text-[#2c322b] px-8 py-3 rounded-full font-medium items-center gap-2 hover:bg-white transition-colors w-fit">
                 Shop now <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
             
-            {/* Small Floating Stat Box (like in template) */}
-            <div className="absolute right-8 bottom-8 md:right-16 md:bottom-16 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl text-white max-w-[200px]">
-              <p className="text-xs uppercase tracking-wider mb-2 opacity-80">Natural & Sustainable</p>
-              <p className="text-4xl font-serif mb-1">96%</p>
-              <p className="text-xs opacity-80">Eco-conscious materials used in our products.</p>
+            <div className="absolute right-8 bottom-8 md:right-16 md:bottom-16 bg-black/30 backdrop-blur-md border border-white/20 p-6 rounded-xl text-white max-w-[200px]">
+              <p className="text-xs uppercase tracking-wider mb-2 opacity-90">Ayubowan</p>
+              <p className="text-3xl font-serif mb-1">100%</p>
+              <p className="text-xs opacity-90">Locally sourced and authentically Sri Lankan.</p>
             </div>
           </div>
         </div>
@@ -226,8 +225,8 @@ export const LandingPageContent = () => {
           <div className="absolute inset-0 bg-black/20" />
           
           <div className="absolute bottom-0 left-0 p-8 md:p-16 max-w-2xl text-white">
-            <h2 className="text-3xl md:text-5xl font-serif leading-tight">
-              We craft products you can trust for years to come — through everyday routines and evolving lifestyles.
+            <h2 className="text-3xl md:text-5xl font-serif leading-tight drop-shadow-lg">
+              Experience the rich heritage of Ceylon, woven into every thread, carved into every mask, and steeped in every cup.
             </h2>
           </div>
         </div>
@@ -260,8 +259,8 @@ export const LandingPageContent = () => {
       {/* Categories Section */}
       <section id="shop" className="py-20 px-4 md:px-8 max-w-[1600px] mx-auto">
         <div className="mb-10">
-          <p className="text-sm uppercase tracking-widest text-[#2c322b]/60 mb-2">Explore our thoughtful and</p>
-          <h2 className="text-3xl font-serif italic">Curated Categories</h2>
+          <p className="text-sm uppercase tracking-widest text-[#2c322b]/60 mb-2">Explore the island's finest</p>
+          <h2 className="text-3xl font-serif italic">Authentic Categories</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -352,10 +351,10 @@ export const LandingPageContent = () => {
       <section id="about" className="py-20 px-4 md:px-8 max-w-[1600px] mx-auto">
         <div className="bg-[#f0eee9] rounded-3xl overflow-hidden flex flex-col md:flex-row">
           <div className="md:w-1/2 p-12 md:p-20 flex flex-col justify-center">
-            <p className="text-sm uppercase tracking-widest text-[#2c322b]/60 mb-4">Our Story</p>
-            <h2 className="text-4xl font-serif italic mb-6">Designed for life.</h2>
+            <p className="text-sm uppercase tracking-widest text-[#2c322b]/60 mb-4">Our Heritage</p>
+            <h2 className="text-4xl font-serif italic mb-6">Born in the Tropics.</h2>
             <p className="text-[#2c322b]/80 leading-relaxed mb-8">
-              At Zeoraz, we believe that the objects you interact with everyday should bring joy, function, and harmony to your space. We meticulously craft and curate products that stand the test of time, utilizing sustainable materials and working with ethical partners around the globe.
+              At Zeoraz, we are dedicated to sharing the magic of Sri Lanka with the world. From the lush tea estates of the central highlands to the sun-kissed spice gardens of the south, we ethically source our products directly from local artisans and farmers to ensure you experience true authenticity.
             </p>
             <button className="self-start border-b border-[#2c322b] pb-1 font-medium hover:opacity-70 transition-opacity flex items-center gap-2">
               Learn more about our mission <ArrowRight className="w-4 h-4" />
@@ -364,6 +363,80 @@ export const LandingPageContent = () => {
           <div className="md:w-1/2 relative min-h-[400px]">
             <Image src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1000" alt="About us" fill className="object-cover" />
           </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 md:px-8 max-w-[1600px] mx-auto">
+        <div className="bg-[#2c322b] text-[#fcfbf9] rounded-3xl overflow-hidden p-8 md:p-16 flex flex-col md:flex-row gap-12">
+          
+          <div className="md:w-1/2 flex flex-col justify-center">
+            <p className="text-sm uppercase tracking-widest text-[#fcfbf9]/60 mb-4">Get in Touch</p>
+            <h2 className="text-4xl font-serif italic mb-6">Let's start a conversation.</h2>
+            <p className="text-[#fcfbf9]/80 leading-relaxed mb-10 max-w-md">
+              Whether you have a question about our products, sustainability practices, or just want to say hello, our team is ready to hear from you.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#fcfbf9]/20 flex items-center justify-center">
+                  <MapPin size={20} className="text-[#fcfbf9]/80" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-[#fcfbf9]/60">Our Studio</h4>
+                  <p>124 Design District, NY 10012</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#fcfbf9]/20 flex items-center justify-center">
+                  <Mail size={20} className="text-[#fcfbf9]/80" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-[#fcfbf9]/60">Email Us</h4>
+                  <p>hello@zeoraz.com</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#fcfbf9]/20 flex items-center justify-center">
+                  <Phone size={20} className="text-[#fcfbf9]/80" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-[#fcfbf9]/60">Call Us</h4>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="md:w-1/2">
+            <div className="bg-white rounded-2xl p-8 shadow-xl text-[#2c322b]">
+              <h3 className="text-2xl font-serif mb-6">Send us a message</h3>
+              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-gray-500 uppercase">First Name</label>
+                    <input type="text" placeholder="John" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2c322b] transition-colors" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-gray-500 uppercase">Last Name</label>
+                    <input type="text" placeholder="Doe" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2c322b] transition-colors" />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-gray-500 uppercase">Email Address</label>
+                  <input type="email" placeholder="john@example.com" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2c322b] transition-colors" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-gray-500 uppercase">Message</label>
+                  <textarea placeholder="How can we help you?" rows={4} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2c322b] transition-colors resize-none"></textarea>
+                </div>
+                <button className="w-full bg-[#2c322b] text-white rounded-lg py-4 font-bold tracking-wide hover:bg-[#1a1e19] transition-colors flex items-center justify-center gap-2">
+                  Submit Form <ArrowRight size={16} />
+                </button>
+              </form>
+            </div>
+          </div>
+          
         </div>
       </section>
 
