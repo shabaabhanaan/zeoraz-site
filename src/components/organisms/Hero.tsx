@@ -31,9 +31,9 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1] mb-6 drop-shadow-md"
         >
-          Engineering Technology, <br className="hidden sm:inline" />
+          Modern Digital, <br className="hidden sm:inline" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400">
-            Commerce & Physical Products
+            Marketplace Platform
           </span>
         </motion.h1>
 
@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ onTalkToUs }) => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-3xl mx-auto text-base sm:text-xl text-slate-200 leading-relaxed mb-10 font-normal drop-shadow"
         >
-          Zeoraz is a multi-vertical product studio. We build custom software & AI, manage and scale high-volume e-commerce brands, and deliver precision 3D printing services. All in one unified consultancy.
+          Zeoraz is a modern, clean, and professional digital marketplace platform designed for digital products, multi-vendor platforms, online stores, digital downloads, and service marketplaces.
         </motion.p>
 
         {/* Hero Action Buttons */}

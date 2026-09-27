@@ -3,13 +3,13 @@ import { LandingPageContent } from "@/components/organisms/LandingPageContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Zeoraz | Next-Gen Digital Intelligence Platform",
-  description: "Deploy lightning-fast applications with autonomous workflows, scalable serverless runtimes, and premium design patterns.",
-  keywords: ["Zeoraz", "Developer Tools", "AI Pipelines", "Serverless Infrastructure", "Atomic Design"],
+  title: "Zeoraz | Modern Digital Marketplace Platform",
+  description: "Zeoraz is a modern, clean, and professional digital marketplace platform for digital products, multi-vendor platforms, and online stores.",
+  keywords: ["Zeoraz", "Digital Marketplace", "Multi-vendor Platform", "Digital Downloads", "Online Store"],
   authors: [{ name: "Zeoraz Technologies" }],
   openGraph: {
-    title: "Zeoraz | Next-Gen Digital Intelligence Platform",
-    description: "Deploy lightning-fast applications with autonomous workflows and premium design systems.",
+    title: "Zeoraz | Modern Digital Marketplace Platform",
+    description: "Zeoraz is a modern, clean, and professional digital marketplace platform for digital products, multi-vendor platforms, and online stores.",
     type: "website",
   },
 };

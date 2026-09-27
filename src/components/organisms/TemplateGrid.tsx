@@ -54,6 +54,14 @@ const mockTemplates: Template[] = [
     imageUrl: "/images/fintech-analytics.png",
     rating: 4.9,
   },
+  {
+    id: "7",
+    title: "Canva-Style Design Toolkit Template",
+    description: "A fully functional web-based design editor template featuring drag-and-drop canvas, customizable layers, export to PDF/PNG, and real-time collaboration. Perfect for building your own design SaaS.",
+    category: "SaaS",
+    imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+    rating: 5.0,
+  },
 ];
 
 const categories = ["All", "E-Commerce", "SaaS", "Portfolio", "Web3", "Blog", "Dashboard"];

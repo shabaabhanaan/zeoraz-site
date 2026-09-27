@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zeoraz | Next-Gen Digital Intelligence Platform",
-  description: "Deploy lightning-fast applications with autonomous workflows and premium design systems.",
+  title: "Zeoraz | Modern Digital Marketplace Platform",
+  description: "Zeoraz is a modern, clean, and professional digital marketplace platform for digital products, multi-vendor platforms, and online stores.",
 };
 
 export default function RootLayout({
