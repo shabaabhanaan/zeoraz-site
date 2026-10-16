@@ -40,13 +40,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("zeoraz_theme") as Theme | null;
-    let initialTheme: Theme = "dark";
+    let initialTheme: Theme = "light";
 
     if (savedTheme === "dark" || savedTheme === "light") {
       initialTheme = savedTheme;
     } else {
-      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      initialTheme = systemPrefersDark ? "dark" : "light";
+      initialTheme = "light";
     }
 
     setThemeState(initialTheme);

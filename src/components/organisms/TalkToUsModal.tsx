@@ -16,7 +16,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
     email: "",
     phone: "",
     company: "",
-    serviceNeeded: "Software Engineering",
+    serviceNeeded: "Digital Storefront Launch",
     message: "",
   });
 
@@ -88,13 +88,13 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
             <div>
               <div className="mb-5 pr-8">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 text-xs font-bold text-[#2563eb] dark:text-blue-400 mb-2 border border-blue-100 dark:border-blue-800">
-                  <Shield className="w-3.5 h-3.5" /> Enterprise Software Consulting
+                  <Shield className="w-3.5 h-3.5" /> Commerce &amp; Brand Advisory
                 </span>
                 <h3 className="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
-                  Talk to Our Engineering Experts
+                  Talk to Our Commerce Advisors
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Tell us about your project or team requirements. We&apos;ll schedule a technical strategy call within 24 hours.
+                  Tell us about your brand, storefront, or commerce goals. We&apos;ll schedule a growth strategy call within 24 hours. (For deep tech &amp; engineering R&amp;D, visit Zeoraz Labs).
                 </p>
               </div>
 
@@ -132,13 +132,13 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1 flex items-center gap-1">
-                      <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Company / Organization
+                      <Building2 className="w-3.5 h-3.5 text-[#2563eb]" /> Company / Brand Name
                     </label>
                     <input
                       type="text"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="e.g. AcroTech Global"
+                      placeholder="e.g. Lumina Apparel"
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                     />
                   </div>
@@ -159,17 +159,18 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
 
                 <div>
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
-                    Primary Solution Needed
+                    Primary Commerce Solution Needed
                   </label>
                   <select
                     value={formData.serviceNeeded}
                     onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-colors"
                   >
-                    <option value="Software Engineering">Product & Custom Software Engineering</option>
-                    <option value="AI / ML Solutions">Enterprise AI & Machine Learning</option>
-                    <option value="Cloud & Infrastructure">Cloud, DevOps & Managed Services</option>
-                    <option value="Dedicated Engineering Team">Dedicated Engineering Team</option>
+                    <option value="Digital Storefront Launch">Digital Storefront &amp; Subdomain Launch</option>
+                    <option value="E-Commerce Replatforming">E-Commerce Replatforming &amp; Scaling</option>
+                    <option value="Brand Identity &amp; Design">Brand Identity &amp; Luxury Storefront Design</option>
+                    <option value="Marketplace Distribution">Zeoraz Marketplace Distribution</option>
+                    <option value="WhatsApp Commerce">WhatsApp &amp; Direct-to-Consumer Commerce</option>
                   </select>
                 </div>
 

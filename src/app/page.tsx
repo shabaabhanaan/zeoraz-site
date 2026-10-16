@@ -1,19 +1,24 @@
-import React from "react";
-import { LandingPageContent } from "@/components/organisms/LandingPageContent";
+import React, { Suspense } from "react";
+import { HomeClient } from "@/components/templates/HomeClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Zeoraz | Modern Digital Marketplace Platform",
-  description: "Zeoraz is a modern, clean, and professional digital marketplace platform for digital products, multi-vendor platforms, and online stores.",
-  keywords: ["Zeoraz", "Digital Marketplace", "Multi-vendor Platform", "Digital Downloads", "Online Store"],
-  authors: [{ name: "Zeoraz Technologies" }],
+  title: "Zeoraz | Modern Commerce Platform & Storefront Publisher",
+  description: "Launch, scale, and publish high-conversion digital storefronts and luxury retail commerce with Zeoraz.",
+  keywords: ["Zeoraz", "E-Commerce", "Digital Storefronts", "Online Business", "Marketplace", "Merchant Subdomains", "Retail Commerce"],
+  authors: [{ name: "Zeoraz Commerce" }],
   openGraph: {
-    title: "Zeoraz | Modern Digital Marketplace Platform",
-    description: "Zeoraz is a modern, clean, and professional digital marketplace platform for digital products, multi-vendor platforms, and online stores.",
+    title: "Zeoraz | Modern Commerce Platform & Storefront Publisher",
+    description: "Launch, scale, and publish high-conversion digital storefronts and luxury retail commerce with Zeoraz.",
     type: "website",
   },
 };
 
 export default function Home() {
-  return <LandingPageContent />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F6F4EF]" />}>
+      <HomeClient />
+    </Suspense>
+  );
 }
+

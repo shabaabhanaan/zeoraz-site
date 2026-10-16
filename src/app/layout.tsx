@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zeoraz | Modern Digital Marketplace Platform",
-  description: "Zeoraz is a modern, clean, and professional digital marketplace platform for digital products, multi-vendor platforms, and online stores.",
+  title: "Zeoraz | Modern Commerce Platform & Storefront Publisher",
+  description: "Launch, scale, and publish high-conversion digital storefronts and luxury retail commerce with Zeoraz.",
 };
 
 export default function RootLayout({
@@ -26,10 +26,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

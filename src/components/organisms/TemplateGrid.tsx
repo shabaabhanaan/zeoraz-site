@@ -7,12 +7,22 @@ import { TemplateCard, Template } from "@/components/molecules/TemplateCard";
 
 const mockTemplates: Template[] = [
   {
+    id: "digital-agency",
+    title: "Zeoraz Digital Agency (Grey & Beige Minimalist)",
+    description: "Editorial minimalist agency architecture with warm greige & beige tones, portfolio gallery, team showcase, and consultation booking.",
+    category: "Agency",
+    imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+    rating: 5.0,
+    previewUrl: "/templates/digital-agency",
+  },
+  {
     id: "1",
     title: "Enterprise E-Commerce Ultra",
     description: "High-throughput e-commerce platform with sub-10ms cart sync and multi-currency checkout.",
     category: "E-Commerce",
     imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
     rating: 4.9,
+    previewUrl: "/marketplace",
   },
   {
     id: "2",
@@ -24,24 +34,24 @@ const mockTemplates: Template[] = [
   },
   {
     id: "3",
-    title: "Creative Tech Agency Portfolio",
-    description: "Sleek enterprise agency architecture tailored for software engineering teams & tech leaders.",
+    title: "Boutique Creative Agency & Retail Portfolio",
+    description: "Sleek enterprise architecture tailored for modern brands & creative commerce leaders.",
     category: "Portfolio",
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     rating: 4.8,
   },
   {
     id: "4",
-    title: "Enterprise AI & Web3 DApp",
-    description: "High-performance dashboard for AI agents and decentralized analytics with web3 auth.",
-    category: "Web3",
+    title: "Luxury Commerce & Direct Sales Storefront",
+    description: "High-performance digital storefront architecture with multi-currency cart and checkout.",
+    category: "E-Commerce",
     imageUrl: "/images/web3-ai-dapp.png",
     rating: 4.7,
   },
   {
     id: "5",
-    title: "Tech Blog & Knowledge Hub",
-    description: "Content-focused engineering blog template optimized for Core Web Vitals and SEO rank.",
+    title: "Brand Editorial & Publishing Hub",
+    description: "Content-focused editorial brand template optimized for product storytelling and customer conversion.",
     category: "Blog",
     imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80",
     rating: 4.6,
@@ -54,17 +64,9 @@ const mockTemplates: Template[] = [
     imageUrl: "/images/fintech-analytics.png",
     rating: 4.9,
   },
-  {
-    id: "7",
-    title: "Canva-Style Design Toolkit Template",
-    description: "A fully functional web-based design editor template featuring drag-and-drop canvas, customizable layers, export to PDF/PNG, and real-time collaboration. Perfect for building your own design SaaS.",
-    category: "SaaS",
-    imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
-    rating: 5.0,
-  },
 ];
 
-const categories = ["All", "E-Commerce", "SaaS", "Portfolio", "Web3", "Blog", "Dashboard"];
+const categories = ["All", "Agency", "E-Commerce", "SaaS", "Portfolio", "Web3", "Blog", "Dashboard"];
 
 interface TemplateGridProps {
   onSelectTemplate: (template: Template) => void;
@@ -90,15 +92,15 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) 
       <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
         {/* Category Pills */}
         <div className="flex flex-wrap gap-2 items-center justify-center md:justify-start w-full md:w-auto">
-          <Filter className="w-4 h-4 text-slate-400 mr-2 hidden md:block" />
+          <Filter className="w-4 h-4 text-[#7C7871] mr-2 hidden md:block" />
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-200 cursor-pointer ${
                 selectedCategory === category
-                  ? "bg-[#2563eb] text-white shadow-md shadow-blue-500/30"
-                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+                  ? "bg-[#1E1F22] text-[#FAF8F5] shadow-sm"
+                  : "bg-[#FAF8F5] text-[#524F47] hover:bg-[#EBE5DA] border border-[#DDD5C7]"
               }`}
             >
               {category}
@@ -108,12 +110,12 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) 
 
         {/* Search Bar */}
         <div className="relative w-full md:w-72">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-4 w-4 text-slate-400" />
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <Search className="h-4 w-4 text-[#8C8880]" />
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-full bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563eb] text-xs font-medium shadow-sm transition-all duration-200"
+            className="block w-full pl-10 pr-4 py-2.5 border border-[#DDD5C7] rounded-full bg-[#FAF8F5] text-[#1E1F22] placeholder-[#9E9A91] focus:outline-none focus:ring-2 focus:ring-[#1E1F22] text-xs font-medium shadow-xs transition-all duration-200"
             placeholder="Search architectures..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -141,16 +143,16 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({ onSelectTemplate }) 
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="col-span-full py-20 text-center text-slate-500 flex flex-col items-center justify-center bg-white rounded-3xl border border-slate-200"
+              className="col-span-full py-20 text-center text-[#78746C] flex flex-col items-center justify-center bg-[#FAF8F5] rounded-3xl border border-[#DFD8CC]"
             >
-              <Search className="w-12 h-12 mb-4 opacity-20 text-slate-400" />
-              <p className="text-base font-semibold text-slate-700">No architectures found matching your search.</p>
+              <Search className="w-12 h-12 mb-4 opacity-20 text-[#78746C]" />
+              <p className="text-base font-semibold text-[#1E1F22]">No architectures found matching your search.</p>
               <button 
                 onClick={() => {
                   setSearchQuery("");
                   setSelectedCategory("All");
                 }}
-                className="mt-4 text-[#2563eb] font-bold hover:underline text-xs"
+                className="mt-4 text-[#1E1F22] font-bold hover:underline text-xs uppercase tracking-wider"
               >
                 Clear filters
               </button>
