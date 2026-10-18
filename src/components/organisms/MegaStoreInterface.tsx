@@ -33,6 +33,7 @@ import {
   Truck,
   RotateCcw,
   Smartphone,
+  Store,
 } from "lucide-react";
 
 export interface ProductItem {
