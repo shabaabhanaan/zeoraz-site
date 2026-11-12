@@ -765,17 +765,17 @@ export const LandingPageContent = () => {
                 })}
               </div>
 
-              {/* Right Alpine Connected Architecture Visual */}
+              {/* Right Office Studio Connected Architecture Visual */}
               <div className="lg:col-span-6">
                 <div className="relative h-72 sm:h-80 rounded-3xl overflow-hidden border border-[#E2E8F0] shadow-md">
                   <Image
-                    src="/images/alpine-mist.jpg"
-                    alt="Connected web, mobile, and AI architecture"
+                    src="/images/office-workspace.jpg"
+                    alt="Modern office workspace with ergonomic chairs behind connected architecture"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-[#0F172A]/10 flex flex-col items-center justify-center px-3 sm:px-6 py-8">
+                  <div className="absolute inset-0 bg-[#0F172A]/25 flex flex-col items-center justify-center px-3 sm:px-6 py-8">
                     <div className="w-full max-w-sm flex flex-col items-center">
                       {/* Floating Icon Nodes */}
                       <div className="w-full grid grid-cols-5 gap-1 sm:gap-2 relative z-10">
@@ -1114,7 +1114,7 @@ export const LandingPageContent = () => {
       </main>
 
       {/* ATMOSPHERIC MINIMAL FOOTER */}
-      <footer className="relative pt-10 sm:pt-14 pb-20 sm:pb-12 px-4 sm:px-6 lg:px-12 overflow-hidden border-t border-slate-200/80">
+      <footer className="relative pt-12 sm:pt-14 pb-16 sm:pb-12 px-5 sm:px-6 lg:px-12 overflow-hidden border-t border-slate-200/80">
         <Image
           src="/images/horizon-sky.jpg"
           alt="Subtle horizon backdrop"
@@ -1125,53 +1125,53 @@ export const LandingPageContent = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white/70 pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-12 gap-3 sm:gap-6 lg:gap-10 pb-7 sm:pb-10 border-b border-slate-200/80">
-            <div className="col-span-5 space-y-2 sm:space-y-3 min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-8 sm:pb-10 border-b border-slate-200/80">
+            <div className="sm:col-span-2 lg:col-span-5 space-y-3">
+              <div className="flex items-center gap-2.5">
                 <Image
                   src="/images/logo.png"
                   alt="Zeoraz logo"
                   width={32}
                   height={32}
-                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain shrink-0"
+                  className="w-8 h-8 object-contain"
                 />
-                <span className="font-serif text-lg sm:text-2xl text-[#0F172A]">Zeoraz</span>
+                <span className="font-serif text-2xl text-[#0F172A]">Zeoraz</span>
               </div>
-              <p className="text-[11px] sm:text-sm text-[#475569] max-w-sm leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#475569] max-w-sm leading-relaxed">
                 Websites, iOS &amp; Android mobile apps, and custom AI agents crafted for modern businesses.
               </p>
             </div>
 
-            <div className="col-span-3 space-y-2 sm:space-y-3 min-w-0">
-              <span className="text-[11px] sm:text-xs font-semibold text-[#0F172A] block">Navigation</span>
-              <div className="flex flex-col space-y-1.5 text-[11px] sm:text-xs text-[#475569]">
-                <a href="#services" className="hover:text-[#0F172A] transition-colors">Services</a>
-                <a href="#process" className="hover:text-[#0F172A] transition-colors">Process</a>
-                <a href="#solutions" className="hover:text-[#0F172A] transition-colors whitespace-nowrap">Use Cases</a>
-                <a href="#faq" className="hover:text-[#0F172A] transition-colors">FAQ</a>
-                <a href="#contact" className="hover:text-[#0F172A] transition-colors">Contact</a>
+            <div className="sm:col-span-1 lg:col-span-3 space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F172A] block">Navigation</span>
+              <div className="grid grid-cols-2 sm:flex sm:flex-col gap-x-6 gap-y-2 sm:gap-y-1.5 text-xs sm:text-sm lg:text-xs text-[#475569]">
+                <a href="#services" className="py-0.5 hover:text-[#0F172A] transition-colors">Services</a>
+                <a href="#process" className="py-0.5 hover:text-[#0F172A] transition-colors">Process</a>
+                <a href="#solutions" className="py-0.5 hover:text-[#0F172A] transition-colors">Use Cases</a>
+                <a href="#faq" className="py-0.5 hover:text-[#0F172A] transition-colors">FAQ</a>
+                <a href="#contact" className="py-0.5 hover:text-[#0F172A] transition-colors">Contact</a>
               </div>
             </div>
 
-            <div className="col-span-4 space-y-2 sm:space-y-3 min-w-0">
-              <span className="text-[11px] sm:text-xs font-semibold text-[#0F172A] block">Start a Project</span>
-              <p className="text-[11px] sm:text-xs text-[#475569] max-w-xs leading-relaxed">
-                Ready to build your website, app, or AI agent? Let&apos;s map out the launch.
+            <div className="sm:col-span-1 lg:col-span-4 space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F172A] block">Start a Project</span>
+              <p className="text-xs sm:text-sm lg:text-xs text-[#475569] max-w-xs leading-relaxed">
+                Ready to build your website, mobile app, or AI agent? Let&apos;s map out the launch.
               </p>
               <button
                 type="button"
                 onClick={() => setIsTalkToUsOpen(true)}
-                className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-[11px] sm:text-xs font-medium inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap transition-colors cursor-pointer"
+                className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 <span>Get Started</span>
-                <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          <div className="pt-5 sm:pt-6 flex flex-row justify-between items-center gap-3 pr-14 sm:pr-20 lg:pr-0 text-[11px] sm:text-xs text-[#64748B]">
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pr-16 sm:pr-20 lg:pr-0 text-xs text-[#64748B]">
             <p>© {new Date().getFullYear()} Zeoraz. All rights reserved.</p>
-            <a href="#" className="inline-flex items-center gap-1 whitespace-nowrap shrink-0 hover:text-[#0F172A] transition-colors">Back to Top ↑</a>
+            <a href="#" className="inline-flex items-center gap-1 py-0.5 hover:text-[#0F172A] transition-colors">Back to Top ↑</a>
           </div>
         </div>
       </footer>
