@@ -101,3 +101,19 @@ model OtpVerification {
 
   @@index([email])
 }
+
+model ContactInquiry {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String
+  phone         String?
+  company       String?
+  serviceNeeded String   @default("Website Building")
+  message       String?
+  emailSent     Boolean  @default(false)
+  emailError    String?
+  createdAt     DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}

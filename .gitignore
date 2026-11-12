@@ -43,3 +43,7 @@ next-env.d.ts
 # nested duplicate
 zeoraz-site/
 
+# local inquiry / mock mail backups
+prisma/contact-inquiries.json
+prisma/mock-emails.json
+

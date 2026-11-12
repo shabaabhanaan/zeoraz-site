@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Code2, Cpu, Cloud, Users, Globe, ShieldCheck, Target, Award } from "lucide-react";
+import { Menu, X, ChevronDown, Store, ShoppingBag, TrendingUp, Layers, Globe, ShieldCheck, Target, Award } from "lucide-react";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -13,54 +13,54 @@ interface NavbarProps {
 
 const servicesDropdown = [
   {
-    title: "Product & Software Engineering",
-    desc: "Custom web, mobile & SaaS applications built for high performance.",
-    href: "#services",
-    icon: Code2,
+    title: "Digital Storefronts & Subdomains",
+    desc: "Launch branded commerce storefronts instantly with dedicated subdomains.",
+    href: "/publish",
+    icon: Store,
   },
   {
-    title: "Enterprise AI & Machine Learning",
-    desc: "Custom LLMs, automated workflow intelligence & predictive analytics.",
-    href: "#services",
-    icon: Cpu,
+    title: "Zeoraz Commerce Marketplace",
+    desc: "Curated luxury physical collections, watches, fragrances, and blueprints.",
+    href: "/marketplace",
+    icon: ShoppingBag,
   },
   {
-    title: "Cloud & DevOps Infrastructure",
-    desc: "AWS, Azure & GCP microservices, CI/CD & 24/7 monitoring.",
-    href: "#services",
-    icon: Cloud,
+    title: "Direct Merchant Growth & Sales",
+    desc: "Multi-currency checkout, WhatsApp orders & high-conversion funnels.",
+    href: "/publish",
+    icon: TrendingUp,
   },
   {
-    title: "Dedicated Engineering Pods",
-    desc: "On-demand high-performing engineering teams tailored to your stack.",
-    href: "#services",
-    icon: Users,
+    title: "Brand Incubation & Retail Scaling",
+    desc: "Luxury visual identity, catalog management & omnichannel commerce.",
+    href: "#capabilities",
+    icon: Layers,
   },
 ];
 
 const aboutDropdown = [
   {
-    title: "Our Mission & Engineering Principles",
-    desc: "Uncompromising security, engineering precision & client partnership.",
+    title: "Our Mission & Commerce Principles",
+    desc: "Elevating modern brands with high-conversion storefronts and seamless commerce.",
     href: "#about",
     icon: Globe,
   },
   {
-    title: "Enterprise Security & Data Privacy",
-    desc: "Rigorous global security standards, encryption and automated security audits.",
+    title: "Merchant Trust & Secure Payments",
+    desc: "Enterprise transaction safety, verified vendor standards & payment safety.",
     href: "#about",
     icon: ShieldCheck,
   },
   {
-    title: "Customer Success Stories",
-    desc: "Real-world case studies with proven ROI for global market leaders.",
+    title: "Brand Success Stories",
+    desc: "Real-world growth case studies from independent merchants and retail brands.",
     href: "#stories",
     icon: Target,
   },
   {
-    title: "Global Delivery Operations",
-    desc: "24/7 engineering hubs operating across Asia, Europe & Americas.",
-    href: "#about",
+    title: "Zeoraz Labs (R&D Division)",
+    desc: "Our separate technical research division dedicated to deep software engineering.",
+    href: "https://labs.zeoraz.com",
     icon: Award,
   },
 ];

@@ -1,84 +1,102 @@
+import fs from "fs";
+import path from "path";
 import { NextResponse } from "next/server";
-import { sendMail } from "@/lib/mail";
+import { sendMail, getContactInquiryHtmlTemplate } from "@/lib/mail";
+import { prisma } from "@/lib/db";
+
+const DB_TIMEOUT_MS = 4000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms)
+    ),
+  ]);
+}
+
+function saveInquiryLocally(entry: {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  company: string | null;
+  serviceNeeded: string;
+  message: string | null;
+  emailSent: boolean;
+  emailError: string | null;
+  createdAt: string;
+}): boolean {
+  try {
+    const dir = path.join(process.cwd(), "prisma");
+    const filePath = path.join(dir, "contact-inquiries.json");
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+    let items: object[] = [];
+    if (fs.existsSync(filePath)) {
+      try {
+        items = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+      } catch {
+        items = [];
+      }
+    }
+    items.unshift(entry);
+    fs.writeFileSync(filePath, JSON.stringify(items.slice(0, 100), null, 2), "utf-8");
+    return true;
+  } catch (err) {
+    console.error("Failed to save local contact inquiry backup:", err);
+    return false;
+  }
+}
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, company, serviceNeeded, message } = await req.json();
+    const body = await req.json();
+    const name = typeof body?.name === "string" ? body.name.trim() : "";
+    const email = typeof body?.email === "string" ? body.email.trim() : "";
+    const phone = typeof body?.phone === "string" ? body.phone.trim() : "";
+    const company = typeof body?.company === "string" ? body.company.trim() : "";
+    const serviceNeeded =
+      typeof body?.serviceNeeded === "string" && body.serviceNeeded.trim()
+        ? body.serviceNeeded.trim()
+        : "Website Building";
+    const message = typeof body?.message === "string" ? body.message.trim() : "";
 
     if (!name || !email) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
     }
 
-    const html = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>New Contact Inquiry – Zeoraz</title>
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; margin: 0; padding: 0; }
-            .container { max-width: 580px; margin: 0 auto; padding: 40px 20px; }
-            .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 36px; }
-            .header { border-bottom: 3px solid #2563eb; padding-bottom: 16px; margin-bottom: 24px; }
-            .brand { font-size: 22px; font-weight: 800; color: #0f172a; }
-            .brand span { color: #2563eb; }
-            .badge { display: inline-block; background: #eff6ff; color: #2563eb; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; border: 1px solid #bfdbfe; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
-            .row { margin-bottom: 16px; }
-            .label { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-            .value { font-size: 15px; color: #1e293b; font-weight: 500; }
-            .message-box { background: #f1f5f9; border-radius: 10px; padding: 14px 16px; font-size: 14px; color: #334155; line-height: 1.6; margin-top: 4px; white-space: pre-wrap; }
-            .footer { margin-top: 28px; font-size: 12px; color: #94a3b8; text-align: center; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="card">
-              <div class="header">
-                <div class="brand">Zeoraz<span>.</span></div>
-                <div class="badge">🔔 New Contact Inquiry</div>
-              </div>
+    // Store submission in MongoDB first (bounded timeout so unreachable clusters do not stall)
+    let savedInquiryId: string | null = null;
+    try {
+      const created = await withTimeout(
+        prisma.contactInquiry.create({
+          data: {
+            name,
+            email,
+            phone: phone || null,
+            company: company || null,
+            serviceNeeded,
+            message: message || null,
+          },
+        }),
+        DB_TIMEOUT_MS,
+        "MongoDB write"
+      );
+      savedInquiryId = created.id;
+    } catch (dbErr) {
+      console.error("Failed to save contact inquiry to MongoDB:", dbErr);
+    }
 
-              <div class="row">
-                <div class="label">Full Name</div>
-                <div class="value">${name}</div>
-              </div>
-
-              <div class="row">
-                <div class="label">Email</div>
-                <div class="value"><a href="mailto:${email}" style="color:#2563eb;">${email}</a></div>
-              </div>
-
-              ${phone ? `
-              <div class="row">
-                <div class="label">Phone</div>
-                <div class="value">${phone}</div>
-              </div>` : ""}
-
-              ${company ? `
-              <div class="row">
-                <div class="label">Company / Organization</div>
-                <div class="value">${company}</div>
-              </div>` : ""}
-
-              <div class="row">
-                <div class="label">Primary Solution Needed</div>
-                <div class="value">${serviceNeeded}</div>
-              </div>
-
-              ${message ? `
-              <div class="row">
-                <div class="label">Project Overview / Message</div>
-                <div class="message-box">${message}</div>
-              </div>` : ""}
-
-              <div class="footer">
-                © ${new Date().getFullYear()} Zeoraz · info.zeoraz@gmail.com
-              </div>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    const html = getContactInquiryHtmlTemplate({
+      name,
+      email,
+      phone: phone || null,
+      company: company || null,
+      serviceNeeded,
+      message: message || null,
+      inquiryId: savedInquiryId,
+    });
 
     const result = await sendMail({
       to: "info.zeoraz@gmail.com",
@@ -87,12 +105,61 @@ export async function POST(req: Request) {
       text: `New inquiry from ${name} (${email}).\nCompany: ${company || "N/A"}\nPhone: ${phone || "N/A"}\nService: ${serviceNeeded}\nMessage: ${message || "N/A"}`,
     });
 
-    if (!result.success) {
-      console.error("Contact mail failed:", result.error);
-      return NextResponse.json({ error: "Failed to send inquiry" }, { status: 500 });
+    if (savedInquiryId) {
+      try {
+        await withTimeout(
+          prisma.contactInquiry.update({
+            where: { id: savedInquiryId },
+            data: {
+              emailSent: result.success,
+              emailError: result.success ? null : result.error || "Unknown mail error",
+            },
+          }),
+          DB_TIMEOUT_MS,
+          "MongoDB update"
+        );
+      } catch (updateErr) {
+        console.error("Failed to update inquiry mail status:", updateErr);
+      }
     }
 
-    return NextResponse.json({ success: true });
+    let savedLocally = false;
+    if (!savedInquiryId) {
+      const localId = `local-${Date.now()}`;
+      savedLocally = saveInquiryLocally({
+        id: localId,
+        name,
+        email,
+        phone: phone || null,
+        company: company || null,
+        serviceNeeded,
+        message: message || null,
+        emailSent: result.success,
+        emailError: result.success ? null : result.error || "Unknown mail error",
+        createdAt: new Date().toISOString(),
+      });
+      if (savedLocally) savedInquiryId = localId;
+    }
+
+    if (!result.success) {
+      console.error("Contact mail failed:", result.error);
+      const isSavedToDb = Boolean(savedInquiryId) && !savedLocally;
+      const canUseLocalFallback = savedLocally && process.env.NODE_ENV !== "production";
+      if (!isSavedToDb && !canUseLocalFallback) {
+        return NextResponse.json(
+          { error: "Failed to save or send inquiry. Please contact us on WhatsApp." },
+          { status: 500 }
+        );
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      id: savedInquiryId,
+      savedToDb: Boolean(savedInquiryId) && !savedLocally,
+      savedLocally,
+      emailSent: result.success,
+    });
   } catch (error: unknown) {
     console.error("Contact API error:", error);
     const errorMessage = error instanceof Error ? error.message : "Contact submission failure";

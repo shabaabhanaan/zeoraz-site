@@ -8,74 +8,75 @@ import {
   Sparkles,
   ArrowRight,
   ShieldCheck,
-  CheckCircle,
   Globe,
   Zap,
+  ShoppingBag,
 } from "lucide-react";
 
 export default function PublishPage() {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[#030014] text-white flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-[#FAF8F5] dark:bg-[#131417] text-[#1E1F22] dark:text-[#FAF8F5] flex flex-col justify-between transition-colors duration-300">
       {/* Top Navbar */}
-      <nav className="border-b border-white/10 px-6 py-4 flex items-center justify-between backdrop-blur-xl bg-[#030014]/60">
-        <Link href="/" className="flex items-center gap-2 text-white font-extrabold text-xl">
-          <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+      <nav className="border-b border-[#DDD6C8] dark:border-white/10 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-[#FAF8F5]/90 dark:bg-[#131417]/90 sticky top-0 z-40">
+        <Link href="/" className="flex items-center gap-2 text-[#1E1F22] dark:text-white font-extrabold text-xl uppercase tracking-tight">
+          <div className="w-8 h-8 rounded-xl bg-[#EAE4DA] dark:bg-white/5 border border-[#DDD6C8] dark:border-white/10 flex items-center justify-center text-[#1E1F22] dark:text-white">
             <Store className="w-4 h-4" />
           </div>
-          Zeoraz <span className="text-cyan-400 font-light text-sm ml-1">Merchant Portal</span>
+          <span>Zeoraz</span>
+          <span className="text-[#7C7871] font-serif italic text-sm normal-case ml-1">Merchant Portal</span>
         </Link>
         <Link
           href="/"
-          className="text-xs text-slate-400 hover:text-white transition-colors"
+          className="text-xs font-bold uppercase tracking-wider text-[#7C7871] hover:text-[#1E1F22] dark:hover:text-white transition-colors"
         >
           Return Home &rarr;
         </Link>
       </nav>
 
       {/* Main Showcase Hero */}
-      <main className="max-w-5xl mx-auto px-6 py-20 text-center space-y-8 flex-1 flex flex-col justify-center items-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold">
-          <Sparkles className="w-4 h-4 text-cyan-400" />
-          <span>Instant Subdomain Provisioning &bull; Zero Hosting Config</span>
+      <main className="max-w-4xl mx-auto px-6 py-20 text-center space-y-8 flex-1 flex flex-col justify-center items-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE4DA] dark:bg-white/5 border border-[#DDD6C8] dark:border-white/10 text-[#4A4741] dark:text-slate-300 text-xs font-bold uppercase tracking-[0.14em]">
+          <Sparkles className="w-3.5 h-3.5 text-[#1E1F22] dark:text-blue-400" />
+          <span>Instant Subdomain Provisioning &bull; Zero Hosting Setup</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-black tracking-tight max-w-3xl">
-          Launch & Publish Your{" "}
-          <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            Sales Business
+        <h1 className="text-4xl sm:text-6xl font-black tracking-tight uppercase leading-[1.05] text-[#1E1F22] dark:text-white">
+          Launch &amp; Publish Your{" "}
+          <span className="font-serif italic font-normal text-[#66625B] dark:text-slate-400">
+            sales business
           </span>{" "}
           in 60 Seconds
         </h1>
 
-        <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
-          Get your own verified branded storefront on Zeoraz with direct WhatsApp ordering, catalog management, and automated lead capture.
+        <p className="text-base sm:text-lg text-[#55524B] dark:text-slate-400 max-w-2xl leading-relaxed">
+          Get your own verified branded storefront on Zeoraz with direct WhatsApp ordering, catalog management, and automated sales capture. (For technical software engineering, visit Zeoraz Labs).
         </p>
 
         {/* Perks Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl w-full text-left pt-4">
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <Globe className="w-6 h-6 text-cyan-400" />
-            <h3 className="font-bold text-sm text-white">Brand Subdomain</h3>
-            <p className="text-xs text-slate-400">
-              Get an instant URL like <code>yourbrand.zeoraz.com</code> with zero DNS hassles.
+          <div className="p-6 rounded-2xl bg-[#EAE4DA]/50 dark:bg-white/[0.02] border border-[#DDD6C8] dark:border-white/10 space-y-2">
+            <Globe className="w-5 h-5 text-[#1E1F22] dark:text-blue-400" />
+            <h3 className="font-bold text-sm text-[#1E1F22] dark:text-white uppercase tracking-wide">Brand Subdomain</h3>
+            <p className="text-xs text-[#6F6B63] dark:text-slate-400 leading-relaxed">
+              Get an instant URL like <code>yourbrand.zeoraz.com</code> with zero DNS configuration.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <Zap className="w-6 h-6 text-emerald-400" />
-            <h3 className="font-bold text-sm text-white">Direct WhatsApp Sales</h3>
-            <p className="text-xs text-slate-400">
-              Customers can trigger 1-click orders straight to your WhatsApp.
+          <div className="p-6 rounded-2xl bg-[#EAE4DA]/50 dark:bg-white/[0.02] border border-[#DDD6C8] dark:border-white/10 space-y-2">
+            <Zap className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <h3 className="font-bold text-sm text-[#1E1F22] dark:text-white uppercase tracking-wide">Direct WhatsApp Sales</h3>
+            <p className="text-xs text-[#6F6B63] dark:text-slate-400 leading-relaxed">
+              Customers can trigger 1-click orders and inquiries straight to your phone.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <ShieldCheck className="w-6 h-6 text-purple-400" />
-            <h3 className="font-bold text-sm text-white">Verified Badge</h3>
-            <p className="text-xs text-slate-400">
-              Establish instant credibility with a Zeoraz-verified storefront.
+          <div className="p-6 rounded-2xl bg-[#EAE4DA]/50 dark:bg-white/[0.02] border border-[#DDD6C8] dark:border-white/10 space-y-2">
+            <ShieldCheck className="w-5 h-5 text-[#1E1F22] dark:text-blue-400" />
+            <h3 className="font-bold text-sm text-[#1E1F22] dark:text-white uppercase tracking-wide">Verified Badge</h3>
+            <p className="text-xs text-[#6F6B63] dark:text-slate-400 leading-relaxed">
+              Establish instant buyer trust with a Zeoraz-verified merchant badge.
             </p>
           </div>
         </div>
@@ -83,17 +84,18 @@ export default function PublishPage() {
         <div className="pt-4">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-sm flex items-center gap-2 shadow-2xl shadow-cyan-500/25 transition-all transform hover:scale-105"
+            className="px-8 py-3.5 rounded-full bg-[#1E1F22] hover:bg-[#34363B] text-[#FAF8F5] dark:bg-[#2563eb] dark:hover:bg-blue-500 font-bold text-xs uppercase tracking-[0.14em] flex items-center gap-2 shadow-lg transition-all cursor-pointer"
           >
-            Open Business Publisher Wizard
-            <ArrowRight className="w-4 h-4" />
+            <Store className="w-4 h-4" />
+            <span>Open Business Publisher Wizard</span>
+            <ArrowRight className="w-4 h-4 ml-1" />
           </button>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-6 text-center text-xs text-slate-500">
-        &copy; {new Date().getFullYear()} Zeoraz Digital Platform. All rights reserved.
+      <footer className="border-t border-[#DDD6C8] dark:border-white/10 py-6 text-center text-xs text-[#7C7871] dark:text-slate-500">
+        &copy; {new Date().getFullYear()} Zeoraz Commerce Platform. All rights reserved. For deep software engineering R&amp;D, visit Zeoraz Labs.
       </footer>
 
       {/* Publishing Modal */}

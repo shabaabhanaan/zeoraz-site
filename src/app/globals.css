@@ -3,13 +3,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafaf9;
-  --foreground: #0f172a;
-  --text-muted: #475569;
+  --background: #ffffff;
+  --foreground: #111315;
+  --text-muted: #5a6065;
   --card-bg: #ffffff;
-  --card-border: rgba(226, 232, 240, 0.8);
+  --card-border: rgba(229, 231, 235, 0.9);
   --grid-line: rgba(15, 23, 42, 0.04);
-  --radial-glow: rgba(37, 99, 235, 0.08);
+  --radial-glow: rgba(21, 128, 61, 0.08);
 
   --color-brand-blue: #2563eb;
   --color-brand-blue-hover: #1d4ed8;
@@ -29,13 +29,13 @@ html.dark {
 }
 
 html.light {
-  --background: #fafaf9;
-  --foreground: #0f172a;
-  --text-muted: #475569;
+  --background: #ffffff;
+  --foreground: #111315;
+  --text-muted: #5a6065;
   --card-bg: #ffffff;
-  --card-border: rgba(226, 232, 240, 0.8);
+  --card-border: rgba(229, 231, 235, 0.9);
   --grid-line: rgba(15, 23, 42, 0.04);
-  --radial-glow: rgba(37, 99, 235, 0.08);
+  --radial-glow: rgba(21, 128, 61, 0.08);
   color-scheme: light;
 }
 
@@ -46,6 +46,7 @@ html.light {
   --color-blue-hover: #1d4ed8;
   
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, Cambria, "Times New Roman", serif;
   --font-mono: var(--font-geist-mono), monospace;
 }
 
@@ -174,18 +175,6 @@ html.dark, html.dark body {
   color: #f8fafc !important;
 }
 
-html.dark section,
-html.dark header,
-html.dark footer,
-html.dark main {
-  background-color: transparent;
-}
-
-html.dark .bg-\[\#fafaf9\],
-html.dark .bg-white {
-  background-color: #0b0f19 !important;
-}
-
 html.dark .bg-slate-50 {
   background-color: #0f172a !important;
 }
@@ -242,11 +231,11 @@ html.dark .border-blue-200\/60 {
    COMPREHENSIVE LIGHT MODE OVERRIDES
    ========================================== */
 html.light, html.light body {
-  background-color: #fafaf9 !important;
-  color: #0f172a !important;
+  background-color: #ffffff !important;
+  color: #111315 !important;
 }
 
-html.light .bg-\[\#030014\] {
-  background-color: #fafaf9;
+html.light [class*="bg-[#030014]"] {
+  background-color: #ffffff;
 }
 

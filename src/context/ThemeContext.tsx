@@ -13,8 +13,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme>("light");
 
   const applyThemeToDOM = (newTheme: Theme) => {
     const root = document.documentElement;
@@ -39,24 +38,20 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("zeoraz_theme") as Theme | null;
-    let initialTheme: Theme = "dark";
+    const savedTheme = localStorage.getItem("zeoraz_theme_v2") as Theme | null;
+    const initialTheme: Theme =
+      savedTheme === "dark" || savedTheme === "light" ? savedTheme : "light";
 
-    if (savedTheme === "dark" || savedTheme === "light") {
-      initialTheme = savedTheme;
-    } else {
-      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      initialTheme = systemPrefersDark ? "dark" : "light";
-    }
-
-    setThemeState(initialTheme);
     applyThemeToDOM(initialTheme);
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setThemeState(initialTheme);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem("zeoraz_theme", newTheme);
+    localStorage.setItem("zeoraz_theme_v2", newTheme);
     applyThemeToDOM(newTheme);
   };
 

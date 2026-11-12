@@ -1,12 +1,13 @@
 import React from "react";
 import { Metadata } from "next";
-import { MarketplaceContent } from "@/components/organisms/MarketplaceContent";
+import { MegaStoreInterface } from "@/components/organisms/MegaStoreInterface";
 
 export const metadata: Metadata = {
-  title: "Zeoraz Marketplace | Premium Website Templates",
-  description: "Browse and deploy premium website building templates and components with Zeoraz.",
+  title: "Zeoraz Mart | E-Commerce Megastore & Verified Retail Platform",
+  description: "Browse curated luxury horology, designer furniture, apparel, audio, and physical retail collections.",
 };
 
 export default function MarketplacePage() {
-  return <MarketplaceContent />;
+  return <MegaStoreInterface />;
 }
+

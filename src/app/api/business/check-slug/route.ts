@@ -52,22 +52,24 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    try {
-      const existing = await prisma.businessListing.findUnique({
-        where: { slug: cleanSlug },
-        select: { id: true },
-      });
-
-      if (existing) {
-        return NextResponse.json({
-          available: false,
-          slug: cleanSlug,
-          error: "This subdomain is already taken. Please choose another.",
+    if (process.env.DATABASE_URL) {
+      try {
+        const existing = await prisma.businessListing.findUnique({
+          where: { slug: cleanSlug },
+          select: { id: true },
         });
+
+        if (existing) {
+          return NextResponse.json({
+            available: false,
+            slug: cleanSlug,
+            error: "This subdomain is already taken. Please choose another.",
+          });
+        }
+      } catch (dbErr) {
+        console.warn("Database lookup skipped due to connection:", dbErr);
+        // If DB is offline/unreachable in local dev, allow valid format slug
       }
-    } catch (dbErr) {
-      console.warn("Database lookup skipped due to connection:", dbErr);
-      // If DB is offline/unreachable in local dev, allow valid format slug
     }
 
     return NextResponse.json({

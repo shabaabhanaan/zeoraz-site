@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 
@@ -13,9 +13,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Zeoraz | Next-Gen Digital Intelligence Platform",
-  description: "Deploy lightning-fast applications with autonomous workflows and premium design systems.",
+  title: "Zeoraz | Website Building, Mobile App Development & AI Solutions",
+  description: "Custom websites, iOS & Android mobile apps, and smart AI assistants built for modern businesses.",
+  icons: {
+    icon: "/images/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -26,10 +36,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} light h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

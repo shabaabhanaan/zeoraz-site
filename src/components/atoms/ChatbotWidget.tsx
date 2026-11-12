@@ -1,65 +1,100 @@
 "use client";
 
-import React, { useState } from "react";
-import { X, Send, User } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { X, Send, User, Bot, Sparkles } from "lucide-react";
+
+interface Message {
+  role: "bot" | "user";
+  text: string;
+}
 
 export const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { role: "bot", text: "Hello! I'm Zeo, your dedicated support consultant. How can I assist you today?" }
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: "bot",
+      text: "Hi! I'm Zeo from Zeoraz. Ask me about website building, mobile app development, or adding an AI assistant to your project.",
+    },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleSend = (e: React.FormEvent) => {
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
+
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputValue.trim()) return;
-    
-    // Add user message
-    setMessages((prev) => [...prev, { role: "user", text: inputValue }]);
+    const userText = inputValue.trim();
+    if (!userText || isTyping) return;
+
+    const updatedMessages: Message[] = [...messages, { role: "user", text: userText }];
+    setMessages(updatedMessages);
     setInputValue("");
-    
-    // Simulate support response
-    setTimeout(() => {
+    setIsTyping(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: updatedMessages }),
+      });
+      const data = await res.json();
       setMessages((prev) => [
-        ...prev, 
-        { role: "bot", text: "Thank you for reaching out! A representative will connect with you shortly, or you can request a callback via our 'Talk to Us' form." }
+        ...prev,
+        {
+          role: "bot",
+          text:
+            data.reply ||
+            "Thanks for your message! Click 'Book Audit' to walk through your workflow with our team.",
+        },
       ]);
-    }, 1000);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "bot",
+          text: "Connection interrupted. You can also reach us directly via the Contact form or 'Book Audit'.",
+        },
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
     <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end">
       {/* Chat Window */}
-      <div 
-        className={`mb-4 w-[350px] overflow-hidden rounded-2xl border border-slate-700/50 bg-[#0a0a0f]/95 dark:bg-[#0a0a0f]/95 light:bg-white backdrop-blur-xl shadow-2xl transition-all duration-300 origin-bottom-right ${
+      <div
+        className={`mb-4 w-[350px] overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl transition-all duration-300 origin-bottom-right ${
           isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-cyan-600 px-4 py-3 text-white">
+        <div className="flex items-center justify-between bg-[#0F172A] px-5 py-4 text-white">
           <div className="flex items-center gap-3">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/40 shadow-inner overflow-hidden shrink-0">
-              <img 
-                src="/images/support-agent.png" 
-                alt="Support Representative" 
-                className="h-full w-full object-cover"
-              />
-              <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-400 border-2 border-blue-600" />
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-[#1E293B] border border-[#334155] text-white shrink-0">
+              <Bot className="w-5 h-5 text-[#60A5FA]" />
+              <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[#60A5FA] border-2 border-[#0F172A]" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-white leading-tight">Zeo Support Agent</h3>
-              <p className="text-[11px] text-blue-100 flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
+                <h3 className="text-sm font-semibold text-white tracking-wide">Zeo Assistant</h3>
+                <Sparkles className="w-3 h-3 text-[#60A5FA]" />
+              </div>
+              <p className="text-[11px] text-white/70 flex items-center gap-1.5 mt-0.5">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#60A5FA] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#60A5FA]"></span>
                 </span>
-                Active Support
+                Web · Mobile · AI
               </p>
             </div>
           </div>
-          <button 
+          <button
             onClick={() => setIsOpen(false)}
-            className="text-white/80 hover:text-white transition-colors p-1 rounded-md hover:bg-white/10 cursor-pointer"
+            className="text-white/60 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10 cursor-pointer"
             aria-label="Close chat"
           >
             <X className="h-5 w-5" />
@@ -67,77 +102,102 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Messages Container */}
-        <div className="flex flex-col h-[320px] overflow-y-auto p-4 gap-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+        <div className="flex flex-col h-[320px] overflow-y-auto p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
           {messages.map((msg, idx) => (
-            <div 
-              key={idx} 
-              className={`flex items-start gap-2 max-w-[85%] ${
+            <div
+              key={idx}
+              className={`flex items-start gap-2.5 max-w-[85%] ${
                 msg.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
               }`}
             >
-              <div className={`flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-full mt-1 overflow-hidden ${
-                msg.role === "user" ? "bg-blue-600/20 text-blue-500" : "bg-blue-600 text-white shadow-sm"
-              }`}>
+              <div
+                className={`flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-xl mt-0.5 text-xs font-bold ${
+                  msg.role === "user"
+                    ? "bg-[#2563EB] text-white shadow-sm"
+                    : "bg-white text-[#0F172A] border border-[#E2E8F0]"
+                }`}
+              >
                 {msg.role === "user" ? (
-                  <User className="h-4 w-4" />
+                  <User className="h-3.5 w-3.5" />
                 ) : (
-                  <img src="/images/support-agent.png" alt="Support Agent" className="h-full w-full object-cover" />
+                  <Bot className="h-3.5 w-3.5 text-[#2563EB]" />
                 )}
               </div>
-              <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-                msg.role === "user" 
-                  ? "bg-blue-600 text-white rounded-tr-sm shadow-sm" 
-                  : "bg-slate-800/80 dark:bg-slate-800/80 light:bg-slate-100 text-slate-100 dark:text-slate-100 light:text-slate-800 border border-slate-700/50 light:border-slate-200 rounded-tl-sm"
-              }`}>
+              <div
+                className={`rounded-2xl px-4 py-2.5 text-xs sm:text-sm leading-relaxed ${
+                  msg.role === "user"
+                    ? "bg-[#2563EB] text-white rounded-tr-xs shadow-sm"
+                    : "bg-white text-[#1E293B] border border-[#E2E8F0] rounded-tl-xs shadow-xs"
+                }`}
+              >
                 {msg.text}
               </div>
             </div>
           ))}
+          {isTyping && (
+            <div className="flex items-start gap-2.5 max-w-[85%] mr-auto">
+              <div className="flex-shrink-0 flex h-7 w-7 items-center justify-center rounded-xl mt-0.5 bg-white text-[#2563EB] border border-[#E2E8F0]">
+                <Bot className="h-3.5 w-3.5" />
+              </div>
+              <div className="rounded-2xl rounded-tl-xs px-4 py-2.5 text-xs bg-white text-[#64748B] border border-[#E2E8F0]">
+                Thinking...
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
 
         {/* Input Area */}
-        <div className="p-3 border-t border-slate-800 dark:border-slate-800 light:border-slate-200 bg-[#030014]/50 dark:bg-[#030014]/50 light:bg-slate-50">
+        <div className="p-3.5 border-t border-[#E2E8F0] bg-white">
           <form onSubmit={handleSend} className="relative flex items-center">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Ask a support question..."
-              className="w-full bg-slate-900/60 dark:bg-slate-900/60 light:bg-white border border-slate-700/50 light:border-slate-300 rounded-full pl-4 pr-12 py-2.5 text-sm text-slate-100 dark:text-slate-100 light:text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+              placeholder="Ask about websites, mobile apps, or AI..."
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-full pl-4 pr-12 py-2.5 text-xs sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] focus:bg-white transition-all"
             />
-            <button 
+            <button
               type="submit"
-              disabled={!inputValue.trim()}
-              className="absolute right-1.5 h-8 w-8 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 transition-colors cursor-pointer"
+              disabled={!inputValue.trim() || isTyping}
+              className="absolute right-1.5 h-8 w-8 flex items-center justify-center rounded-full bg-[#2563EB] text-white hover:bg-[#1D4ED8] disabled:opacity-40 transition-colors cursor-pointer"
+              aria-label="Send message"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-3.5 w-3.5" />
             </button>
           </form>
         </div>
       </div>
 
-      {/* Toggle Floating Button (Real Human Face with Headset Avatar) */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-110 transition-all duration-300 group cursor-pointer overflow-hidden p-0.5"
-        aria-label="Toggle Chatbot"
-      >
-        {isOpen ? (
-          <X className="w-6 h-6 text-white transition-transform duration-200" />
-        ) : (
-          <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
-            <img 
-              src="/images/support-agent.png" 
-              alt="Support Representative" 
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-            />
-            <span className="absolute top-0 right-0 flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400 border-2 border-blue-600"></span>
-            </span>
+      {/* Toggle Floating Button */}
+      <div className="relative group">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="relative flex items-center justify-center w-14 h-14 bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full shadow-xl shadow-slate-950/25 hover:scale-105 border border-[#334155] transition-all duration-300 cursor-pointer"
+          aria-label="Toggle Zeoraz AI Assistant"
+        >
+          {isOpen ? (
+            <X className="w-5 h-5 text-white transition-transform duration-200" />
+          ) : (
+            <div className="relative flex items-center justify-center w-full h-full">
+              <Bot className="w-6 h-6 text-[#EFF6FF]" />
+              <span className="absolute top-2 right-2 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#60A5FA] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#3B82F6] border-2 border-[#0F172A]"></span>
+              </span>
+            </div>
+          )}
+        </button>
+
+        {!isOpen && (
+          <div className="absolute right-16 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+            <div className="bg-[#0F172A] text-white text-xs font-semibold py-1.5 px-3 rounded-xl shadow-xl whitespace-nowrap border border-[#334155] flex items-center gap-1.5">
+              <span>Ask Zeo AI</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA]" />
+            </div>
           </div>
         )}
-      </button>
+      </div>
     </div>
   );
 };

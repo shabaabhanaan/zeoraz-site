@@ -36,19 +36,21 @@ export async function POST(req: NextRequest) {
       .replace(/^-|-$/g, "");
 
     // Check slug availability
-    try {
-      const existing = await prisma.businessListing.findUnique({
-        where: { slug: cleanSlug },
-      });
+    if (process.env.DATABASE_URL) {
+      try {
+        const existing = await prisma.businessListing.findUnique({
+          where: { slug: cleanSlug },
+        });
 
-      if (existing) {
-        return NextResponse.json(
-          { error: `The subdomain "${cleanSlug}.zeoraz.com" is already registered.` },
-          { status: 409 }
-        );
+        if (existing) {
+          return NextResponse.json(
+            { error: `The subdomain "${cleanSlug}.zeoraz.com" is already registered.` },
+            { status: 409 }
+          );
+        }
+      } catch (checkErr) {
+        console.warn("DB check skipped during publish:", checkErr);
       }
-    } catch (checkErr) {
-      console.warn("DB check skipped during publish:", checkErr);
     }
 
     // Optional: Associate with logged in user if session exists
@@ -63,7 +65,7 @@ export async function POST(req: NextRequest) {
     }
 
     // If no session owner, check if user with contactEmail exists
-    if (!ownerId && contactEmail) {
+    if (!ownerId && contactEmail && process.env.DATABASE_URL) {
       try {
         const user = await prisma.user.findUnique({ where: { email: contactEmail } });
         if (user) {
@@ -77,29 +79,34 @@ export async function POST(req: NextRequest) {
     const subdomain = `${cleanSlug}.zeoraz.com`;
 
     let newBusiness;
-    try {
-      newBusiness = await prisma.businessListing.create({
-        data: {
-          slug: cleanSlug,
-          businessName,
-          tagline: tagline || null,
-          description,
-          category,
-          subdomain,
-          themeColor: themeColor || "#06b6d4",
-          logoUrl: logoUrl || null,
-          bannerUrl: bannerUrl || null,
-          contactEmail,
-          whatsappNumber: whatsappNumber || null,
-          websiteUrl: websiteUrl || null,
-          currency: currency || "USD",
-          productsJson: Array.isArray(products) ? JSON.stringify(products) : "[]",
-          status: "ACTIVE",
-          ownerId: ownerId || undefined,
-        },
-      });
-    } catch (dbErr) {
-      console.warn("MongoDB write failed, writing to local sandbox fallback:", dbErr);
+    if (process.env.DATABASE_URL) {
+      try {
+        newBusiness = await prisma.businessListing.create({
+          data: {
+            slug: cleanSlug,
+            businessName,
+            tagline: tagline || null,
+            description,
+            category,
+            subdomain,
+            themeColor: themeColor || "#06b6d4",
+            logoUrl: logoUrl || null,
+            bannerUrl: bannerUrl || null,
+            contactEmail,
+            whatsappNumber: whatsappNumber || null,
+            websiteUrl: websiteUrl || null,
+            currency: currency || "USD",
+            productsJson: Array.isArray(products) ? JSON.stringify(products) : "[]",
+            status: "ACTIVE",
+            ownerId: ownerId || undefined,
+          },
+        });
+      } catch (dbErr) {
+        console.warn("MongoDB write failed, writing to local sandbox fallback:", dbErr);
+      }
+    }
+
+    if (!newBusiness) {
       const fs = await import("fs");
       const path = await import("path");
       const mockDir = path.join(process.cwd(), "prisma");
