@@ -64,11 +64,14 @@ export const ChatbotWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-22 sm:bottom-24 right-4 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Chat Window */}
       <div
-        className={`mb-4 w-[350px] overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl transition-all duration-300 origin-bottom-right ${
-          isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
+        aria-hidden={!isOpen}
+        className={`mb-4 w-[calc(100vw-2rem)] sm:w-[350px] max-w-[350px] overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl transition-all duration-300 origin-bottom-right ${
+          isOpen
+            ? "scale-100 opacity-100 pointer-events-auto visible"
+            : "scale-0 opacity-0 pointer-events-none invisible"
         }`}
       >
         {/* Header */}
@@ -102,7 +105,7 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Messages Container */}
-        <div className="flex flex-col h-[320px] overflow-y-auto p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
+        <div className="flex flex-col h-[min(320px,50vh)] overflow-y-auto p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
           {messages.map((msg, idx) => (
             <div
               key={idx}
@@ -170,8 +173,9 @@ export const ChatbotWidget = () => {
       </div>
 
       {/* Toggle Floating Button */}
-      <div className="relative group">
+      <div className="relative group pointer-events-auto">
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
           className="relative flex items-center justify-center w-14 h-14 bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full shadow-xl shadow-slate-950/25 hover:scale-105 border border-[#334155] transition-all duration-300 cursor-pointer"
           aria-label="Toggle Zeoraz AI Assistant"

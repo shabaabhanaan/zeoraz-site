@@ -8,7 +8,7 @@ export const WhatsAppWidget = () => {
       href="https://wa.me/94753559404" // Using international format (94 for Sri Lanka)
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-xl shadow-green-900/20 hover:scale-105 transition-all duration-300 group border border-white/20"
+      className="fixed bottom-5 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-xl shadow-green-900/20 hover:scale-105 transition-all duration-300 group border border-white/20"
       aria-label="Chat on WhatsApp"
     >
       <svg

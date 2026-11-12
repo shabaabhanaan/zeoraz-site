@@ -293,7 +293,7 @@ export const LandingPageContent = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-slate-200/80 bg-white px-4 py-5 space-y-3 mt-3"
+              className="md:hidden overflow-hidden border-t border-slate-200/80 bg-white px-4 py-5 space-y-3 mt-3"
             >
               <div className="flex flex-col space-y-2.5 text-sm font-medium text-[#334155]">
                 <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
@@ -405,7 +405,7 @@ export const LandingPageContent = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {/* Feature Card 1: Website Building */}
               <div className="group flex flex-col">
                 <button
@@ -775,10 +775,10 @@ export const LandingPageContent = () => {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-[#0F172A]/10 flex flex-col items-center justify-center px-6 py-8">
+                  <div className="absolute inset-0 bg-[#0F172A]/10 flex flex-col items-center justify-center px-3 sm:px-6 py-8">
                     <div className="w-full max-w-sm flex flex-col items-center">
                       {/* Floating Icon Nodes */}
-                      <div className="w-full grid grid-cols-5 gap-2 relative z-10">
+                      <div className="w-full grid grid-cols-5 gap-1 sm:gap-2 relative z-10">
                         {[
                           { icon: Globe, label: "Web" },
                           { icon: Smartphone, label: "iOS" },
@@ -789,10 +789,10 @@ export const LandingPageContent = () => {
                           const NodeIcon = node.icon;
                           return (
                             <div key={node.label} className="flex flex-col items-center gap-1.5">
-                              <span className="w-10 h-10 rounded-xl bg-white/95 backdrop-blur-sm border border-[#E2E8F0] shadow-md flex items-center justify-center text-[#0F172A]">
+                              <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/95 backdrop-blur-sm border border-[#E2E8F0] shadow-md flex items-center justify-center text-[#0F172A]">
                                 <NodeIcon className="w-4 h-4 text-[#2563EB]" />
                               </span>
-                              <span className="text-[10px] font-medium text-[#0F172A] bg-white/85 backdrop-blur-xs px-2 py-0.5 rounded-full shadow-xs">
+                              <span className="text-[9px] sm:text-[10px] font-medium text-[#0F172A] bg-white/85 backdrop-blur-xs px-1.5 sm:px-2 py-0.5 rounded-full shadow-xs whitespace-nowrap">
                                 {node.label}
                               </span>
                             </div>
@@ -1045,7 +1045,7 @@ export const LandingPageContent = () => {
                       placeholder="Your name"
                       value={contactName}
                       onChange={(e) => setContactName(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2E8F0] text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
+                      className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                     />
                   </div>
                   <div>
@@ -1058,7 +1058,7 @@ export const LandingPageContent = () => {
                       placeholder="you@company.com"
                       value={contactEmail}
                       onChange={(e) => setContactEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2E8F0] text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
+                      className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                     />
                   </div>
                 </div>
@@ -1073,7 +1073,7 @@ export const LandingPageContent = () => {
                     placeholder="Tell us about your website or mobile app idea, key features, and target timeline..."
                     value={contactMessage}
                     onChange={(e) => setContactMessage(e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2E8F0] text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full px-4 py-3 rounded-2xl bg-white border border-[#E2E8F0] text-base sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
@@ -1114,7 +1114,7 @@ export const LandingPageContent = () => {
       </main>
 
       {/* ATMOSPHERIC MINIMAL FOOTER */}
-      <footer className="relative pt-14 pb-10 px-6 lg:px-12 overflow-hidden border-t border-slate-200/80">
+      <footer className="relative pt-12 sm:pt-14 pb-16 sm:pb-12 px-5 sm:px-6 lg:px-12 overflow-hidden border-t border-slate-200/80">
         <Image
           src="/images/horizon-sky.jpg"
           alt="Subtle horizon backdrop"
@@ -1125,8 +1125,8 @@ export const LandingPageContent = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white/70 pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-slate-200/80">
-            <div className="md:col-span-5 space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-8 sm:pb-10 border-b border-slate-200/80">
+            <div className="sm:col-span-2 lg:col-span-5 space-y-3">
               <div className="flex items-center gap-2.5">
                 <Image
                   src="/images/logo.png"
@@ -1137,30 +1137,31 @@ export const LandingPageContent = () => {
                 />
                 <span className="font-serif text-2xl text-[#0F172A]">Zeoraz</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#475569] max-w-xs leading-relaxed">
-                Websites, iOS &amp; Android mobile apps, and built-in AI chat solutions crafted for modern businesses.
+              <p className="text-xs sm:text-sm text-[#475569] max-w-sm leading-relaxed">
+                Websites, iOS &amp; Android mobile apps, and custom AI agents crafted for modern businesses.
               </p>
             </div>
 
-            <div className="md:col-span-3 space-y-2.5">
-              <span className="text-xs font-semibold text-[#0F172A] block">Navigation</span>
-              <div className="flex flex-col space-y-1.5 text-xs text-[#475569]">
-                <a href="#services" className="hover:text-[#0F172A] transition-colors">Services</a>
-                <a href="#process" className="hover:text-[#0F172A] transition-colors">Process</a>
-                <a href="#solutions" className="hover:text-[#0F172A] transition-colors">Use Cases</a>
-                <a href="#faq" className="hover:text-[#0F172A] transition-colors">FAQ</a>
+            <div className="sm:col-span-1 lg:col-span-3 space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F172A] block">Navigation</span>
+              <div className="grid grid-cols-2 sm:flex sm:flex-col gap-x-6 gap-y-2 sm:gap-y-1.5 text-xs sm:text-sm lg:text-xs text-[#475569]">
+                <a href="#services" className="py-0.5 hover:text-[#0F172A] transition-colors">Services</a>
+                <a href="#process" className="py-0.5 hover:text-[#0F172A] transition-colors">Process</a>
+                <a href="#solutions" className="py-0.5 hover:text-[#0F172A] transition-colors">Use Cases</a>
+                <a href="#faq" className="py-0.5 hover:text-[#0F172A] transition-colors">FAQ</a>
+                <a href="#contact" className="py-0.5 hover:text-[#0F172A] transition-colors">Contact</a>
               </div>
             </div>
 
-            <div className="md:col-span-4 space-y-3">
-              <span className="text-xs font-semibold text-[#0F172A] block">Start a Project</span>
-              <p className="text-xs text-[#475569] leading-relaxed">
-                Ready to build your website or mobile app? Let&apos;s map out the launch.
+            <div className="sm:col-span-1 lg:col-span-4 space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F172A] block">Start a Project</span>
+              <p className="text-xs sm:text-sm lg:text-xs text-[#475569] max-w-xs leading-relaxed">
+                Ready to build your website, mobile app, or AI agent? Let&apos;s map out the launch.
               </p>
               <button
                 type="button"
                 onClick={() => setIsTalkToUsOpen(true)}
-                className="px-5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-medium inline-flex items-center gap-1.5 cursor-pointer"
+                className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 <span>Get Started</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -1168,9 +1169,9 @@ export const LandingPageContent = () => {
             </div>
           </div>
 
-          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[#64748B]">
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pr-16 sm:pr-20 lg:pr-0 text-xs text-[#64748B]">
             <p>© {new Date().getFullYear()} Zeoraz. All rights reserved.</p>
-            <a href="#" className="hover:text-[#0F172A] transition-colors">Back to Top ↑</a>
+            <a href="#" className="inline-flex items-center gap-1 py-0.5 hover:text-[#0F172A] transition-colors">Back to Top ↑</a>
           </div>
         </div>
       </footer>
@@ -1181,7 +1182,7 @@ export const LandingPageContent = () => {
       />
 
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-[#0F172A] text-white shadow-2xl max-w-sm">
+        <div className="fixed bottom-5 left-4 right-20 sm:left-auto sm:bottom-6 sm:right-24 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl bg-[#0F172A] text-white shadow-2xl max-w-sm">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-[#60A5FA]">
             <Shield className="h-5 w-5" />
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, Shield, Send, Building2, User, Mail, Phone, MessageSquare, Loader2 } from "lucide-react";
 
@@ -23,7 +23,22 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSubmitted(false);
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,31 +72,39 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={handleClose}
-          className="fixed inset-0 bg-[#0F172A]/60 backdrop-blur-sm"
-        />
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl rounded-3xl bg-white p-5 sm:p-8 shadow-2xl border border-[#E2E8F0] text-[#0F172A] z-10 my-auto max-h-[92vh] overflow-y-auto scrollbar-thin"
+      {isOpen && (
+        <div
+          key="talk-to-us-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Start Your Project"
+          className="fixed inset-0 z-[70] flex items-start sm:items-center justify-center p-2.5 sm:p-6 overflow-y-auto"
         >
-          {/* Top Brand Accent */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F172A] via-[#2563EB] to-[#60A5FA]" />
-
-          <button
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="absolute top-4 right-4 p-2 rounded-full text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors cursor-pointer"
-            aria-label="Close modal"
+            className="fixed inset-0 bg-[#0F172A]/60 backdrop-blur-sm"
+          />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-2xl rounded-3xl bg-white p-5 sm:p-8 shadow-2xl border border-[#E2E8F0] text-[#0F172A] z-10 my-auto max-h-[90dvh] sm:max-h-[92vh] overflow-y-auto scrollbar-thin"
           >
-            <X className="w-5 h-5" />
-          </button>
+            {/* Top Brand Accent */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F172A] via-[#2563EB] to-[#60A5FA]" />
+
+            <button
+              type="button"
+              onClick={handleClose}
+              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 p-2.5 rounded-full text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors cursor-pointer"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
           {!isSubmitted ? (
             <div>
@@ -109,7 +132,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Sarah Jenkins"
-                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-base sm:text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                     />
                   </div>
 
@@ -123,7 +146,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="sarah@enterprise.com"
-                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-base sm:text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                     />
                   </div>
                 </div>
@@ -138,7 +161,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder="e.g. Lumina Apparel"
-                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-base sm:text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                     />
                   </div>
 
@@ -151,7 +174,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+1 (555) 000-0000"
-                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
+                      className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-base sm:text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                     />
                   </div>
                 </div>
@@ -163,7 +186,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                   <select
                     value={formData.serviceNeeded}
                     onChange={(e) => setFormData({ ...formData, serviceNeeded: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
+                    className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] text-base sm:text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                   >
                     <option value="Website Building">Custom Website Building</option>
                     <option value="Mobile App Development">Mobile App Development (iOS &amp; Android)</option>
@@ -182,7 +205,7 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Briefly describe your requirements or goal..."
-                    className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors resize-none"
+                    className="w-full px-4 py-2.5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] placeholder-[#94A3B8] text-base sm:text-sm focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors resize-none"
                   />
                 </div>
 
@@ -231,7 +254,8 @@ export const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ isOpen, onClose })
             </div>
           )}
         </motion.div>
-      </div>
+        </div>
+      )}
     </AnimatePresence>
   );
 };
