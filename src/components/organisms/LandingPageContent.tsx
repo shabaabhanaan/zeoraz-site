@@ -155,6 +155,42 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+interface PortfolioProject {
+  title: string;
+  desc: string;
+  tags: string[];
+  href: string;
+  scopeKey: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+const portfolioProjects: PortfolioProject[] = [
+  {
+    title: "Study Companion AI Extension",
+    desc: "AI-powered Manifest V3 Chrome extension integrating GPT-4o and Google Gemini to analyze text, explain code snippets, and assist workflows.",
+    tags: ["Chrome MV3", "GPT-4o", "Gemini AI"],
+    href: "https://github.com/shabaabhanaan/Study-Companion-Chrome-Extension",
+    scopeKey: "AI Agent Building",
+    icon: Bot,
+  },
+  {
+    title: "Multi-Chat Real-Time App",
+    desc: "Full-stack real-time web messaging platform supporting multi-room channels and direct chat across desktop and mobile viewports.",
+    tags: ["Full-Stack", "Real-Time", "Responsive UI"],
+    href: "https://github.com/shabaabhanaan/multi-chat-app",
+    scopeKey: "Website Building",
+    icon: MessageSquare,
+  },
+  {
+    title: "Learning Management System",
+    desc: "Structured full-stack LMS platform built with separate frontend and backend architectures for course delivery and student management.",
+    tags: ["Full-Stack", "LMS", "Web Platform"],
+    href: "https://github.com/shabaabhanaan/LearningManagementSystem",
+    scopeKey: "Website Building",
+    icon: Layers,
+  },
+];
+
 export const LandingPageContent = () => {
   const [isTalkToUsOpen, setIsTalkToUsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -263,6 +299,7 @@ export const LandingPageContent = () => {
             <a href="#services" className="hover:text-[#0F172A] transition-colors">Services</a>
             <a href="#process" className="hover:text-[#0F172A] transition-colors">Process</a>
             <a href="#solutions" className="hover:text-[#0F172A] transition-colors">Use Cases</a>
+            <a href="#portfolio" className="hover:text-[#0F172A] transition-colors">Portfolio</a>
             <a href="#faq" className="hover:text-[#0F172A] transition-colors">FAQ</a>
             <a href="#contact" className="hover:text-[#0F172A] transition-colors">Contact</a>
           </div>
@@ -299,6 +336,7 @@ export const LandingPageContent = () => {
                 <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
                 <a href="#process" onClick={() => setMobileMenuOpen(false)}>Process</a>
                 <a href="#solutions" onClick={() => setMobileMenuOpen(false)}>Use Cases</a>
+                <a href="#portfolio" onClick={() => setMobileMenuOpen(false)}>Portfolio</a>
                 <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
                 <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
               </div>
@@ -903,6 +941,113 @@ export const LandingPageContent = () => {
           </div>
         </section>
 
+        {/* FOUNDER & PORTFOLIO SECTION (shanaan.com) */}
+        <section id="portfolio" className="scroll-mt-24 py-16 sm:py-24 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-10 shadow-xs">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-xl">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] text-xs font-medium text-[#1D4ED8] border border-[#DBEAFE]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> Founder &amp; Personal Portfolio
+                  </span>
+                  <h2 className="font-serif font-normal text-3xl sm:text-5xl tracking-[-0.02em] text-[#0F172A] leading-[1.08]">
+                    Shabaab Hanaan
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                    Founder &amp; Software Engineer behind Zeoraz—building full-stack web platforms, mobile applications, and practical AI tools. Explore more engineering work and project notes at{" "}
+                    <a
+                      href="https://shanaan.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[#2563EB] hover:text-[#1D4ED8] underline underline-offset-4"
+                    >
+                      shanaan.com
+                    </a>
+                    .
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                  <a
+                    href="https://shanaan.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-3 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-medium inline-flex items-center gap-2 shadow-sm transition-colors"
+                  >
+                    <span>Visit shanaan.com</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://github.com/shabaabhanaan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-3 rounded-full bg-[#F8FAFC] hover:bg-[#EFF6FF] border border-[#E2E8F0] text-[#0F172A] text-xs sm:text-sm font-medium inline-flex items-center gap-2 transition-colors"
+                  >
+                    <span>GitHub</span>
+                    <ArrowUpRight className="w-4 h-4 text-[#2563EB]" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+              {portfolioProjects.map((project) => {
+                const ProjectIcon = project.icon;
+                return (
+                  <div
+                    key={project.title}
+                    className="bg-white rounded-2xl border border-[#E2E8F0] p-6 flex flex-col justify-between shadow-xs hover:border-[#2563EB]/40 hover:shadow-md transition-all"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] border border-[#DBEAFE] flex items-center justify-center text-[#2563EB]">
+                          <ProjectIcon className="w-5 h-5" />
+                        </div>
+                        <a
+                          href={project.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-medium text-[#475569] hover:text-[#2563EB] inline-flex items-center gap-1 transition-colors"
+                        >
+                          <span>Source</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                      <h3 className="font-serif text-2xl text-[#0F172A] mb-2 leading-snug">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#475569] leading-relaxed mb-4">
+                        {project.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-100 space-y-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-0.5 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[11px] font-medium text-[#334155]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleSelectScopeAndScroll(project.scopeKey)}
+                        className="text-xs font-medium text-[#2563EB] hover:text-[#1D4ED8] inline-flex items-center gap-1 transition-colors cursor-pointer"
+                      >
+                        <span>Build something similar</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* FAQ SECTION ("All You Need to Know") */}
         <section id="faq" className="scroll-mt-24 py-16 sm:py-20 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
           <div className="max-w-3xl mx-auto">
@@ -1114,7 +1259,7 @@ export const LandingPageContent = () => {
       </main>
 
       {/* ATMOSPHERIC MINIMAL FOOTER */}
-      <footer className="relative pt-12 sm:pt-14 pb-16 sm:pb-12 px-5 sm:px-6 lg:px-12 overflow-hidden border-t border-slate-200/80">
+      <footer className="relative pt-10 sm:pt-14 pb-20 sm:pb-12 px-4 sm:px-6 lg:px-12 overflow-hidden border-t border-slate-200/80">
         <Image
           src="/images/horizon-sky.jpg"
           alt="Subtle horizon backdrop"
@@ -1125,53 +1270,63 @@ export const LandingPageContent = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white/70 pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-8 sm:pb-10 border-b border-slate-200/80">
-            <div className="sm:col-span-2 lg:col-span-5 space-y-3">
-              <div className="flex items-center gap-2.5">
+          <div className="grid grid-cols-12 gap-3 sm:gap-6 lg:gap-10 pb-7 sm:pb-10 border-b border-slate-200/80">
+            <div className="col-span-5 space-y-2 sm:space-y-3 min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2.5">
                 <Image
                   src="/images/logo.png"
                   alt="Zeoraz logo"
                   width={32}
                   height={32}
-                  className="w-8 h-8 object-contain"
+                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain shrink-0"
                 />
-                <span className="font-serif text-2xl text-[#0F172A]">Zeoraz</span>
+                <span className="font-serif text-lg sm:text-2xl text-[#0F172A]">Zeoraz</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#475569] max-w-sm leading-relaxed">
+              <p className="text-[11px] sm:text-sm text-[#475569] max-w-sm leading-relaxed">
                 Websites, iOS &amp; Android mobile apps, and custom AI agents crafted for modern businesses.
               </p>
             </div>
 
-            <div className="sm:col-span-1 lg:col-span-3 space-y-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F172A] block">Navigation</span>
-              <div className="grid grid-cols-2 sm:flex sm:flex-col gap-x-6 gap-y-2 sm:gap-y-1.5 text-xs sm:text-sm lg:text-xs text-[#475569]">
-                <a href="#services" className="py-0.5 hover:text-[#0F172A] transition-colors">Services</a>
-                <a href="#process" className="py-0.5 hover:text-[#0F172A] transition-colors">Process</a>
-                <a href="#solutions" className="py-0.5 hover:text-[#0F172A] transition-colors">Use Cases</a>
-                <a href="#faq" className="py-0.5 hover:text-[#0F172A] transition-colors">FAQ</a>
-                <a href="#contact" className="py-0.5 hover:text-[#0F172A] transition-colors">Contact</a>
+            <div className="col-span-3 space-y-2 sm:space-y-3 min-w-0">
+              <span className="text-[11px] sm:text-xs font-semibold text-[#0F172A] block">Navigation</span>
+              <div className="flex flex-col space-y-1.5 text-[11px] sm:text-xs text-[#475569]">
+                <a href="#services" className="hover:text-[#0F172A] transition-colors">Services</a>
+                <a href="#process" className="hover:text-[#0F172A] transition-colors">Process</a>
+                <a href="#solutions" className="hover:text-[#0F172A] transition-colors whitespace-nowrap">Use Cases</a>
+                <a href="#portfolio" className="hover:text-[#0F172A] transition-colors">Portfolio</a>
+                <a href="#faq" className="hover:text-[#0F172A] transition-colors">FAQ</a>
+                <a href="#contact" className="hover:text-[#0F172A] transition-colors">Contact</a>
               </div>
             </div>
 
-            <div className="sm:col-span-1 lg:col-span-4 space-y-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F172A] block">Start a Project</span>
-              <p className="text-xs sm:text-sm lg:text-xs text-[#475569] max-w-xs leading-relaxed">
-                Ready to build your website, mobile app, or AI agent? Let&apos;s map out the launch.
+            <div className="col-span-4 space-y-2 sm:space-y-3 min-w-0">
+              <span className="text-[11px] sm:text-xs font-semibold text-[#0F172A] block">Start a Project</span>
+              <p className="text-[11px] sm:text-xs text-[#475569] max-w-xs leading-relaxed">
+                Ready to build your website, app, or AI agent? Let&apos;s map out the launch.
               </p>
               <button
                 type="button"
                 onClick={() => setIsTalkToUsOpen(true)}
-                className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-[11px] sm:text-xs font-medium inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap transition-colors cursor-pointer"
               >
                 <span>Get Started</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
               </button>
             </div>
           </div>
 
-          <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pr-16 sm:pr-20 lg:pr-0 text-xs text-[#64748B]">
-            <p>© {new Date().getFullYear()} Zeoraz. All rights reserved.</p>
-            <a href="#" className="inline-flex items-center gap-1 py-0.5 hover:text-[#0F172A] transition-colors">Back to Top ↑</a>
+          <div className="pt-5 sm:pt-6 flex flex-row justify-between items-center gap-3 pr-14 sm:pr-20 lg:pr-0 text-[11px] sm:text-xs text-[#64748B]">
+            <p>© {new Date().getFullYear()} Zeoraz. Built by{" "}
+              <a
+                href="https://shanaan.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0F172A] hover:text-[#2563EB] font-medium transition-colors"
+              >
+                shanaan.com
+              </a>.
+            </p>
+            <a href="#" className="inline-flex items-center gap-1 whitespace-nowrap shrink-0 hover:text-[#0F172A] transition-colors">Back to Top ↑</a>
           </div>
         </div>
       </footer>
