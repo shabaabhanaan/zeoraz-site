@@ -24,17 +24,6 @@ export const ChatbotWidget = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  useEffect(() => {
-    if (!isOpen || typeof window === "undefined") return;
-    const isMobile = window.matchMedia("(max-width: 639px)").matches;
-    if (!isMobile) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [isOpen]);
-
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     const userText = inputValue.trim();
@@ -75,15 +64,11 @@ export const ChatbotWidget = () => {
   };
 
   return (
-    <div
-      className={`fixed bottom-22 sm:bottom-24 right-4 sm:right-6 flex flex-col items-end pointer-events-none ${
-        isOpen ? "z-[70] sm:z-50" : "z-50"
-      }`}
-    >
+    <div className="fixed bottom-22 sm:bottom-24 right-4 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Chat Window */}
       <div
         aria-hidden={!isOpen}
-        className={`fixed inset-0 sm:static sm:inset-auto w-full h-[100dvh] sm:h-auto sm:mb-4 sm:w-[350px] sm:max-w-[350px] flex flex-col overflow-hidden rounded-none sm:rounded-3xl border-0 sm:border sm:border-[#E2E8F0] bg-white shadow-none sm:shadow-2xl transition-all duration-300 origin-bottom-right ${
+        className={`mb-3 sm:mb-4 w-[min(350px,calc(100vw-2rem))] flex flex-col overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl transition-all duration-300 origin-bottom-right ${
           isOpen
             ? "scale-100 opacity-100 pointer-events-auto visible"
             : "scale-0 opacity-0 pointer-events-none invisible"
@@ -121,7 +106,7 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Messages Container */}
-        <div className="flex-1 sm:flex-none flex flex-col sm:h-[320px] overflow-y-auto overscroll-contain p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
+        <div className="flex flex-col h-[min(320px,45dvh)] overflow-y-auto overscroll-contain p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
           {messages.map((msg, idx) => (
             <div
               key={idx}
@@ -167,7 +152,7 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Input Area */}
-        <div className="shrink-0 p-3.5 pb-[calc(0.875rem+env(safe-area-inset-bottom))] sm:pb-3.5 border-t border-[#E2E8F0] bg-white">
+        <div className="shrink-0 p-3.5 border-t border-[#E2E8F0] bg-white">
           <form onSubmit={handleSend} className="relative flex items-center">
             <input
               type="text"
@@ -189,7 +174,7 @@ export const ChatbotWidget = () => {
       </div>
 
       {/* Toggle Floating Button */}
-      <div className={`relative group pointer-events-auto ${isOpen ? "hidden sm:block" : "block"}`}>
+      <div className="relative group pointer-events-auto">
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
