@@ -24,6 +24,17 @@ export const ChatbotWidget = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
+  useEffect(() => {
+    if (!isOpen || typeof window === "undefined") return;
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    if (!isMobile) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     const userText = inputValue.trim();
@@ -64,18 +75,22 @@ export const ChatbotWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-22 sm:bottom-24 right-4 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
+    <div
+      className={`fixed bottom-22 sm:bottom-24 right-4 sm:right-6 flex flex-col items-end pointer-events-none ${
+        isOpen ? "z-[70] sm:z-50" : "z-50"
+      }`}
+    >
       {/* Chat Window */}
       <div
         aria-hidden={!isOpen}
-        className={`mb-4 w-[calc(100vw-2rem)] sm:w-[350px] max-w-[350px] overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl transition-all duration-300 origin-bottom-right ${
+        className={`fixed inset-0 sm:static sm:inset-auto w-full h-[100dvh] sm:h-auto sm:mb-4 sm:w-[350px] sm:max-w-[350px] flex flex-col overflow-hidden rounded-none sm:rounded-3xl border-0 sm:border sm:border-[#E2E8F0] bg-white shadow-none sm:shadow-2xl transition-all duration-300 origin-bottom-right ${
           isOpen
             ? "scale-100 opacity-100 pointer-events-auto visible"
             : "scale-0 opacity-0 pointer-events-none invisible"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between bg-[#0F172A] px-5 py-4 text-white">
+        <div className="shrink-0 flex items-center justify-between bg-[#0F172A] px-4 sm:px-5 py-3.5 sm:py-4 text-white">
           <div className="flex items-center gap-3">
             <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-[#1E293B] border border-[#334155] text-white shrink-0">
               <Bot className="w-5 h-5 text-[#60A5FA]" />
@@ -96,8 +111,9 @@ export const ChatbotWidget = () => {
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setIsOpen(false)}
-            className="text-white/60 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10 cursor-pointer"
+            className="text-white/70 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/10 cursor-pointer"
             aria-label="Close chat"
           >
             <X className="h-5 w-5" />
@@ -105,7 +121,7 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Messages Container */}
-        <div className="flex flex-col h-[min(320px,50vh)] overflow-y-auto p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
+        <div className="flex-1 sm:flex-none flex flex-col sm:h-[320px] overflow-y-auto overscroll-contain p-4 gap-3 bg-[#F8FAFC] scrollbar-thin scrollbar-thumb-[#CBD5E1]">
           {messages.map((msg, idx) => (
             <div
               key={idx}
@@ -151,14 +167,14 @@ export const ChatbotWidget = () => {
         </div>
 
         {/* Input Area */}
-        <div className="p-3.5 border-t border-[#E2E8F0] bg-white">
+        <div className="shrink-0 p-3.5 pb-[calc(0.875rem+env(safe-area-inset-bottom))] sm:pb-3.5 border-t border-[#E2E8F0] bg-white">
           <form onSubmit={handleSend} className="relative flex items-center">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Ask about websites, mobile apps, or AI..."
-              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-full pl-4 pr-12 py-2.5 text-xs sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] focus:bg-white transition-all"
+              className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-full pl-4 pr-12 py-2.5 text-base sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] focus:bg-white transition-all"
             />
             <button
               type="submit"
@@ -173,7 +189,7 @@ export const ChatbotWidget = () => {
       </div>
 
       {/* Toggle Floating Button */}
-      <div className="relative group pointer-events-auto">
+      <div className={`relative group pointer-events-auto ${isOpen ? "hidden sm:block" : "block"}`}>
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
