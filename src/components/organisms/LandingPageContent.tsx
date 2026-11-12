@@ -905,20 +905,20 @@ export const LandingPageContent = () => {
           </div>
         </section>
 
-        {/* FOUNDER & PORTFOLIO SECTION (shanaan.com) */}
+        {/* CO-FOUNDER & PORTFOLIO SECTION (shanaan.com) */}
         <section id="portfolio" className="scroll-mt-24 py-12 sm:py-16 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-10 shadow-xs">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-3 max-w-xl">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] text-xs font-medium text-[#1D4ED8] border border-[#DBEAFE]">
-                    <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> Founder &amp; Personal Portfolio
+                    <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> Co-Founder &amp; Personal Portfolio
                   </span>
                   <h2 className="font-serif font-normal text-3xl sm:text-5xl tracking-[-0.02em] text-[#0F172A] leading-[1.08]">
                     Shabaab Hanaan
                   </h2>
                   <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                    Founder &amp; Software Engineer behind Zeoraz—building full-stack web platforms, mobile applications, and practical AI tools. View my personal portfolio at{" "}
+                    Co-Founder &amp; Software Engineer behind Zeoraz—building full-stack web platforms, mobile applications, and practical AI tools. View my personal portfolio at{" "}
                     <a
                       href="https://shanaan.com"
                       target="_blank"
