@@ -23,9 +23,6 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Zeoraz | Website Building, Mobile App Development & AI Solutions",
   description: "Custom websites, iOS & Android mobile apps, and smart AI assistants built for modern businesses.",
-  icons: {
-    icon: "/images/logo.png",
-  },
 };
 
 export default function RootLayout({
