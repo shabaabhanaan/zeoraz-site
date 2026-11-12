@@ -155,42 +155,6 @@ const faqItems: FaqItem[] = [
   },
 ];
 
-interface PortfolioProject {
-  title: string;
-  desc: string;
-  tags: string[];
-  href: string;
-  scopeKey: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
-
-const portfolioProjects: PortfolioProject[] = [
-  {
-    title: "Study Companion AI Extension",
-    desc: "AI-powered Manifest V3 Chrome extension integrating GPT-4o and Google Gemini to analyze text, explain code snippets, and assist workflows.",
-    tags: ["Chrome MV3", "GPT-4o", "Gemini AI"],
-    href: "https://github.com/shabaabhanaan/Study-Companion-Chrome-Extension",
-    scopeKey: "AI Agent Building",
-    icon: Bot,
-  },
-  {
-    title: "Multi-Chat Real-Time App",
-    desc: "Full-stack real-time web messaging platform supporting multi-room channels and direct chat across desktop and mobile viewports.",
-    tags: ["Full-Stack", "Real-Time", "Responsive UI"],
-    href: "https://github.com/shabaabhanaan/multi-chat-app",
-    scopeKey: "Website Building",
-    icon: MessageSquare,
-  },
-  {
-    title: "Learning Management System",
-    desc: "Structured full-stack LMS platform built with separate frontend and backend architectures for course delivery and student management.",
-    tags: ["Full-Stack", "LMS", "Web Platform"],
-    href: "https://github.com/shabaabhanaan/LearningManagementSystem",
-    scopeKey: "Website Building",
-    icon: Layers,
-  },
-];
-
 export const LandingPageContent = () => {
   const [isTalkToUsOpen, setIsTalkToUsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -942,7 +906,7 @@ export const LandingPageContent = () => {
         </section>
 
         {/* FOUNDER & PORTFOLIO SECTION (shanaan.com) */}
-        <section id="portfolio" className="scroll-mt-24 py-16 sm:py-24 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
+        <section id="portfolio" className="scroll-mt-24 py-12 sm:py-16 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-10 shadow-xs">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -954,7 +918,7 @@ export const LandingPageContent = () => {
                     Shabaab Hanaan
                   </h2>
                   <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                    Founder &amp; Software Engineer behind Zeoraz—building full-stack web platforms, mobile applications, and practical AI tools. Explore more engineering work and project notes at{" "}
+                    Founder &amp; Software Engineer behind Zeoraz—building full-stack web platforms, mobile applications, and practical AI tools. View my personal portfolio at{" "}
                     <a
                       href="https://shanaan.com"
                       target="_blank"
@@ -967,83 +931,18 @@ export const LandingPageContent = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <div className="shrink-0">
                   <a
                     href="https://shanaan.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-3 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-medium inline-flex items-center gap-2 shadow-sm transition-colors"
+                    className="px-6 py-3 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-medium inline-flex items-center gap-2 shadow-sm transition-colors"
                   >
                     <span>Visit shanaan.com</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
-                  <a
-                    href="https://github.com/shabaabhanaan"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-3 rounded-full bg-[#F8FAFC] hover:bg-[#EFF6FF] border border-[#E2E8F0] text-[#0F172A] text-xs sm:text-sm font-medium inline-flex items-center gap-2 transition-colors"
-                  >
-                    <span>GitHub</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#2563EB]" />
-                  </a>
                 </div>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-              {portfolioProjects.map((project) => {
-                const ProjectIcon = project.icon;
-                return (
-                  <div
-                    key={project.title}
-                    className="bg-white rounded-2xl border border-[#E2E8F0] p-6 flex flex-col justify-between shadow-xs hover:border-[#2563EB]/40 hover:shadow-md transition-all"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-[#EFF6FF] border border-[#DBEAFE] flex items-center justify-center text-[#2563EB]">
-                          <ProjectIcon className="w-5 h-5" />
-                        </div>
-                        <a
-                          href={project.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-medium text-[#475569] hover:text-[#2563EB] inline-flex items-center gap-1 transition-colors"
-                        >
-                          <span>Source</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                      <h3 className="font-serif text-2xl text-[#0F172A] mb-2 leading-snug">
-                        {project.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-[#475569] leading-relaxed mb-4">
-                        {project.desc}
-                      </p>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-100 space-y-3">
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2.5 py-0.5 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[11px] font-medium text-[#334155]"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => handleSelectScopeAndScroll(project.scopeKey)}
-                        className="text-xs font-medium text-[#2563EB] hover:text-[#1D4ED8] inline-flex items-center gap-1 transition-colors cursor-pointer"
-                      >
-                        <span>Build something similar</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </section>
