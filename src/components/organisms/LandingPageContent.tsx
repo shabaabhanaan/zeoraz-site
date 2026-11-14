@@ -30,6 +30,7 @@ import { TalkToUsModal } from "@/components/organisms/TalkToUsModal";
 import { WhatsAppWidget } from "@/components/atoms/WhatsAppWidget";
 import { ChatbotWidget } from "@/components/atoms/ChatbotWidget";
 import { WaterfallHeroBackdrop } from "@/components/atoms/WaterfallHeroBackdrop";
+import { SpeedComparisonSlider } from "@/components/organisms/SpeedComparisonSlider";
 
 interface BenefitOption {
   id: string;
@@ -261,6 +262,7 @@ export const LandingPageContent = () => {
           <div className="hidden md:flex items-center space-x-8 text-[13px] font-medium text-[#475569]">
             <a href="#" className="hover:text-[#0F172A] transition-colors">Home</a>
             <a href="#services" className="hover:text-[#0F172A] transition-colors">Services</a>
+            <a href="#comparison" className="hover:text-[#0F172A] transition-colors">Benchmark</a>
             <a href="#process" className="hover:text-[#0F172A] transition-colors">Process</a>
             <a href="#solutions" className="hover:text-[#0F172A] transition-colors">Use Cases</a>
             <a href="#portfolio" className="hover:text-[#0F172A] transition-colors">Portfolio</a>
@@ -722,6 +724,9 @@ export const LandingPageContent = () => {
             </div>
           </div>
         </section>
+
+        {/* SPEED & AI BENCHMARK COMPARISON SLIDER */}
+        <SpeedComparisonSlider onOpenConsultation={() => setIsTalkToUsOpen(true)} />
 
         {/* 3 SIMPLE STEPS SECTION */}
         <section id="process" className="scroll-mt-24 py-16 sm:py-24 px-6 lg:px-12 bg-[#F8FAFC]">
