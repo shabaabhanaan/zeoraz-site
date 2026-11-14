@@ -8,15 +8,12 @@ import {
   AlertTriangle,
   CheckCircle2,
   XCircle,
-  Bot,
   MessageSquare,
   Smartphone,
   Gauge,
   ArrowRight,
   Sparkles,
   RefreshCw,
-  TrendingUp,
-  ShieldCheck,
 } from "lucide-react";
 
 interface SpeedComparisonSliderProps {
@@ -213,7 +210,7 @@ export function SpeedComparisonSlider({ onOpenConsultation }: SpeedComparisonSli
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
                   </span>
                   <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold text-xs tracking-wide uppercase">
-                    ⚡ Zeoraz Next.js + AI Platform
+                    Zeoraz Next.js + AI Platform
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -273,7 +270,7 @@ export function SpeedComparisonSlider({ onOpenConsultation }: SpeedComparisonSli
 
                 {simulating === "zeoraz" && (
                   <span className="block mt-2 text-emerald-400 text-xs font-mono animate-pulse">
-                    ⚡ {zeorazLoaded ? "Loaded in 380ms! Full score." : "Fetching Next.js chunks..."}
+                    {zeorazLoaded ? "Loaded in 380ms! Full score." : "Fetching Next.js chunks..."}
                   </span>
                 )}
               </div>
@@ -297,7 +294,7 @@ export function SpeedComparisonSlider({ onOpenConsultation }: SpeedComparisonSli
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500" />
                   </span>
                   <span className="px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 font-semibold text-xs tracking-wide uppercase">
-                    🐌 Typical Legacy Website (WordPress / Wix)
+                    Typical Legacy Website (WordPress / Wix)
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -396,61 +393,57 @@ export function SpeedComparisonSlider({ onOpenConsultation }: SpeedComparisonSli
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
           {/* Card 1 */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
+            <div className="text-xs text-slate-500 mb-2">
               <span>Mobile Page Speed</span>
-              <Gauge className="w-4 h-4 text-blue-600" />
             </div>
             <div className="flex items-baseline gap-2 mb-1">
               <span className="text-2xl font-bold text-emerald-600">0.38s</span>
               <span className="text-xs text-slate-400 line-through">4.2s Legacy</span>
             </div>
-            <p className="text-xs text-slate-600">
-              ⚡ <strong>91% faster load time</strong> eliminating mobile visitor drop-offs.
+            <p className="text-xs text-slate-600 leading-relaxed">
+              <strong className="text-slate-900 font-semibold">91% faster load time</strong> eliminating mobile visitor drop-offs.
             </p>
           </div>
 
           {/* Card 2 */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
+            <div className="text-xs text-slate-500 mb-2">
               <span>Inquiry Response Time</span>
-              <Bot className="w-4 h-4 text-blue-600" />
             </div>
             <div className="flex items-baseline gap-2 mb-1">
               <span className="text-2xl font-bold text-emerald-600">&lt; 3 Seconds</span>
               <span className="text-xs text-slate-400 line-through">18+ Hours</span>
             </div>
-            <p className="text-xs text-slate-600">
-              🤖 <strong>AI answers immediately</strong>, qualifies the prospect, and logs contact details.
+            <p className="text-xs text-slate-600 leading-relaxed">
+              <strong className="text-slate-900 font-semibold">AI answers immediately</strong>, qualifies the prospect, and logs contact details.
             </p>
           </div>
 
           {/* Card 3 */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
+            <div className="text-xs text-slate-500 mb-2">
               <span>After-Hours Capture</span>
-              <TrendingUp className="w-4 h-4 text-blue-600" />
             </div>
             <div className="flex items-baseline gap-2 mb-1">
               <span className="text-2xl font-bold text-emerald-600">100% 24/7</span>
               <span className="text-xs text-slate-400 line-through">0% Offline</span>
             </div>
-            <p className="text-xs text-slate-600">
-              📲 <strong>Captures midnight leads</strong> directly to WhatsApp & email notifications.
+            <p className="text-xs text-slate-600 leading-relaxed">
+              <strong className="text-slate-900 font-semibold">Captures midnight leads</strong> directly to WhatsApp &amp; email notifications.
             </p>
           </div>
 
           {/* Card 4 */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
+            <div className="text-xs text-slate-500 mb-2">
               <span>Google Core Web Vitals</span>
-              <ShieldCheck className="w-4 h-4 text-blue-600" />
             </div>
             <div className="flex items-baseline gap-2 mb-1">
               <span className="text-2xl font-bold text-emerald-600">99 / 100</span>
               <span className="text-xs text-slate-400 line-through">38 / 100</span>
             </div>
-            <p className="text-xs text-slate-600">
-              🚀 <strong>Clean Next.js architecture</strong> boosting SEO rankings and Google Ad quality.
+            <p className="text-xs text-slate-600 leading-relaxed">
+              <strong className="text-slate-900 font-semibold">Clean Next.js architecture</strong> boosting SEO rankings and Google Ad quality.
             </p>
           </div>
         </div>
