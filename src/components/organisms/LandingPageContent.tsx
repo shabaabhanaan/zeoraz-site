@@ -910,18 +910,92 @@ export const LandingPageContent = () => {
           </div>
         </section>
 
-        {/* CO-FOUNDER & PORTFOLIO SECTION (shanaan.com) */}
-        <section id="portfolio" className="scroll-mt-24 py-12 sm:py-16 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
-          <div className="max-w-5xl mx-auto">
+        {/* PORTFOLIO & SHOWCASE SECTION */}
+        <section id="portfolio" className="scroll-mt-24 py-16 sm:py-24 px-6 lg:px-12 bg-[#F8FAFC] border-t border-slate-200/70">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] text-xs font-medium text-[#1D4ED8] border border-[#DBEAFE] mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> Proven Craftsmanship
+              </span>
+              <h2 className="font-serif font-normal text-3xl sm:text-5xl tracking-[-0.02em] text-[#0F172A] mb-3">
+                Selected Work &amp; Case Studies
+              </h2>
+              <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                Explore our live interactive flagship builds engineered for sub-second speeds, modern editorial elegance, and automated client acquisition.
+              </p>
+            </div>
+
+            {/* FLAGSHIP CLIENT SHOWCASE CARD: AURELIA RESIDENCES */}
+            <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-10 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 relative aspect-16/10 rounded-2xl overflow-hidden shadow-xs border border-slate-200 bg-slate-100 group">
+                  <Image
+                    src="/images/aurelia/hero.jpg"
+                    alt="Aurelia Residences Flagship Architectural Website"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute top-3 left-3 bg-[#1C1917]/85 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-mono tracking-wider uppercase border border-white/20">
+                    Flagship Concept Case Study
+                  </div>
+                  <div className="absolute bottom-3 right-3 bg-emerald-950/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-emerald-300 text-[10px] font-mono font-bold border border-emerald-500/30">
+                    0.38s Next.js Load
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 space-y-4">
+                  <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#64748B]">
+                    Luxury Architecture &amp; Living
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#0F172A] leading-tight">
+                    Aurelia Residences
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                    A bespoke residential architectural experience engineered with an interactive bento space previewer, 3D cantilevered terrace showcase, and automated VIP concierge inquiries.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2 text-[11px] text-[#334155] font-mono pt-2">
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5">
+                      <span className="text-slate-400 block text-[10px]">Speed Score</span>
+                      <strong className="text-emerald-600 font-bold">99/100 Vitals</strong>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5">
+                      <span className="text-slate-400 block text-[10px]">Interactions</span>
+                      <strong className="text-blue-600 font-bold">Live Bento Preview</strong>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-3">
+                    <Link
+                      href="/showcase/aurelia"
+                      className="px-5 py-2.5 rounded-full bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                    >
+                      <span>Explore Live Showcase</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setIsTalkToUsOpen(true)}
+                      className="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-[#0F172A] text-xs font-medium transition-colors cursor-pointer"
+                    >
+                      Request Similar Build
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CO-FOUNDER & PERSONAL PORTFOLIO SECTION (shanaan.com) */}
             <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-10 shadow-xs">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-3 max-w-xl">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] text-xs font-medium text-[#1D4ED8] border border-[#DBEAFE]">
-                    <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> Co-Founder &amp; Personal Portfolio
+                    <Sparkles className="w-3.5 h-3.5 text-[#2563EB]" /> Co-Founder &amp; Engineering Lead
                   </span>
-                  <h2 className="font-serif font-normal text-3xl sm:text-5xl tracking-[-0.02em] text-[#0F172A] leading-[1.08]">
+                  <h3 className="font-serif font-normal text-2xl sm:text-4xl tracking-[-0.02em] text-[#0F172A] leading-[1.08]">
                     Shabaab Hanaan
-                  </h2>
+                  </h3>
                   <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
                     Co-Founder &amp; Software Engineer behind Zeoraz—building full-stack web platforms, mobile applications, and practical AI tools. View my personal portfolio at{" "}
                     <a
